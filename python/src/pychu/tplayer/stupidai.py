@@ -1,4 +1,4 @@
-from typing import Set, Callable
+from typing import Set, Callable, Dict
 
 # noinspection PyUnresolvedReferences
 from pychu.tlogic.tcards import Card
@@ -12,7 +12,23 @@ from pychu.tplayer.tplayer import TPlayer
 
 class StupidAI(TPlayer):
 
-    def play(self, table_cards: Set[Card], card_receiver: Callable[[Set[Card]], bool], wish=None) -> None:
+    async def schupf(self) -> Dict[int, Card]:
+        n = self.player_number
+        back = {}
+        cards = list(sorted(self.hand))
+        # partner
+        back[(n+2)%4] = cards[-1]
+        back[(n+1)%4] = cards[0]
+        back[(n+3)%4] = cards[1]
+
+        self.hand.difference_update(back.items())
+
+        return back
+
+    async def ready(self):
+        return True
+
+    async def play(self, table_cards: Set[Card], card_receiver: Callable[[Set[Card]], bool], wish=None) -> None:
         cards = []
         if self.hand:
             if len(table_cards) == 0:

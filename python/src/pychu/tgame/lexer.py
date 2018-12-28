@@ -7,6 +7,7 @@ from prompt_toolkit.styles import NAMED_COLORS
 
 class TichuLexer(Lexer):
     """
+    idea: having colored input for the CLI-client
 
     """
 

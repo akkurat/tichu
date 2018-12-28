@@ -1,15 +1,10 @@
 from abc import ABC, abstractmethod
+from asyncio import Queue
 from enum import Enum, auto
-from typing import Set, Callable
+from typing import Set, Callable, List, Dict
 
+from pychu.tgame.tevent import TEventType, TEvent
 from pychu.tlogic.tcards import Card
-
-
-class TICHU(Enum):
-    BIG = auto
-    SMALL = auto
-
-
 
 class TPlayer(ABC):
 #Longterm: player should get the complete game
@@ -29,12 +24,24 @@ class TPlayer(ABC):
         self.hand = set()
         self.player_number = 0
 
-    def init(self, cards: Set[Card], player_number: int ):
-        self.hand = set(cards)
+    def init_player(self, player_number: int):
         self.player_number = player_number
 
+    async def dist_first(self, cards: List[Card]):
+        self.hand = set(cards)
+        return TEvent(TEventType.Ack, self.player_number)
+
+    async def dist_second(self, cards: List[Card]):
+        self.hand.update(cards)
+        return TEvent(TEventType.Ack, self.player_number)
+
     @abstractmethod
-    def play(self, lastcards: Set[Card], card_receiver: Callable[[Set[Card], bool], bool], wish=None) -> Set[Card]:
+    # or wait for being called thrice?
+    async def schupf(self) -> Dict[int, Card]:
+        pass
+
+    @abstractmethod
+    async def play(self, lastcards: Set[Card], card_receiver: Callable[[Set[Card], bool], bool], wish=None) -> Set[Card]:
         """
         The only mandatory function to implement.
         The Player is given the cards played by the last player
@@ -68,4 +75,10 @@ class TPlayer(ABC):
         :return:
         """
         pass;
+
+    @abstractmethod
+    async def ready(self):
+        pass
+
+
 

@@ -53,9 +53,9 @@ class CardsValidator:
         :return:
         """
         if self.wish:
-            # todo: haha, this is not really enough
+            # TODO: check also pattern necessary
             # we also need to check in case of not a single card if
-            # it is possible to build this patter :(
+            # it is possible to build this pattern
             le = filter(lambda card: card.rank == self.wish, self.available_cards)
             return le
         else:

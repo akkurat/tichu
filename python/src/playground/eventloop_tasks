@@ -1,0 +1,49 @@
+#!/usr/bin/python3
+
+import asyncio
+import json
+import logging
+
+logging.basicConfig()
+
+
+
+
+
+async def gagi():
+
+    for i in range(23):
+        print("Routine 1 Start",i,)
+        await asyncio.sleep(0.2)
+        print("Routine 1 End",i,)
+
+async def gagi2():
+    for i in range(19):
+        print("Routine 2 Start",i,)
+        await asyncio.sleep(0.13)
+        print("Routine 2 End",i,)
+
+async def gagi3():
+    for i in range(100):
+        print("Routine 3 Start",i,)
+        await asyncio.sleep(0.06)
+        print("Routine 3 End",i,)
+
+if __name__ == '__main__':
+    el = asyncio.get_event_loop()
+    t1 = el.create_task(gagi())
+    t2 = el.create_task(gagi2())
+    t3 = el.create_task(gagi3())
+
+    # t1 = asyncio.ensure_future(gagi())
+
+
+
+    # el.run_until_complete(t1)
+    # el.run_until_complete(t2)
+    # el.run_until_complete(t3)
+
+
+
+
+

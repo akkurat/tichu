@@ -1,3 +1,4 @@
+import json
 from enum import Enum
 from numbers import Number
 from typing import Iterable, Union, List
@@ -111,6 +112,12 @@ class Card:
     def __hash__(self):
         return self.__repr__().__hash__()
 
+class CardEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Card):
+            return o.__repr__()
+        else:
+            super().default(self, o)
 
 def has_phoenix(cards):
     from pychu.tlogic.tcard_names import phoenix

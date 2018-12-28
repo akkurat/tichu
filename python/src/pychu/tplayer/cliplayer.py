@@ -4,21 +4,23 @@ from typing import Set
 from prompt_toolkit import prompt
 
 from pychu.tgame.lexer import RainbowLexer, TichuLexer
-from pychu.tgame.server import TEvent
+from pychu.tgame.tevent import TEvent
 from pychu.tplayer.tplayer import TPlayer
 from pychu.tlogic.tcards import Card, tcards
 from prompt_toolkit import print_formatted_text as print
 
 
-class HumanPlayer(TPlayer):
+#TODO: rename to console player
+class CliPlayer(TPlayer):
     """
     A simple human player taking commands from stdin
     """
 
     # This might make testability already difficult
-    def init(self, cards: Set[Card], player_number: int):
-        super().init(cards, player_number)
+    async def init_cards(self, cards: Set[Card], player_number: int):
+        super().init_cards(cards, player_number)
         print("You are player {}".format(self.player_number))
+        return player_number
 
     def play(self, lastcards: Set[Card], cards_validator):
         """
