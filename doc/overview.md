@@ -36,10 +36,10 @@ The colors of tichu are red, blue, green and black.
 in the tradition of RGB this stick and adding the Karbon from CMYK
 we end up with RGBK.
 ```python
-red = 'r', 'star'
-blue = 'b', 'house'
-green = 'g', 'emerald'
-black = 'k', 'sword'
+red = 'star' = s
+blue = 'pagode' = p (house)
+green = 'jade' = j
+black = 'sworD' = d (degen in german)
 ```
 For the sake of simplicity the ranks are just numbers between 
 2 and 14. However, we can lateron replace the int by an enum 
