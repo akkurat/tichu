@@ -87,9 +87,9 @@ class TestDoubleStraights():
     def test_phx(self, cards, rank, length):
         """
         Specifically test patterns including the phx
-        :param c1:
-        :param c2:
-        :param exp:
+        :param cards:
+        :param rank:
+        :param length:
         :return:
         """
         self.valid_cards(cards, rank, length)

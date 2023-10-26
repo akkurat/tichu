@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce7a56db-efcd-49c7-a0f2-8f691e9fdae7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/tichu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tichu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tgame/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tgame/validator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tlogic/tcard_names.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tlogic/tcard_names.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tlogic/tcards.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tlogic/tcards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/fullhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/fullhouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/straights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/straights.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/tests/tgame/test_tturns.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tgame/test_tturns.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/tests/tlogic/test_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tlogic/test_card.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/tests/tlogic/test_thelpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tlogic/test_thelpers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/tests/tpattern/test_doublestraights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tpattern/test_doublestraights.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/tests/tpattern/test_straights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tpattern/test_straights.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,9 +207,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
@@ -347,13 +335,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="tichu" is-module-sdk="true">
@@ -376,7 +364,7 @@
       <recent name="$PROJECT_DIR$/python/src/playground" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.pytest in tpattern">
+  <component name="RunManager" selected="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_phx">
     <configuration name="terminal" type="PythonConfigurationType" factoryName="Python">
       <module name="tichu" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -444,6 +432,22 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_doublestraights.TestDoubleStraights.test_phx" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_doublestraights.TestDoubleStraights.test_phx&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
     <configuration name="pytest for test_fullhouse.TestFullHouse.test_leftovers" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="tichu" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -457,22 +461,6 @@
       <option name="_new_parameters" value="&quot;gbr2 gb5 ph&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_fullhouse.TestFullHouse.test_leftovers&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pytest for test_straights.TestStraightRec" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_parameters" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_straights.TestStraightRec&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -496,17 +484,17 @@
       <item itemvalue="Python.terminal" />
       <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights" />
       <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_failing" />
+      <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_phx" />
       <item itemvalue="Python tests.pytest for test_fullhouse.TestFullHouse.test_leftovers" />
-      <item itemvalue="Python tests.pytest for test_straights.TestStraightRec" />
       <item itemvalue="Python tests.pytest in tpattern" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_phx" />
         <item itemvalue="Python tests.pytest in tpattern" />
         <item itemvalue="Python tests.pytest for test_fullhouse.TestFullHouse.test_leftovers" />
         <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_failing" />
         <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights" />
-        <item itemvalue="Python tests.pytest for test_straights.TestStraightRec" />
       </list>
     </recent_temporary>
   </component>
@@ -672,6 +660,16 @@
           <url>file://$PROJECT_DIR$/python/src/pychu/tgame/tichu_websocket.py</url>
           <line>33</line>
           <option name="timeStamp" value="202" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py</url>
+          <line>62</line>
+          <option name="timeStamp" value="206" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py</url>
+          <line>36</line>
+          <option name="timeStamp" value="207" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
