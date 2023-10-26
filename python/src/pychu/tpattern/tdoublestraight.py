@@ -13,7 +13,7 @@ class TDoubleStraight( TPattern):
     essential_cards = None
     redundant_cards = None
 
-    def __init__(self, cards):
+    def __init__(self, cards: list[Card]):
         if mahjong in cards:
             raise ValueError()
         if dragon in cards:
@@ -24,7 +24,7 @@ class TDoubleStraight( TPattern):
             raise ValueError("Double STraight needs at least 4 Cards!")
 
         #self.cards seems must come first
-        self.cards = c = list( sorted(cards,key=Card.rank))
+        self.cards = c = list( sorted(cards,key=Card.sorter ) )
 
         length = len(self.cards)
 

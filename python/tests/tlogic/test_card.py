@@ -14,7 +14,7 @@ card_strings = list(itertools.chain(special_strs, simple_card_strings))
 print(card_strings)
 
 
-class TestCard():
+class TestCardFactory.getCard():
 
     def test_set_capabilities(self):
         l = tcards('g2 k2 ma ph')
@@ -32,14 +32,14 @@ class TestCard():
     @mark.parametrize('rank', range(2, 15))
     @mark.parametrize('color', Color)
     def test_from_params(self, rank, color):
-        tc = Card(color=color, rank=rank)
+        tc = CardFactory.getCard(color=color, rank=rank)
         assert rank == tc.rank
         assert color == tc.color
         assert color.value+str(rank) == tc.__repr__()
 
     @mark.parametrize('special', Special)
     def test_special(self, special):
-        c = Card(special=special)
+        c = CardFactory.getCard(special=special)
         assert special == c.special
         assert special.value == c.rank
         # assert 2 >= c.rank > 14

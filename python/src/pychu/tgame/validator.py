@@ -3,7 +3,7 @@ from typing import List, Collection
 from boltons.setutils import IndexedSet
 
 from pychu.tlogic.tcard_names import phoenix
-from pychu.tlogic.tcards import Card, Special
+from pychu.tlogic.tcards import Card, Special, CardFactory
 from pychu.tlogic.thelpers import ident_pattern_unique
 
 
@@ -69,10 +69,10 @@ class CardsValidator:
         """
         if len(played_cards) == 1 and played_cards[0] == phoenix:
             if len(self.table_cards) == 0:
-                played_cards[0] = Card(rank=1.5, special=Special.phoenix)
+                played_cards[0] = CardFactory.getCard(rank=1.5, special=Special.phoenix)
             elif len(self.table_cards) == 1:
                 ph_rank = min(self.table_cards[0].rank + 0.5, 14.5)
-                played_cards[0] = Card(rank=ph_rank, special=Special.phoenix)
+                played_cards[0] = CardFactory.getCard(rank=ph_rank, special=Special.phoenix)
 
 
 

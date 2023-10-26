@@ -65,31 +65,28 @@ class Special(Enum):
     def __str__(self):
         return self.short
 
-
-class Card:
-    # TODO special and None color is the same property
+class CardFactory:
     __tichu_dict__ = {}
-
-    __slots__ = 'color', 'rank', 'special'
-
-    def __setattr__(self, key, value):
-        raise TypeError
-
-
-    def __new__(cls, color=None, rank=None, special=None):
-
+    @staticmethod
+    def getCard(color=None, rank=None, special=None):
         if special and not rank:
             rank = special.value
         id_str = Card._id_(color, rank, special)
-        if id_str in Card.__tichu_dict__:
-            return Card.__tichu_dict__[id_str]
+        if id_str in CardFactory.__tichu_dict__:
+            return CardFactory.__tichu_dict__[id_str]
         else:
-            o = object.__new__(cls)
-            object.__setattr__(o, 'special', special)
-            super(Card,o).__setattr__('rank', rank)
-            super(Card,o).__setattr__('color', color)
-            Card.__tichu_dict__[id_str] = o
+            # hm... why?
+            o = Card(color, rank, special)
+            CardFactory.__tichu_dict__[id_str] = o
             return o
+
+
+class Card:
+
+    def __init__(self, color=None, rank=None, special=None):
+        self.color = color
+        self.rank = rank
+        self.special = special
 
     def __repr__(self):
         return self._id_(self.color, self.rank, self.special)
@@ -111,6 +108,11 @@ class Card:
 
     def __hash__(self):
         return self.__repr__().__hash__()
+
+    @staticmethod
+    def sorter(c):
+        return c.rank
+
 
 class CardEncoder(json.JSONEncoder):
     def default(self, o):
@@ -139,7 +141,7 @@ def tcard(card_str: str) -> Card:
     else:
         color = Color(card_str[0])
         rank = int(card_str[1:])
-        return Card(color=color, rank=rank);
+        return CardFactory.getCard(color=color, rank=rank);
 
 
 

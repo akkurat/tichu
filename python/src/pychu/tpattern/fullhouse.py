@@ -38,8 +38,8 @@ class TFullHouse(TPattern):
 
 
     def __init__(self, cards: Set[Card]):
-        if len(cards) < 5:
-            raise ValueError("Fullhouse takes at least 5 Cards")
+        if len(cards) != 5:
+            raise ValueError("Fullhouse takes exactly 5 Cards")
 
         triples, le3 = TMultiFinder(3, False).recognize(cards, True)
         pairs, le2 = TMultiFinder(2, True).recognize(le3, True)

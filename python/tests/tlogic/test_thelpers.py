@@ -27,7 +27,7 @@ print(hex(id(st3)), hex(id(st4)))
     ('drn', dragon),
     ('mah', mahjong),
     ('dog', dog),
-    ('k14', Card(Color.black, rank=14))
+    ('k14', CardFactory.getCard(Color.black, rank=14))
 ])
 def test_tcard(inp, exp):
     assert exp == tcard(inp)

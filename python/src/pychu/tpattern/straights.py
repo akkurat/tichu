@@ -28,7 +28,7 @@ class TStraight(TPattern):
 
         # Check consistency of given cards!
 
-        sorted_cards = sorted(cards, key=Card.rank)
+        sorted_cards = sorted(cards, key=Card.sorter)
         sorted_cards_iter = iter(sorted_cards)
         first_card = next(sorted_cards_iter)
         self.rank = first_card.rank

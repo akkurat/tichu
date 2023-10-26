@@ -7,7 +7,7 @@ from pychu.tpattern.straights import TStraight
 from tpattern.test_pattern import _find_
 
 
-class TestStraightRec(rnTest):
+class TestStraightRec():
     @mark.parametrize('cards, rank, cardinality', [
         ('r2 g3 r4 k5 b6', 2, 5),
         ('ma r2 g3 r4 k5 b6', 1, 6),

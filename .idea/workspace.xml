@@ -1,117 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ce7a56db-efcd-49c7-a0f2-8f691e9fdae7" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/doc/pattern_matching.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/exec/cligame.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/exec/studies.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/exec/websocket.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/playground/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/playground/eventloop_gather.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/playground/eventloop_tasks" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tevent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tichu-client.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tichu-client.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tichu_websocket.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tplayerproxy.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/src/pychu/tgame/tround.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Imports.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Imports.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tichu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tichu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/gui/QTCard.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/gui/TCardGrid.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/gui/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/gui/maingui.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tgame/lexer.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tgame/lexer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tgame/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tgame/terminal.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/python/src/pychu/tgame/validator.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tgame/validator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/src/pychu/tlogic/tcard_names.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tlogic/tcard_names.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/python/src/pychu/tlogic/tcards.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tlogic/tcards.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tplayer/humanplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tplayer/cliplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tplayer/stupidai.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tplayer/stupidai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/pychu/tplayer/tplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tplayer/tplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/src/run_studies.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/fullhouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/fullhouse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/straights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/straights.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/src/pychu/tpattern/tdoublestraight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tests/tgame/test_tturns.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tgame/test_tturns.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tests/tlogic/test_card.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tlogic/test_card.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tests/tlogic/test_thelpers.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tlogic/test_thelpers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tests/tpattern/test_doublestraights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tpattern/test_doublestraights.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/tests/tpattern/test_straights.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/tests/tpattern/test_straights.py" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-699907773">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="9" />
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.11" value="1" />
-          <entry key="project.open.time.12" value="1" />
-          <entry key="project.open.time.17" value="1" />
-          <entry key="project.open.time.39" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="1" />
-          <entry key="project.open.time.9" value="4" />
-          <entry key="project.opened" value="13" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="" value="19" />
-          <entry key="Python Console" value="270" />
-          <entry key="async_test" value="1755" />
-          <entry key="coverage" value="1" />
-          <entry key="dummy" value="227" />
-          <entry key="eventloop_tasks" value="30" />
-          <entry key="html" value="3594" />
-          <entry key="js" value="586" />
-          <entry key="md" value="8529" />
-          <entry key="py" value="288176" />
-          <entry key="rst" value="146" />
-          <entry key="te" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="HTML" value="3594" />
-          <entry key="JavaScript" value="586" />
-          <entry key="Markdown" value="8529" />
-          <entry key="PLAIN_TEXT" value="228" />
-          <entry key="Python" value="290250" />
-          <entry key="PythonStub" value="2" />
-          <entry key="ReST" value="146" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="HTML" value="5" />
-          <entry key="JavaScript" value="1" />
-          <entry key="Markdown" value="8" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="675" />
-          <entry key="PythonStub" value="5" />
-          <entry key="ReST" value="1" />
-          <entry key="XML" value="2" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.vcs.git.usages" />
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="async_test" value="4" />
-          <entry key="coverage" value="1" />
-          <entry key="coverage3" value="1" />
-          <entry key="html" value="5" />
-          <entry key="js" value="1" />
-          <entry key="md" value="8" />
-          <entry key="py" value="669" />
-          <entry key="pyi" value="4" />
-          <entry key="rst" value="1" />
-          <entry key="te" value="1" />
-          <entry key="test_reg" value="1" />
-          <entry key="xml" value="2" />
-        </counts>
-      </usages-collector>
-    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -304,11 +216,18 @@
       </list>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="873" />
   </component>
+  <component name="ProjectId" id="2XH1hx0FIAlb7YJh1U2e0ePfMcr" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Imports">
       <profile-state>
@@ -424,13 +343,17 @@
       <pane id="Scope" />
     </panes>
   </component>
-  <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="tichu.p&#9;FILE&#9;file:///Users/mo/tichu/tichu/tichu.py" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="Python" />
-    <property name="last_opened_file_path" value="/usr/local/bin/python3" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  }
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="tichu" is-module-sdk="true">
@@ -453,103 +376,7 @@
       <recent name="$PROJECT_DIR$/python/src/playground" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Python.websocket">
-    <configuration name="async_test" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/src/pychu/tgame" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/src/playground/eventloop_tasks" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="eventloop_gather" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/src/playground" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/src/playground/eventloop_gather.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="pychu" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/src" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/src/pychu.py" />
-      <option name="PARAMETERS" value="--help" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="start_cligame" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/src/pychu/tbootstrap" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/src/exec/cligame.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="true" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python tests.pytest in tpattern">
     <configuration name="terminal" type="PythonConfigurationType" factoryName="Python">
       <module name="tichu" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -571,27 +398,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="websocket" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="tichu" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/src/exec" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/python/src/exec/websocket.py" />
-      <option name="PARAMETERS" value="start" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <module name="tichu" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -606,24 +412,105 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <configuration name="pytest for test_doublestraights.TestDoubleStraights" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_doublestraights.TestDoubleStraights&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_doublestraights.TestDoubleStraights.test_failing" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;kg2 r3 b4&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_doublestraights.TestDoubleStraights.test_failing&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_fullhouse.TestFullHouse.test_leftovers" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;gbr2 gb5 ph&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_fullhouse.TestFullHouse.test_leftovers&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest for test_straights.TestStraightRec" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_straights.TestStraightRec&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in tpattern" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="tichu" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/python/tests/tpattern" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_parameters" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/python/tests/tpattern&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.terminal" />
-      <item itemvalue="Python.async_test" />
-      <item itemvalue="Python.start_cligame" />
-      <item itemvalue="Python.pychu" />
-      <item itemvalue="Python.websocket" />
-      <item itemvalue="Python.eventloop_gather" />
+      <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights" />
+      <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_failing" />
+      <item itemvalue="Python tests.pytest for test_fullhouse.TestFullHouse.test_leftovers" />
+      <item itemvalue="Python tests.pytest for test_straights.TestStraightRec" />
+      <item itemvalue="Python tests.pytest in tpattern" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.websocket" />
-        <item itemvalue="Python.eventloop_gather" />
-        <item itemvalue="Python.pychu" />
-        <item itemvalue="Python.start_cligame" />
-        <item itemvalue="Python.async_test" />
+        <item itemvalue="Python tests.pytest in tpattern" />
+        <item itemvalue="Python tests.pytest for test_fullhouse.TestFullHouse.test_leftovers" />
+        <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights.test_failing" />
+        <item itemvalue="Python tests.pytest for test_doublestraights.TestDoubleStraights" />
+        <item itemvalue="Python tests.pytest for test_straights.TestStraightRec" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="StructureViewFactory">
     <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
     <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
@@ -713,9 +600,6 @@
       </list>
     </option>
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -770,11 +654,6 @@
           <option name="timeStamp" value="129" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/python/tests/tpattern/test_fullhouse.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="134" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/python/src/pychu/tgame/lexer.py</url>
           <line>48</line>
           <option name="timeStamp" value="153" />
@@ -795,9 +674,6 @@
           <option name="timeStamp" value="202" />
         </line-breakpoint>
       </breakpoints>
-      <breakpoints-dialog>
-        <breakpoints-dialog />
-      </breakpoints-dialog>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">

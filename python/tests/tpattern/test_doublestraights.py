@@ -1,5 +1,3 @@
-from abc import ABC
-
 import pytest
 from pytest import mark
 

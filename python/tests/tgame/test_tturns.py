@@ -23,7 +23,7 @@ class TestTurnValidator:
 
     @mark.parametrize('table,played', [
         ({maj}, {k2, r2}),
-        ({Card(rank=1.5, special=Special.phoenix)}, {maj}),
+        ({CardFactory.getCard(rank=1.5, special=Special.phoenix)}, {maj}),
         ({drn}, {phx}),
         ({k5,b5}, {r6}),
         ({k7, r7}, {r9, g9, b9})

@@ -4,14 +4,13 @@
     <content url="file://$MODULE_DIR$/doc" />
     <content url="file://$MODULE_DIR$/python/src" />
     <content url="file://$MODULE_DIR$/python/tests" />
-    <orderEntry type="jdk" jdkName="Python 3.7 (tichu)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (tichu)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="PackageRequirementsSettings">
     <option name="requirementsPath" value="" />
   </component>
   <component name="TestRunnerService">
-    <option name="projectConfiguration" value="pytest" />
     <option name="PROJECT_TEST_RUNNER" value="pytest" />
   </component>
 </module>

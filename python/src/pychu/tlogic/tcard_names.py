@@ -1,13 +1,13 @@
 from typing import List
 
-from pychu.tlogic.tcards import Card, Special, tcard, Color
+from pychu.tlogic.tcards import Card, Special, tcard, Color, CardFactory
 
 # TODO: maybe move to its own file
-dog = Card(special=Special.dog)
-drn = dragon = Card(special=Special.dragon)
+dog = CardFactory.getCard(special=Special.dog)
+drn = dragon = CardFactory.getCard(special=Special.dragon)
 # That will be problematic when played onto a single card
-phx = phoenix = Card(special=Special.phoenix)
-maj = mahjong = Card(special=Special.mahjong)
+phx = phoenix = CardFactory.getCard(special=Special.phoenix)
+maj = mahjong = CardFactory.getCard(special=Special.mahjong)
 
 ### For convenience reasons (especially testing) have an explicit instance of each card
 # ranks = map(str, range(2, 15))
@@ -73,7 +73,7 @@ def generate_deck() -> List[Card]:
     for color in Color:
         for i in range(2, 15):
             # print (i, color)
-            deck.append(Card(color=color, rank=i))
+            deck.append(CardFactory.getCard(color=color, rank=i))
 
     deck.append(dragon)
     deck.append(phoenix)
