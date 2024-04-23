@@ -1,0 +1,7 @@
+{
+    "/gs-guide-websocket/*": {
+        "target": "http://localhost:8080/gs-guide-websocket",
+        "secure": false,
+        "ws": true
+    }
+}
