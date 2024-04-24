@@ -1,0 +1,3 @@
+rootProject.name = 'tjchu'
+include ':libTichu'
+project (':libTichu').projectDir = new File(settingsDir, '../libTichu')
