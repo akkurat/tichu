@@ -1,0 +1,13 @@
+<p>global-chat works!</p>
+
+
+<label>wahtte du sasge?
+<input #ine type="text" />
+</label>
+<button (click)="chat(ine)">Ab drmit</button>
+
+<ul>
+@for (message of messages; track $index) {
+    <li>{{message}}</li>
+}
+</ul>

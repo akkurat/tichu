@@ -1,10 +1,5 @@
-<div>
-  <label>Broker URL
-    <input [disabled]="connected" [(ngModel)]="brokerUrl" />
-  </label>
-  <button (click)="onConnect()">Connect</button>
-</div>
-@if(connected) {
-<app-server-connection></app-server-connection>
-}
+
+
 <router-outlet />
+
+<button (click)="logout()">Logout</button>
