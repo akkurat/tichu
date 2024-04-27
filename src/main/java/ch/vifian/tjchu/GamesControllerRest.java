@@ -6,20 +6,18 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+import java.util.Collection;
+
 @CrossOrigin("*")
-public class GamesController {
+@RestController
+public class GamesControllerRest {
 
     @Autowired
     GameService gs;
 
-    @MessageMapping("/games")
-    public void list(String body) {
-        gs.publishGames();
-    }
-
-    @MessageMapping("/games/create")
-    public void create(String caption) {
+    @GetMapping("/games")
+    public Collection<TichuGame> getList() {
+        return gs.listGames();
     }
 
     @PostMapping("/games/create")

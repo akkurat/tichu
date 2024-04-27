@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Component
 public class ScheduledTasks {
 
@@ -14,8 +17,8 @@ public class ScheduledTasks {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduledTasks.class);
 
-    @Scheduled(fixedRate = 100000)
+    @Scheduled(cron = "37 25,35,59 * * * *")
     public void reportCurrentTime(  ) {
-        gs.createGame("Autogame");
+        gs.createGame("Autogame " + LocalDateTime.now().format( DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     }
 }

@@ -11,7 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class GameService {
-    ConcurrentHashMap<UUID, TichuGame> games = new ConcurrentHashMap<>();
+    ConcurrentHashMap<UUID, TichuGame> games;
+
+    public GameService() {
+        games = new ConcurrentHashMap<>();
+        var game = new TichuGame("Default");
+        games.put(game.id, game);
+    }
 
     public TichuGame createGame(@Nullable String caption) {
         var game = new TichuGame(caption);
