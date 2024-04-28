@@ -17,21 +17,19 @@
 package ch.vifian.tjchu.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import java.security.interfaces.RSAPrivateKey;
@@ -74,6 +72,14 @@ public class SecurityConfig {
                         new ObjectMapper().writeValue(res.getWriter(), auth.getMessage());
                     });
                 })
+                .logout(logout -> {
+                    logout.logoutSuccessHandler((req, res, auth) -> {
+                        res.resetBuffer();
+                        res.setStatus(HttpStatus.OK.value());
+                        res.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+                        new ObjectMapper().writeValue(res.getWriter(), auth.getPrincipal());
+                    });
+                })
                 .exceptionHandling(exc -> {
                     exc.accessDeniedHandler((req, res, ae) -> {
                         res.resetBuffer();
@@ -87,8 +93,8 @@ public class SecurityConfig {
                     csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
                     csrf.csrfTokenRequestHandler(new SpaCsrfTokenRequestHandler());
                 })
+                .addFilterAfter(new CsrfCookieFilter(), BasicAuthenticationFilter.class);
         ;
-
         return http.build();
     }
 

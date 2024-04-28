@@ -1,11 +1,9 @@
 package ch.vifian.tjchu;
 
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.Collection;
 
 @CrossOrigin("*")
@@ -28,11 +26,8 @@ public class GamesControllerRest {
 
     @PutMapping("/games/join")
     @ResponseBody
-    public String joinGame(@RequestParam(name = "gameid") String gameid, HttpSession session) {
-        System.out.println(session.getId());
-        return "joined";
-//        todo get session info.. .somehow
-//        return gs.join(gameid);
+    public JoinResponse joinGame(@RequestParam(name = "gameid") String gameid, Principal user) {
+        return gs.join( gameid, user.getName() );
     }
 
 

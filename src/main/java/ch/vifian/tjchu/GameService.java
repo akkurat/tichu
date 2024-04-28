@@ -36,4 +36,10 @@ public class GameService {
     public void publishGames() {
         simpMessagingTemplate.convertAndSend("/topic/games", games.values());
     }
+
+    public JoinResponse join(String gameid, String name) {
+        var game = games.get(UUID.fromString(gameid));
+        publishGames();
+        return game.join( name );
+    }
 }

@@ -15,6 +15,12 @@ public class TichuGame {
     private final List<HandCard> fulldeck;
     @Nullable
     public final String caption;
+    private final ProxyPlayer proxyPlayerA1;
+    private final ProxyPlayer proxyPlayerA2;
+    private final ProxyPlayer proxyPlayerB1;
+    private final ProxyPlayer proxyPlayerB2;
+    @Getter
+    private final List<ProxyPlayer> players;
 
     // Log
     // ProxyUsers
@@ -23,6 +29,27 @@ public class TichuGame {
         this.caption = caption;
         this.fulldeck = CardsKt.getFulldeck();
         this.id = UUID.randomUUID();
+        this.proxyPlayerA1 = new ProxyPlayer("A1");
+        this.proxyPlayerA2 = new ProxyPlayer("A2");
+        this.proxyPlayerB1 = new ProxyPlayer("B1");
+        this.proxyPlayerB2 = new ProxyPlayer("B2");
+        this.players = List.of(proxyPlayerA1, proxyPlayerB1, proxyPlayerA2, proxyPlayerB2);
+    }
 
+    // todo: desired teams
+    // this should be made thread safe
+    public JoinResponse join(String name) {
+
+        var player = players.stream()
+                .filter(proxyPlayer -> proxyPlayer.unconnected())
+                .findFirst();
+
+        if (player.isPresent()) {
+            var proxyPlayer = player.get();
+            proxyPlayer.connect(name);
+            return new JoinResponse(id, proxyPlayer.name);
+        } else {
+            return JoinResponse.ofNull(id);
+        }
     }
 }
