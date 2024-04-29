@@ -40,6 +40,14 @@ public class TichuGame {
     // this should be made thread safe
     public JoinResponse join(String name) {
 
+        var existingPlayer = players.stream()
+                .filter(pp -> pp.playerReference != null && pp.playerReference.name.equals(name))
+                .findFirst();
+        if (existingPlayer.isPresent()) {
+            var proxyPlayer = existingPlayer.get();
+            return new JoinResponse(id, proxyPlayer.name, "Sucessfully reconnected", true);
+        }
+
         var player = players.stream()
                 .filter(proxyPlayer -> proxyPlayer.unconnected())
                 .findFirst();
@@ -47,7 +55,7 @@ public class TichuGame {
         if (player.isPresent()) {
             var proxyPlayer = player.get();
             proxyPlayer.connect(name);
-            return new JoinResponse(id, proxyPlayer.name);
+            return new JoinResponse(id, proxyPlayer.name, "Wellcome to the game", false);
         } else {
             return JoinResponse.ofNull(id);
         }

@@ -1,6 +1,7 @@
 package ch.vifian.tjchu;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -37,9 +38,9 @@ public class GameService {
         simpMessagingTemplate.convertAndSend("/topic/games", games.values());
     }
 
-    public JoinResponse join(String gameid, String name) {
+    public JoinResponse join(String gameid, String username) {
         var game = games.get(UUID.fromString(gameid));
         publishGames();
-        return game.join( name );
+        return game.join( username );
     }
 }

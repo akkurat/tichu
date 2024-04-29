@@ -10,8 +10,10 @@ public class JoinResponse {
     @Nullable
     public final UUID id;
     public final String name;
+    public final String message;
+    public final boolean reconnected;
 
     public static JoinResponse ofNull(UUID id) {
-        return new JoinResponse(id, null);
+        return new JoinResponse(id, null,"Game is already full", false);
     }
 }
