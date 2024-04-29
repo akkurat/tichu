@@ -60,14 +60,22 @@ public class SubscribeStompListener implements ApplicationListener<SessionSubscr
 
         MessageHeaders headersToSend = createHeaders(sessionId, subscriptionId);
 
-        if (destination.startsWith("/user")) {
+        Executors.newCachedThreadPool().execute(() -> {
+            // ugly but no chance to solve otherwise so far
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+            if (destination.startsWith("/user")) {
 //            this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()), "VERy prIVATE");
-            this.messagingTemplate.convertAndSend( destination.substring("/user".length()), "FIIIIRST", headersToSend);
-            this.messagingTemplate.convertAndSend( destination, "Second...", headersToSend);
-        }
-        if (destination.startsWith("/topic/games")) {
-            this.messagingTemplate.convertAndSend(destination, gs.listGames(), headersToSend);
-        }
+                this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()), "FIIIIRST", headersToSend);
+            }
+            if (destination.startsWith("/topic/games")) {
+                this.messagingTemplate.convertAndSend(destination, gs.listGames(), headersToSend);
+            }
+        });
 
     }
 
