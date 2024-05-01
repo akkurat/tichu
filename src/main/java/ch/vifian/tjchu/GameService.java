@@ -1,7 +1,6 @@
 package ch.vifian.tjchu;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +15,12 @@ public class GameService {
 
     public GameService() {
         games = new ConcurrentHashMap<>();
-        var game = new TichuGame("Default");
+        var game = new TichuGame("Default", simpMessagingTemplate);
         games.put(game.id, game);
     }
 
     public TichuGame createGame(@Nullable String caption) {
-        var game = new TichuGame(caption);
+        var game = new TichuGame(caption, simpMessagingTemplate);
         games.put(game.id, game);
         publishGames();
         return game;

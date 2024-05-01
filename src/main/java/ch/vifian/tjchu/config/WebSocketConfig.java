@@ -13,6 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/topic", "/queue");
+//        registry.enableStompBrokerRelay("/topic", "/queue");
         registry.setApplicationDestinationPrefixes("/app");
     }
 
@@ -23,10 +24,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
 
-    @Override
-    public void configureClientOutboundChannel(ChannelRegistration registration) {
-        registration.interceptors(new MyChannelInterceptor());
-    }
-
-
+//    @Override
+//    public void configureClientOutboundChannel(ChannelRegistration registration) {
+//        registration.interceptors(new MyChannelInterceptor());
+//    }
+//
+//    @Override
+//    public void configureClientInboundChannel(ChannelRegistration registration) {
+//        registration.
+//    }
 }

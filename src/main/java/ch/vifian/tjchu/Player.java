@@ -1,8 +1,7 @@
 package ch.vifian.tjchu;
 
-import lombok.Data;
+public interface Player {
+    void message(String msg, Object payload) throws Exception;
 
-@Data
-public class Player {
-    public final String name;
+    String getName();
 }
