@@ -11,6 +11,7 @@ export class ServerSelectionService {
    */
 
   rxStomp = new rxStomp.RxStomp()
+  sessionId: any;
   constructor() {
     this.rxStomp.connected$.subscribe(s => {
       console.log(s)

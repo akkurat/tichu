@@ -4,13 +4,15 @@
 connected: {{remote.rxStomp.connectionState$|async}}
 <hr>
 
-@for(game of restGames; track game.id) {
-    <h2 [title]="game.id" (click)="join(game.id)">{{game.caption}}</h2>
-}
+{{test$|async}}
+{{test2$|async}}
 
 @for(game of games$|async; track game.id) {
 
     <h1 [title]="game.id" (click)="join(game.id)">{{game.caption}}</h1>
+    @for(player of game.players; track $index) {
+        {{player|json}}
+    }
 
 }
 <hr>

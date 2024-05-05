@@ -15,7 +15,7 @@ export class LoginService {
     constructor(private http: HttpClient) {
         this.authenticated$.subscribe(auth => console.log('state of auth', auth))
         this.http.get('/api/user').pipe(
-            map(loggedIn),
+            map(v => v['name'] ? true : false),
             catchError(err => { console.log(err); return of(false) })
         )
             .subscribe(v => this.authenticated$.next(v))

@@ -19,6 +19,6 @@ export class AppComponent {
 
   logout() {
     this.loginService.logout()
-      .subscribe(success => this.router.navigateByUrl('/'))
+      .subscribe(success => this.router.navigateByUrl('/login'))
   }
 }
