@@ -1,0 +1,12 @@
+<div class="flex flex-row">
+<div class="flex flex-col">
+    <button (click)="sendAckBigTichu()" class="btn">No Big Tichu</button>
+    <button (click)="sendAckTichuBeforeSchupf()" class="btn">No Before Schupf</button>
+    <button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
+</div>
+<div class="flex flex-row" >
+    @for(card of cards; track card) {
+        {{card|json}}
+    }
+</div>
+</div>

@@ -1,7 +1,4 @@
-<p>server-connection works!</p>
-<!-- connected: {{connected}} -->
 
-connected: {{remote.rxStomp.connectionState$|async}}
 <hr>
 
 {{test$|async}}
@@ -10,14 +7,15 @@ connected: {{remote.rxStomp.connectionState$|async}}
 @for(game of games$|async; track game.id) {
 
     <h1 [title]="game.id" (click)="join(game.id)">{{game.caption}}</h1>
-    @for(player of game.players; track $index) {
+    <pre>{{game|json}}</pre>
+    <!-- @for(player of game.players; track $index) {
         {{player|json}}
-    }
+    } -->
 
 }
 <hr>
 
-<button (click)="send()">Send</button>
+<!-- <button (click)="send()">Send</button> -->
 
 <fieldset>
     <input type="text" #newName />

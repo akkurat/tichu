@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/app.service';
+import { Component, OnInit, inject } from '@angular/core';
+import { LoginService } from '../services/login.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { SnackService } from '../services/snack.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,17 +12,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
-  error = false
+  error = ""
   credentials = { username: '', password: '' };
+  snack = inject(SnackService)
+
 
   constructor(private app: LoginService, private http: HttpClient, private router: Router) {
   }
 
   login() {
-    this.app.authenticate(this.credentials, () => {
-      this.router.navigateByUrl('/');
-    });
-    return false;
+    this.app.authenticate(this.credentials).subscribe({
+      complete: () => {this.error = '', this.router.navigateByUrl('/')},
+      error: e => this.snack.push(e)
+    })
   }
-
 }

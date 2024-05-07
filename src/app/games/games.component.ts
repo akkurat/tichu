@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ServerSelectionService } from '../services/server-selection.service';
 import { Observable, map, switchAll, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { SnackService } from '../services/snack.service';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-games',
@@ -17,43 +20,21 @@ export class GamesComponent {
   test$: any;
   test2$: any;
 
-  constructor(
-    protected remote: ServerSelectionService,
-    protected http: HttpClient
-  ) {
-    // this.test$ = remote.rxStomp.watch('/app/topic/test')
-    // .pipe(map(s => s.body))
-    // remote.rxStomp.stompClient.subscribe('/topic/test', 
-    // m => console.log(m)
-    // )
-    this.test2$ = remote.rxStomp.watch('/test')
-    .pipe(map(s => s.body))
+  router = inject(Router)
+  snack = inject(SnackService)
+  gs = inject(GameService)
 
-    this.games$ = remote.rxStomp.watch('/topic/games')
-      .pipe(map(s => JSON.parse(s.body)))
-    // this.http.get('/api/games').subscribe( rg => this.restGames = rg)
+  constructor() {
+    this.games$ = this.gs.games$
   }
 
-  send() {
-    this.remote.rxStomp.publish({
-      destination: "/app/games",
-      body: JSON.stringify({ you: 'haha' }),
-    });
-  }
-
-  createGame(name: string) {
-    this.http.post(`/api/games/create?caption=${name}`, '', { withCredentials: true }).subscribe(
-      g => console.log(g)
-    )
+  createGame(caption: string) {
+    this.gs.createGame(caption)
   }
 
   join(id: string) {
-    this.http.put(`/api/games/join?gameid=${id}`, '').subscribe(
-      g => {console.log(g)
-        this.remote.rxStomp.stompClient
-        this.remote.rxStomp.watch(`/user/queue/games/${g['id']}`).subscribe(v=> console.log('user/queu', v))
-      }
-    )
+    this.gs.joinGame(id).subscribe( g => this.router.navigate(['/game', id]) )
+
   }
 }
 

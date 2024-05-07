@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, ReplaySubject, catchError, map, of, tap } from 'rxjs';
+import { Observable, ReplaySubject, catchError, map, of, switchMap, tap } from 'rxjs';
 
 type Credentials = {
     username: string;
@@ -36,9 +36,10 @@ export class LoginService {
         return this.authenticated$.asObservable()
     }
 
-    authenticate(credentials: Credentials, callback: { (): void; (): any; }) {
+    authenticate(credentials: Credentials) {
         // let set csrf into cookie first
-        this.http.get('/api/login', { responseType: 'text' }).subscribe(html => {
+        return this.http.get('/api/login', { responseType: 'text' }).pipe(
+            switchMap( v => {
             const formData = new URLSearchParams()
             for (const [k, v] of Object.entries(credentials)) {
                 formData.append(k, v)
@@ -46,12 +47,13 @@ export class LoginService {
             const options = {
                 headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
             };
-            this.http.post('/api/login', formData, options).subscribe(response => {
+            return this.http.post('/api/login', formData, options) 
+        }),
+        tap( response => {
                 const isLoggedIn = loggedIn(response);
                 this.authenticated$.next(isLoggedIn)
-                callback && callback();
-            });
-        })
+            })
+        )
     }
 }
 
