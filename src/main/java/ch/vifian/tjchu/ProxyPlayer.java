@@ -13,6 +13,7 @@ public class ProxyPlayer {
     // just a string?
     @Getter
     Player playerReference = null;
+
     private ArrayList<HandCard> deck;
 
     public ProxyPlayer(String a1) {
@@ -33,6 +34,12 @@ public class ProxyPlayer {
     @SneakyThrows
     public void setDeck(List<HandCard> deck) {
         this.deck = new ArrayList<>(deck);
-        playerReference.message("Cards", deck);
+        playerReference.receiveServerMessage("Cards", deck);
+    }
+
+    public void reconnected() {
+        if(playerReference != null ) {
+            playerReference.receiveServerMessage("Cards", deck);
+        }
     }
 }

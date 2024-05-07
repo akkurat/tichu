@@ -1,7 +1,8 @@
 package ch.vifian.tjchu;
 
 public interface Player {
-    void message(String msg, Object payload) throws Exception;
+
+    void receiveServerMessage(String msg, Object payload);
 
     String getName();
 }

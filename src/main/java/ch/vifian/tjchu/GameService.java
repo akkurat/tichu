@@ -11,10 +11,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class GameService {
+
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     ConcurrentHashMap<UUID, TichuGame> games;
 
-    public GameService() {
+    public GameService(SimpMessagingTemplate simpMessagingTemplate) {
+        this.simpMessagingTemplate = simpMessagingTemplate;
         games = new ConcurrentHashMap<>();
+        // todo: factory
         var game = new TichuGame("Default", simpMessagingTemplate);
         games.put(game.id, game);
     }
@@ -30,8 +35,6 @@ public class GameService {
         return games.values();
     }
 
-    @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
 
     public void publishGames() {
         simpMessagingTemplate.convertAndSend("/topic/games", games.values());

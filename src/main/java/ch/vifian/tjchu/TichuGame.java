@@ -1,30 +1,33 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.cards.CardsKt;
-import ch.taburett.tichu.cards.HandCard;
+import ch.taburett.tichu.game.*;
+import ch.taburett.tichu.game.Game;
+import ch.taburett.tichu.game.Player;
+import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import javax.annotation.Nullable;
-import java.util.*;
-import java.util.stream.IntStream;
-
-import static java.util.stream.Collectors.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 // todo: interface game
 public class TichuGame {
 
     public final UUID id;
-    private final List<HandCard> fulldeck;
     @Nullable
     public final String caption;
     private final SimpMessagingTemplate simpMessagingTemplate;
-    private final ProxyPlayer proxyPlayerA1;
-    private final ProxyPlayer proxyPlayerA2;
-    private final ProxyPlayer proxyPlayerB1;
-    private final ProxyPlayer proxyPlayerB2;
     @Getter
-    private final List<ProxyPlayer> players;
+    private final Map<String, ProxyPlayer> players;
+    private Consumer<WrappedUserMessage> listener;
+    private Map<String, String> userNameToPlayer;
+    private final Map<String, ServerMessage> lastServerMsgBuffer = new HashMap<>();
+    private Game game;
 
     // Log
     // ProxyUsers
@@ -32,46 +35,47 @@ public class TichuGame {
     public TichuGame(@Nullable String caption, SimpMessagingTemplate simpMessagingTemplate) {
         this.caption = caption;
         this.simpMessagingTemplate = simpMessagingTemplate;
-        this.fulldeck = CardsKt.getFulldeck();
         this.id = UUID.randomUUID();
-        this.proxyPlayerA1 = new ProxyPlayer("A1");
-        this.proxyPlayerA2 = new ProxyPlayer("A2");
-        this.proxyPlayerB1 = new ProxyPlayer("B1");
-        this.proxyPlayerB2 = new ProxyPlayer("B2");
-        this.players = List.of(proxyPlayerA1, proxyPlayerB1, proxyPlayerA2, proxyPlayerB2);
-        for (var i = 0; i < 3; i++) {
-            ProxyPlayer proxyPlayer = players.get(i);
-            proxyPlayer.connect(new StupidPlayer(proxyPlayer.name));
-        }
+        this.players = ImmutableMap.of(
+                "A1", new ProxyPlayer("A1"),
+                "B1", new ProxyPlayer("B1"),
+                "A2", new ProxyPlayer("A2"),
+                "B2", new ProxyPlayer("B2"));
+        // todo: interactive
+        players.values().stream()
+                .limit(3)
+                .forEach(p -> p.connect(new StupidPlayer(p.name, msg -> receiveUserMsg(p.name, msg))));
     }
+
 
     // todo: desired teams
     // this should be made thread safe
     public JoinResponse join(String name) {
-        var existingPlayer = players.stream()
+        var existingPlayer = players.values().stream()
                 .filter(pp -> pp.playerReference != null && pp.playerReference.getName().equals(name))
                 .findFirst();
         if (existingPlayer.isPresent()) {
             var proxyPlayer = existingPlayer.get();
+            proxyPlayer.reconnected();
             return new JoinResponse(id, proxyPlayer.name, "Sucessfully reconnected", true);
         }
 
-        var player = players.stream()
+        var freeSeat = players.values().stream()
                 .filter(ProxyPlayer::unconnected)
                 .findFirst();
 
-        if (player.isPresent()) {
-            var proxyPlayer = player.get();
+        if (freeSeat.isPresent()) {
+            var proxyPlayer = freeSeat.get();
             var mp = new MessagePlayer(name, simpMessagingTemplate, id);
             proxyPlayer.connect(mp);
 
-            if (players.stream().allMatch(ProxyPlayer::connected)) {
+            if (players.values().stream().allMatch(ProxyPlayer::connected)) {
                 // todo: started and start round and so on
-                distributeCards();
+                // here the reverse map can be built
+                userNameToPlayer = players.entrySet().stream()
+                        .collect(Collectors.toMap(v -> v.getValue().playerReference.getName(), Map.Entry::getKey));
                 startGame();
-
             }
-
             return new JoinResponse(id, proxyPlayer.name, "Welcome to the game", false);
         } else {
             return JoinResponse.ofNull(id);
@@ -79,18 +83,52 @@ public class TichuGame {
     }
 
     private void startGame() {
-//        this.players.connect
+        // todo: ref
+        game = new Game(this::receiveServerMessage);
+        game.start();
+
     }
 
-    private void distributeCards() {
-        List<Integer> indices = Arrays.stream(IntStream.range(0, fulldeck.size()).toArray())
-                .boxed()
-                .collect(toList());
-        Collections.shuffle(indices);
-        for (int i = 0; i < players.size(); i++) {
-            ProxyPlayer p = players.get(i);
-            var deck = indices.subList(i, i + 14).stream().map(fulldeck::get).toList();
-            p.setDeck(deck);
+    public void receiveUserMsg(String user, Map<String,Object> payload) {
+
+        if ("Ack".equals(payload.get("type"))) {
+            if (payload.get("what") instanceof String what) {
+
+                var msg = switch (what) {
+                    case "BigTichu" -> new Ack.BigTichu();
+                    case "TichuBeforeSchupf" -> new Ack.TichuBeforeSchupf();
+                    case "TichuAfterSchupf" -> new Ack.TichuBeforePlay();
+                    default -> throw new IllegalStateException("Unexpected value: " + what);
+                };
+                receiveUserMsg(user, msg);
+            }
+        } else if ("Schupf".equals(payload.get("type"))) {
+            // todo: get cards
+            System.out.println(payload);
         }
     }
+
+    public void receiveUserMsg(String user, PlayerMessage msg) {
+
+        // map user -> player
+        var playerString = userNameToPlayer.get(user);
+        // todo: intercept and log
+
+        var player = Player.valueOf(playerString);
+
+        game.receiveUserMessage(new WrappedUserMessage(player, msg));
+    }
+
+    /// todo: make impl not public (wrap to listener obj)
+    public void receiveServerMessage(@NotNull WrappedServerMessage wrappedServerMessage) {
+        // forward to respective user
+        // todo here: buffer last requiring ack message. or just laswt message?
+        // let's try just last answer per user ffs
+        var user = wrappedServerMessage.getU();
+        players.get(user.name())
+                .playerReference.receiveServerMessage("ham", wrappedServerMessage.getMessage());
+
+        lastServerMsgBuffer.put(user.name(), wrappedServerMessage.getMessage());
+    }
+
 }

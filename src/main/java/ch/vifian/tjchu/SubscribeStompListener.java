@@ -18,6 +18,7 @@ import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
@@ -63,14 +64,23 @@ public class SubscribeStompListener implements ApplicationListener<SessionSubscr
         Executors.newCachedThreadPool().execute(() -> {
             // ugly but no chance to solve otherwise so far
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
             if (destination.startsWith("/user")) {
 //            this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()), "VERy prIVATE");
-                this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()), "FIIIIRST", headersToSend);
+//                todo: check if user is part of game
+                var gameid = destination.substring("/user/queue/games/".length());
+
+                System.out.println(gameid);
+                var game = gs.games.get(UUID.fromString(gameid));
+
+                var response = game.join(user.getName());
+
+                this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()),
+                        response, headersToSend);
             }
             if (destination.startsWith("/topic/games")) {
                 this.messagingTemplate.convertAndSend(destination, gs.listGames(), headersToSend);
