@@ -48,38 +48,47 @@ export class GameComponent {
   ]
 
   left: any[] = [{ code: "p10" }]
-  handleSchupf(event: CdkDragDrop<any, any, any>) {
-    const from: string[] = event.previousContainer.data
-    const to: { card: WritableSignal<string | null> } = event.container.data
-    const fromIdx = event.previousIndex
 
+  handleDrop(e: CdkDragDrop<any, any, any>) {
+    if (Array.isArray(e.previousContainer.data)) {
+      if (Array.isArray(e.container.data)) {
+        if (e.previousContainer === e.container) { // sort hand cards
+          moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
+        }
+      } else { // handcards to slot -> schupf
+        this._handleSchupf(e.previousContainer.data, e.container.data, e.previousIndex)
+      }
+    } else { // from is slot
+      if (Array.isArray(e.container.data)) { // to is handcard
+        this._handleDrop(e.previousContainer.data, e.container.data, e.currentIndex)
+      } else { // to is also slot => switch them out
+        this._handleSwitch(e.previousContainer.data, e.container.data)
+      }
+    }
+  }
+  _handleSwitch(from: { card: WritableSignal<string | null> }, to: { card: WritableSignal<string | null> }) {
+    const tmpTo = to.card()
+    to.card.set(from.card())
+    from.card.set(tmpTo)
+  }
+
+  _handleSchupf(from: string[], to: { card: WritableSignal<string | null> }, fromIdx: number) {
     const removed = from.splice(fromIdx, 1)[0]
     const beforecard = to.card();
     if (beforecard) {
       from.push(beforecard)
     }
-
     to.card.set(removed)
-
-
   }
-  handleDrop(event: CdkDragDrop<any, any, any>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
 
-      const from: { card: WritableSignal<string | null> } = event.previousContainer.data
-      const to: string[] = event.container.data
-
-      const fromCard = from.card();
-      if (fromCard) {
-        to.splice(event.currentIndex, 0, fromCard)
-        from.card.set(null)
-      }
-
+  _handleDrop(from: { card: WritableSignal<string | null> }, to: string[], newIdx: number) {
+    const fromCard = from.card();
+    if (fromCard) {
+      to.splice(newIdx, 0, fromCard)
+      from.card.set(null)
     }
-    console.log(event)
   }
+  
   gameId = '';
   cards: any[] = [];
   sendAckBigTichu() {

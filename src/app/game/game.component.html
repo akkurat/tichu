@@ -4,12 +4,12 @@
         @for( s of schupf; track s.caption ) {
         <div>
             {{s.caption}}
-            <div (cdkDropListDropped)="handleSchupf($event)" 
+            <div (cdkDropListDropped)="handleDrop($event)" 
             cdkDropList [cdkDropListData]="s"
             cdkDropListOrientation="horizontal"
                 class="bg-slate-300 h-[200px] w-[200px] flex">
                 @if(s.card(); as card) {
-                <div cdkDrag>
+                <div cdkDrag [cdkDragData]="card">
                     <app-card [cardcode]="card"></app-card>
                 </div>
 
