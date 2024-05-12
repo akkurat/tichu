@@ -1,5 +1,6 @@
 package ch.vifian.tjchu;
 
+import ch.taburett.tichu.cards.CardsKt;
 import ch.taburett.tichu.game.*;
 import ch.taburett.tichu.game.Game;
 import ch.taburett.tichu.game.Player;
@@ -14,6 +15,8 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
+
+import static ch.taburett.tichu.cards.CardsKt.getLookupByCode;
 
 // todo: interface game
 public class TichuGame {
@@ -89,7 +92,7 @@ public class TichuGame {
 
     }
 
-    public void receiveUserMsg(String user, Map<String,Object> payload) {
+    public void receiveUserMsg(String user, Map<String, Object> payload) {
 
         if ("Ack".equals(payload.get("type"))) {
             if (payload.get("what") instanceof String what) {
@@ -98,13 +101,20 @@ public class TichuGame {
                     case "BigTichu" -> new Ack.BigTichu();
                     case "TichuBeforeSchupf" -> new Ack.TichuBeforeSchupf();
                     case "TichuAfterSchupf" -> new Ack.TichuBeforePlay();
+                    case "SchupfcardReceived" -> new Ack.SchupfcardReceived();
                     default -> throw new IllegalStateException("Unexpected value: " + what);
                 };
                 receiveUserMsg(user, msg);
             }
         } else if ("Schupf".equals(payload.get("type"))) {
             // todo: get cards
-            System.out.println(payload);
+            Map<String, String> cards = (Map<String, String>) payload.get("what");
+            var lUp = getLookupByCode();
+            receiveUserMsg(user, new Schupf(
+                    lUp.get(cards.get("re")),
+                    lUp.get(cards.get("li")),
+                    lUp.get(cards.get("partner"))
+            ));
         }
     }
 
@@ -125,10 +135,11 @@ public class TichuGame {
         // todo here: buffer last requiring ack message. or just laswt message?
         // let's try just last answer per user ffs
         var user = wrappedServerMessage.getU();
-        players.get(user.name())
-                .playerReference.receiveServerMessage("ham", wrappedServerMessage.getMessage());
 
-        lastServerMsgBuffer.put(user.name(), wrappedServerMessage.getMessage());
+        var msg = new MessageWrapper(wrappedServerMessage.getMessage());
+
+        players.get(user.name()).receiveServerMessage(msg);
+
     }
 
 }

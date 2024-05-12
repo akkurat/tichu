@@ -18,9 +18,9 @@ public class MessagePlayer implements Player {
 
 
     @Override
-    public final void receiveServerMessage(String msg, Object payload) {
+    public final void receiveServerMessage(MessageWrapper payload) {
         messagingTemplate.convertAndSendToUser(name, "/queue/games/" + gameId,
-                ImmutableMap.of("message", msg, "payload", payload)
+                payload
         );
     }
 }

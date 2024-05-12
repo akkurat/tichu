@@ -15,14 +15,16 @@ public class ProxyPlayer {
     Player playerReference = null;
 
     private ArrayList<HandCard> deck;
+    private MessageWrapper lastServerMessage = null;
 
     public ProxyPlayer(String a1) {
-       this.name = a1;
+        this.name = a1;
     }
 
     public boolean unconnected() {
         return playerReference == null;
     }
+
     public boolean connected() {
         return !unconnected();
     }
@@ -31,15 +33,24 @@ public class ProxyPlayer {
         playerReference = ref;
     }
 
-    @SneakyThrows
-    public void setDeck(List<HandCard> deck) {
-        this.deck = new ArrayList<>(deck);
-        playerReference.receiveServerMessage("Cards", deck);
-    }
+//    @SneakyThrows
+//    public void setDeck(List<HandCard> deck) {
+//        this.deck = new ArrayList<>(deck);
+//        playerReference.receiveServerMessage(deck);
+//    }
 
     public void reconnected() {
-        if(playerReference != null ) {
-            playerReference.receiveServerMessage("Cards", deck);
+        if (playerReference != null) {
+            if (lastServerMessage != null) {
+                playerReference.receiveServerMessage(lastServerMessage);
+            }
         }
+    }
+
+    public void receiveServerMessage(MessageWrapper message) {
+
+//        lastServerMsgBuffer.put(user.name(), wrappedServerMessage.getMessage());
+        lastServerMessage = message;
+        playerReference.receiveServerMessage(message);
     }
 }

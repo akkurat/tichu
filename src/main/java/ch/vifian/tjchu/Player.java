@@ -2,7 +2,7 @@ package ch.vifian.tjchu;
 
 public interface Player {
 
-    void receiveServerMessage(String msg, Object payload);
+    void receiveServerMessage(MessageWrapper payload);
 
     String getName();
 }
