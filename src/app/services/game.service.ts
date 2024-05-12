@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { ServerSelectionService } from './server-selection.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, map, of, shareReplay, throwError } from 'rxjs';
+import { Observable, ReplaySubject, Subject, combineLatest, map, of, shareReplay, switchAll, switchMap, throwError } from 'rxjs';
 import { IMessage } from '@stomp/stompjs';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { IMessage } from '@stomp/stompjs';
 })
 export class GameService {
   send(gameId: string, message: any) {
-    this.wsServer.rxStomp.publish({destination:`/app/games/${gameId}`, body: JSON.stringify(message) })
+    this.wsServer.rxStomp.publish({ destination: `/app/games/${gameId}`, body: JSON.stringify(message) })
   }
 
   wsServer = inject(ServerSelectionService)
@@ -37,7 +37,15 @@ export class GameService {
     if (this.joinedGames.has(gameId)) {
       return this.joinedGames.get(gameId)!
     } else {
-      const sub = this.wsServer.rxStomp.watch(`/user/queue/games/${gameId}`)
+      const destination = `/user/queue/games/${gameId}`;
+      // const sub = this.wsServer.rxStomp.watch(destination)
+      const sub = new ReplaySubject<IMessage>()
+      this.wsServer.rxStomp.connected$.subscribe(() =>
+        this.wsServer.rxStomp.stompClient.subscribe(destination,
+          m => {
+            sub.next(m); console.log(m)
+          })
+      )
       this.joinedGames.set(gameId, sub)
       return sub
     }

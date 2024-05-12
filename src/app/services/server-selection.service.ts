@@ -13,12 +13,17 @@ export class ServerSelectionService {
   rxStomp = new rxStomp.RxStomp()
   sessionId: any;
   constructor() {
+    this.rxStomp.configure({
+      debug: m =>
+        console.log("RXSTOMP", m)
+    })
     this.rxStomp.connected$.subscribe(s => {
       console.log(s)
     })
   }
 
   connectToBroker(brokerUrl: string) {
+    console.log("connecting to " + brokerUrl)
     this.rxStomp.deactivate()
     this.url = brokerUrl
     this.rxStomp.configure({ brokerURL: brokerUrl })
