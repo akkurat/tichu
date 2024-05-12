@@ -35,19 +35,26 @@ import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, t
 
   `
 })
-export class GameComponent {
-  displaycards: string[] = [];
 
+
+
+export class GameComponent {
+  sendSchupfedCards() {
+    const msg = this.schupf.reduce((a, c) => { a[c.key] = c.card(); return a }, {});
+    this.gameService.send(this.gameId, { type: "Schupf", what: msg })
+  }
+
+  state: GameState = GameState.EIGHT_CARDS
+
+  displaycards: string[] = [];
   schupfFini = computed(() => this.schupf.every(s => s.card()))
 
-
-  schupf: { caption: string, card: WritableSignal<string | null> }[] = [
-    { caption: "Left", card: signal(null) },
-    { caption: "Partner", card: signal(null) },
-    { caption: "Right", card: signal(null) },
+  schupf: { key: string, caption: string, card: WritableSignal<string | null> }[] = [
+    { key: "li", caption: "Left", card: signal(null) },
+    { key: "partner", caption: "Partner", card: signal(null) },
+    { key: "re", caption: "Right", card: signal(null) },
   ]
-
-  left: any[] = [{ code: "p10" }]
+  schupfed: { caption: string, card: string }[] = []
 
   handleDrop(e: CdkDragDrop<any, any, any>) {
     if (Array.isArray(e.previousContainer.data)) {
@@ -66,6 +73,7 @@ export class GameComponent {
       }
     }
   }
+
   _handleSwitch(from: { card: WritableSignal<string | null> }, to: { card: WritableSignal<string | null> }) {
     const tmpTo = to.card()
     to.card.set(from.card())
@@ -88,7 +96,7 @@ export class GameComponent {
       from.card.set(null)
     }
   }
-  
+
   gameId = '';
   cards: any[] = [];
   sendAckBigTichu() {
@@ -100,10 +108,12 @@ export class GameComponent {
   sendAckTichuAfterSchupf() {
     this.gameService.send(this.gameId, { type: "Ack", what: "TichuAfterSchupf" })
   }
+  sendSchupfedAck() {
+    this.gameService.send(this.gameId, { type: "Ack", what: "SchupfcardReceived" })
+  }
 
   gameService = inject(GameService)
   route = inject(ActivatedRoute)
-
 
   constructor() {
     this.route.params.pipe(
@@ -123,13 +133,39 @@ export class GameComponent {
           // const bin = Buffer.from(msg.binaryBody).toString('utf8')
           const bin = new TextDecoder().decode(msg.binaryBody);
 
-          const obj = JSON.parse(bin)
-          this.cards = obj?.payload?.cards || this.cards
-          this.displaycards = this.cards.map(c => c.code)
-          console.log(obj)
+          const obj: { type: string, message: any } = JSON.parse(bin)
+
+          // switchMap(obj.)
+          if (obj.type === 'Schupf') {
+            console.log("SCHUPF", obj.message)
+            this.state = GameState.SCHUPFED
+            this.schupfed = [
+              {caption: "Left", card: obj.message['li'].code},
+              {caption: "Partner", card: obj.message['partner'].code},
+              {caption: "Right", card: obj.message['re'].code},
+            ]
+          }
+
+          this.cards = obj?.message?.cards || this.cards
+          this.state = obj?.message?.stage || this.state
+
+          this.displaycards = this.cards
+            .sort((a, b) => a.sort - b.sort)
+            .map(c => c.code)
+
 
         }
 
       })
   }
+}
+
+enum GameState {
+  EIGHT_CARDS = "EIGHT_CARDS",
+  PRE_SCHUPF = "PRE_SCHUPF",
+  POST_SCHUPF = "POST_SCHUPF",
+  GIFT_DRAGON = "GIFT_DRAGON",
+  SCHUPF = "SCHUPF",
+  SCHUPFED = "SCHUPFED",
+
 }

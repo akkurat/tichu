@@ -1,34 +1,59 @@
 <div class="flex flex-col" cdkDropListGroup>
+    @if(state==="SCHUPF") {
     <div class="flex flex-col items-stretch">
-    <div class="h-96 flex flex-row justify-around">
-        @for( s of schupf; track s.caption ) {
-        <div>
-            {{s.caption}}
-            <div (cdkDropListDropped)="handleDrop($event)" 
-            cdkDropList [cdkDropListData]="s"
-            cdkDropListOrientation="horizontal"
-                class="bg-slate-300 h-[200px] w-[200px] flex">
-                @if(s.card(); as card) {
-                <div cdkDrag [cdkDragData]="card">
-                    <app-card [cardcode]="card"></app-card>
+        <div class="h-96 flex flex-row justify-around">
+            @for( s of schupf; track s.caption ) {
+            <div>
+                {{s.caption}}
+                <div (cdkDropListDropped)="handleDrop($event)" cdkDropList [cdkDropListData]="s"
+                    cdkDropListOrientation="horizontal" class="bg-slate-300 h-[200px] w-[200px] flex">
+                    @if(s.card(); as card) {
+                    <div cdkDrag [cdkDragData]="card">
+                        <app-card [cardcode]="card"></app-card>
+                    </div>
+
+                    }
+
                 </div>
-
-                }
-
             </div>
+            }
         </div>
-        }
+        <div class="flex justify-center">
+            <button [disabled]="!schupfFini()" (click)="sendSchupfedCards()" class="btn">Schupf</button>
+        </div>
     </div>
-    <div class="text-center">
-    {{schupfFini()}}
+    } @else if (state === "SCHUPFED") {
+    <div class="flex flex-col items-stretch">
+        <div class="h-96 flex flex-row justify-around">
+            @for( s of schupfed; track s.caption ) {
+            <div>
+                {{s.caption}}
+                <div class="bg-slate-300 h-[200px] w-[200px] flex">
+                    @if(s.card; as card) {
+                    <div >
+                        <app-card [cardcode]="card"></app-card>
+                    </div>
+
+                    }
+
+                </div>
+            </div>
+            }
+        </div>
+        <div class="flex justify-center">
+            <button  (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
+        </div>
     </div>
-    </div>
+
+    }
 
     <div class="flex flex-row">
         <div class="flex flex-col gap-10">
+            <!-- todo: enable / disable buttons -->
             <button (click)="sendAckBigTichu()" class="btn">No Big Tichu</button>
             <button (click)="sendAckTichuBeforeSchupf()" class="btn">No Before Schupf</button>
             <button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
+
         </div>
         <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards"
             (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal">
