@@ -22,6 +22,8 @@ import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import static java.util.concurrent.Executors.newCachedThreadPool;
+
 @Component
 public class SubscribeStompListener implements ApplicationListener<SessionSubscribeEvent> {
     private static final Log logger = SimpLogging.forLogName(SubscribeStompListener.class);
@@ -61,32 +63,33 @@ public class SubscribeStompListener implements ApplicationListener<SessionSubscr
 
         MessageHeaders headersToSend = createHeaders(sessionId, subscriptionId);
 
-        Executors.newCachedThreadPool().execute(() -> {
-            // ugly but no chance to solve otherwise so far
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        try (var pool = newCachedThreadPool()) {
+            pool.execute(() -> {
+                // ugly but no chance to solve otherwise so far
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 
-            if (destination.startsWith("/user")) {
+                if (destination.startsWith("/user")) {
 //            this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()), "VERy prIVATE");
 //                todo: check if user is part of game
-                var gameid = destination.substring("/user/queue/games/".length());
+                    var gameid = destination.substring("/user/queue/games/".length());
 
-                System.out.println(gameid);
-                var game = gs.games.get(UUID.fromString(gameid));
+                    System.out.println(gameid);
+                    var game = gs.games.get(UUID.fromString(gameid));
 
-                var response = game.join(user.getName());
+                    var response = game.join(user.getName());
 
-                this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()),
-                        response, headersToSend);
-            }
-            if (destination.startsWith("/topic/games")) {
-                this.messagingTemplate.convertAndSend(destination, gs.listGames(), headersToSend);
-            }
-        });
-
+                    this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()),
+                            response, headersToSend);
+                }
+                if (destination.startsWith("/topic/games")) {
+                    this.messagingTemplate.convertAndSend(destination, gs.listGames(), headersToSend);
+                }
+            });
+        }
     }
 
     private MessageHeaders createHeaders(@Nullable String sessionId, String subscriptionId) {

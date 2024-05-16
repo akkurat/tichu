@@ -1,6 +1,8 @@
 package ch.vifian.tjchu;
 
 import ch.taburett.tichu.cards.CardsKt;
+import ch.taburett.tichu.cards.HandCard;
+import ch.taburett.tichu.cards.PlayCard;
 import ch.taburett.tichu.game.*;
 import ch.taburett.tichu.game.Game;
 import ch.taburett.tichu.game.Player;
@@ -11,12 +13,15 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static ch.taburett.tichu.cards.CardsKt.getLookupByCode;
+import static ch.taburett.tichu.cards.CardsKt.parsePlayCard;
 
 // todo: interface game
 public class TichuGame {
@@ -115,7 +120,14 @@ public class TichuGame {
                     lUp.get(cards.get("li")),
                     lUp.get(cards.get("partner"))
             ));
+        } else if ("Move".equals(payload.get("type"))) {
+
+            List<PlayCard> cards = ((List<String>) payload.get("cards"))
+                    .stream().map(CardsKt::parsePlayCard)
+                    .toList();
+            receiveUserMsg(user, new Move(cards));
         }
+
     }
 
     public void receiveUserMsg(String user, PlayerMessage msg) {
@@ -138,7 +150,10 @@ public class TichuGame {
 
         var msg = new MessageWrapper(wrappedServerMessage.getMessage());
 
-        players.get(user.name()).receiveServerMessage(msg);
+        try (var e = Executors.newCachedThreadPool()) {
+            e.execute(() -> players.get(user.name()).receiveServerMessage(msg));
+
+        }
 
     }
 
