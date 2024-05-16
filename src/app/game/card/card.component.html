@@ -1,5 +1,3 @@
-<div (mousedown)="click($event)" (mouseup)="click($event)" (click)="click($event)"
-[class.high]="high"
-[class.selected]="selected">
-    <img src="{{cardsrc}}">
+<div (mousedown)="click($event)" (mouseup)="click($event)" (click)="click($event)" [class.high]="high">
+    <img [class.selected]="selected" src="{{cardsrc}}">
 </div>

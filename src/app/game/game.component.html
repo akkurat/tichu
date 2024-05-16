@@ -30,10 +30,9 @@
                 {{s.caption}}
                 <div class="bg-slate-300 h-[200px] w-[200px] flex">
                     @if(s.card; as card) {
-                    <div >
+                    <div>
                         <app-card [cardcode]="card"></app-card>
                     </div>
-
                     }
 
                 </div>
@@ -41,7 +40,7 @@
             }
         </div>
         <div class="flex justify-center">
-            <button  (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
+            <button (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
         </div>
     </div>
 
@@ -50,19 +49,40 @@
     <div class="flex flex-row">
         <div class="flex flex-col gap-10">
             <!-- todo: enable / disable buttons -->
+            @if(state==="EIGHT_CARDS") {
             <button (click)="sendAckBigTichu()" class="btn">No Big Tichu</button>
+            } @else if (state==="PRE_SCHUPF") {
             <button (click)="sendAckTichuBeforeSchupf()" class="btn">No Before Schupf</button>
+            } @else if (state==="POST_SCHUPF") {
             <button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
+            } @else if (state ==="YOURTURN") {
+            <button (click)="playCards()" class="btn">Play Cards</button>
+
+            }
 
         </div>
         <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards"
-            (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal">
+            (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal" [formGroup]="fg">
             @for(card of displaycards; track card) {
-            <div class="w-[50px]" cdkDrag>
-                <app-card [cardcode]="card"></app-card>
+            <div class="-ml-[150px] first:ml-0" cdkDrag>
+                <app-card [formControlName]="card" [cardcode]="card"></app-card>
             </div>
             <!-- {{card|json}} -->
             }
         </div>
     </div>
+    @if( state === "GAME" ||state === "YOURTURN" ) {
+    <div class="flex flex-wrap">
+        @for( e of table; track $index ) {
+        <div>
+            <h1>{{e.player}}</h1>
+            <div class="flex flex-nowrap">
+                @for (card of e.cards; track card.code) {
+                <app-card [cardcode]="card.code" class="-mr-[150px] first:mr-0"></app-card>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    }
 </div>

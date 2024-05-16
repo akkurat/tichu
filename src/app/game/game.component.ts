@@ -1,15 +1,16 @@
-import { Component, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, Inject, Signal, WritableSignal, computed, inject, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
-import { JsonPipe } from '@angular/common';
+import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
+import { FormBuilder, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [JsonPipe, CardComponent, CdkDrag, CdkDropList, CdkDropListGroup],
+  imports: [JsonPipe, KeyValuePipe, CardComponent, CdkDrag, CdkDropList, CdkDropListGroup, ReactiveFormsModule],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -39,12 +40,26 @@ import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, t
 
 
 export class GameComponent {
+  pass() {
+    throw new Error('Method not implemented.');
+  }
+  playCards() {
+    console.log(this.fg.value)
+    const cards = Object.entries(this.fg.value)
+      .filter(([k, v]) => v)
+      .map(([k]) => k)
+    this.gameService.send(this.gameId, { type: 'Move', cards })
+  }
+  private readonly fb = inject(FormBuilder);
+
+  fg = this.fb.nonNullable.group({})
+
   sendSchupfedCards() {
     const msg = this.schupf.reduce((a, c) => { a[c.key] = c.card(); return a }, {});
     this.gameService.send(this.gameId, { type: "Schupf", what: msg })
   }
 
-  state: GameState = GameState.EIGHT_CARDS
+  state: GameState | undefined
 
   displaycards: string[] = [];
   schupfFini = computed(() => this.schupf.every(s => s.card()))
@@ -115,13 +130,12 @@ export class GameComponent {
   gameService = inject(GameService)
   route = inject(ActivatedRoute)
 
+  table = new Array<{ player: string, cards: { code: string }[] }>()
+
   constructor() {
-    this.route.params.pipe(
-      map(params => params['id']),
-      tap(id => this.gameId = id),
-    ).subscribe(id => {
-      this.gameService.joinGame(id).subscribe(m => console.log("ID DIRECT", m))
-    })
+
+    this.fg.valueChanges.subscribe(console.log)
+
 
     this.route.params.pipe(
       map(params => params['id']),
@@ -135,23 +149,31 @@ export class GameComponent {
 
           const obj: { type: string, message: any } = JSON.parse(bin)
 
-          // switchMap(obj.)
-          if (obj.type === 'Schupf') {
-            console.log("SCHUPF", obj.message)
-            this.state = GameState.SCHUPFED
-            this.schupfed = [
-              {caption: "Left", card: obj.message['li'].code},
-              {caption: "Partner", card: obj.message['partner'].code},
-              {caption: "Right", card: obj.message['re'].code},
-            ]
-          }
 
+          // todo rename always to handcards
           this.cards = obj?.message?.cards || this.cards
           this.state = obj?.message?.stage || this.state
+
+          // switchMap(obj.)
+          if (this.state === GameState.SCHUPFED) {
+            this.schupfed = [
+              { caption: "Left", card: obj.message['li'].code },
+              { caption: "Partner", card: obj.message['partner'].code },
+              { caption: "Right", card: obj.message['re'].code },
+            ]
+          }
+          if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
+            this.table = obj.message?.table || this.table
+            this.cards = obj.message?.handcards || this.cards
+          }
+
 
           this.displaycards = this.cards
             .sort((a, b) => a.sort - b.sort)
             .map(c => c.code)
+
+
+          this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a }, {}))
 
 
         }
@@ -167,5 +189,7 @@ enum GameState {
   GIFT_DRAGON = "GIFT_DRAGON",
   SCHUPF = "SCHUPF",
   SCHUPFED = "SCHUPFED",
+  GAME = "GAME",
+  YOURTURN = "YOURTURN"
 
 }
