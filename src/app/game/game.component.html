@@ -78,7 +78,7 @@
             <h1>{{e.player}}</h1>
             <div class="flex flex-nowrap">
                 @for (card of e.cards; track card.code) {
-                <app-card [cardcode]="card.code" class="-mr-[150px] first:mr-0"></app-card>
+                <app-card [selectable]="false" [cardcode]="card.code" class="-ml-[150px] first:ml-0"></app-card>
                 }
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Input, Component, OnInit, forwardRef } from '@angular/core';
+import { Input, Component, OnInit, forwardRef, signal, input, computed, Signal, effect } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -7,50 +7,61 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
 
-    providers: [
-      {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => CardComponent),
-        multi: true,
-      }
-    ],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CardComponent),
+      multi: true,
+    }
+  ],
 })
-export class CardComponent implements ControlValueAccessor {
-  handleOnChange = (selected: boolean) => {};
 
+export class CardComponent implements ControlValueAccessor {
+  handleOnChange = (selected: boolean) => { };
 
   writeValue(obj: any): void {
-    this.selected = obj
+    this._selected.set(obj)
   }
+
   registerOnChange(fn: any): void {
     this.handleOnChange = fn
   }
+
   registerOnTouched(fn: any): void {
   }
+
   setDisabledState?(isDisabled: boolean): void {
+    this._disabled.set(isDisabled)
   }
 
-  @Input()
-  set cardcode(value:string) {
-    this.cardsrc = '/assets/cards/' + value + '.png'
+  constructor() {
+    effect(() => {
+      this.handleOnChange(this.selected())
+    })
   }
 
-  cardsrc?: string
-  high = false
-  selected = false
+
+  cardcode = input('')
+  selectable = input(true)
+
+  mousedown = signal(false)
+  _selected = signal(false)
+  _disabled = signal(false)
+
+  cardsrc = computed(() => '/assets/cards/' + this.cardcode() + '.png')
+  selected = computed(() => { return this.selectable() && !this._disabled() && this._selected() })
+
   click(ev: MouseEvent): void {
-    if (ev.type == "mousedown") {
-      this.high = true
-    }
-    else if (ev.type == "click") {
-      this.selected = !this.selected
-      this.handleOnChange(this.selected)
-    }
-    else {
-      this.high = false
-    }
+    this._selected.update(v => !v)
   }
 
-
+  mouse(ev: MouseEvent): void {
+    if (ev.type === "mousedown") {
+      this.mousedown.set(true)
+    }
+    else if (ev.type === "mouseup") {
+      this.mousedown.set(false)
+    }
+  }
 
 }
