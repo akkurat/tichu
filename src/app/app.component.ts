@@ -40,7 +40,7 @@ export class AppComponent {
     ])
       .subscribe(([l, v]) => this.sel.connectToBroker(v))
     this.snack.out$.subscribe(console.log)
-    this.brokerUrl.setValue(this.store.getStringSetting('brokerUrl', '/api/gs-guide-websocket'))
+    this.brokerUrl.setValue(this.store.getStringSetting('brokerUrl', `ws://${location.host}/api/gs-guide-websocket`))
   }
 
   logout() {

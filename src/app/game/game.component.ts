@@ -6,11 +6,12 @@ import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
 import { FormBuilder, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { GamelogComponent } from './gamelog/gamelog.component';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [JsonPipe, KeyValuePipe, CardComponent, CdkDrag, CdkDropList, CdkDropListGroup, ReactiveFormsModule],
+  imports: [JsonPipe, KeyValuePipe, CardComponent, CdkDrag, CdkDropList, CdkDropListGroup, ReactiveFormsModule, GamelogComponent],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -40,15 +41,21 @@ import { FormBuilder, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from
 
 
 export class GameComponent {
+  points: any;
   pass() {
     throw new Error('Method not implemented.');
   }
   playCards() {
     console.log(this.fg.value)
     const cards = Object.entries(this.fg.value)
-      .filter(([k, v]) => v)
+      .filter(([_, v]) => v)
       .map(([k]) => k)
-    this.gameService.send(this.gameId, { type: 'Move', cards })
+
+    if (cards.includes("phx") && cards.length == 1) {
+      this.gameService.send(this.gameId, { type: 'Move', cards: ["phx1"] })
+    } else {
+      this.gameService.send(this.gameId, { type: 'Move', cards })
+    }
   }
   private readonly fb = inject(FormBuilder);
 
@@ -147,33 +154,45 @@ export class GameComponent {
           // const bin = Buffer.from(msg.binaryBody).toString('utf8')
           const bin = new TextDecoder().decode(msg.binaryBody);
 
+          // todo: methods per message type
           const obj: { type: string, message: any } = JSON.parse(bin)
+          if (obj.type === "Points") {
+            this.points = obj.message
+          } else {
 
 
-          // todo rename always to handcards
-          this.cards = obj?.message?.cards || this.cards
-          this.state = obj?.message?.stage || this.state
+            // todo rename always to handcards
+            this.cards = obj?.message?.cards || this.cards
+            this.state = obj?.message?.stage || this.state
 
-          // switchMap(obj.)
-          if (this.state === GameState.SCHUPFED) {
-            this.schupfed = [
-              { caption: "Left", card: obj.message['li'].code },
-              { caption: "Partner", card: obj.message['partner'].code },
-              { caption: "Right", card: obj.message['re'].code },
-            ]
+            // switchMap(obj.)
+            if (this.state === GameState.SCHUPFED) {
+              this.schupfed = [
+                { caption: "Left", card: obj.message['li'].code },
+                { caption: "Partner", card: obj.message['partner'].code },
+                { caption: "Right", card: obj.message['re'].code },
+              ]
+            }
+            if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
+              const newTable = obj.message?.table
+              const timeout = newTable && (newTable.length < this.table.length) ? 5000 : 0
+
+              setTimeout(() => {
+                this.table = obj.message?.table || this.table
+              }, timeout);
+              this.cards = obj.message?.handcards || this.cards
+            }
+
+
+
+
+            this.displaycards = this.cards
+              .sort((a, b) => a.sort - b.sort)
+              .map(c => c.code)
+
+
+            this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a }, {}))
           }
-          if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
-            this.table = obj.message?.table || this.table
-            this.cards = obj.message?.handcards || this.cards
-          }
-
-
-          this.displaycards = this.cards
-            .sort((a, b) => a.sort - b.sort)
-            .map(c => c.code)
-
-
-          this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a }, {}))
 
 
         }
