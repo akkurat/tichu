@@ -1,11 +1,7 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.cards.HandCard;
+import ch.taburett.tichu.game.Points;
 import lombok.Getter;
-import lombok.SneakyThrows;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProxyPlayer {
 
@@ -14,8 +10,8 @@ public class ProxyPlayer {
     @Getter
     Player playerReference = null;
 
-    private ArrayList<HandCard> deck;
     private MessageWrapper lastServerMessage = null;
+    private MessageWrapper lastPointMessage = null;
 
     public ProxyPlayer(String a1) {
         this.name = a1;
@@ -44,13 +40,18 @@ public class ProxyPlayer {
             if (lastServerMessage != null) {
                 playerReference.receiveServerMessage(lastServerMessage);
             }
+            if( lastPointMessage != null )  {
+                playerReference.receiveServerMessage(lastPointMessage);
+            }
         }
     }
 
     public void receiveServerMessage(MessageWrapper message) {
-
-//        lastServerMsgBuffer.put(user.name(), wrappedServerMessage.getMessage());
-        lastServerMessage = message;
+        if( message.message instanceof Points ) {
+            lastPointMessage = message;
+        } else {
+            lastServerMessage = message;
+        }
         playerReference.receiveServerMessage(message);
     }
 }

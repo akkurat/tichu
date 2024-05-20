@@ -1,7 +1,6 @@
 package ch.vifian.tjchu;
 
 import ch.taburett.tichu.cards.CardsKt;
-import ch.taburett.tichu.cards.HandCard;
 import ch.taburett.tichu.cards.PlayCard;
 import ch.taburett.tichu.game.*;
 import ch.taburett.tichu.game.Game;
@@ -21,7 +20,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static ch.taburett.tichu.cards.CardsKt.getLookupByCode;
-import static ch.taburett.tichu.cards.CardsKt.parsePlayCard;
 
 // todo: interface game
 public class TichuGame {
@@ -32,7 +30,7 @@ public class TichuGame {
     private final SimpMessagingTemplate simpMessagingTemplate;
     @Getter
     private final Map<String, ProxyPlayer> players;
-    private Consumer<WrappedUserMessage> listener;
+    private Consumer<WrappedPlayerMessage> listener;
     private Map<String, String> userNameToPlayer;
     private final Map<String, ServerMessage> lastServerMsgBuffer = new HashMap<>();
     private Game game;
@@ -138,7 +136,7 @@ public class TichuGame {
 
         var player = Player.valueOf(playerString);
 
-        game.receiveUserMessage(new WrappedUserMessage(player, msg));
+        game.receiveUserMessage(new WrappedPlayerMessage(player, msg));
     }
 
     /// todo: make impl not public (wrap to listener obj)
@@ -151,8 +149,13 @@ public class TichuGame {
         var msg = new MessageWrapper(wrappedServerMessage.getMessage());
 
         try (var e = Executors.newCachedThreadPool()) {
-            e.execute(() -> players.get(user.name()).receiveServerMessage(msg));
-
+            e.execute(() -> {
+                try {
+                    players.get(user.name()).receiveServerMessage(msg);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
 
     }

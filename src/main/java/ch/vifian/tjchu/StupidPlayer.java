@@ -22,7 +22,6 @@ public class StupidPlayer implements Player {
     @SneakyThrows
     @Override
     public void receiveServerMessage(MessageWrapper payload) {
-        Thread.sleep(450);
         switch (payload.message) {
             case AckGameStage ack -> {
                 switch (ack.getStage()) {
