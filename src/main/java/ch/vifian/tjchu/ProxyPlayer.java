@@ -1,7 +1,13 @@
 package ch.vifian.tjchu;
 
 import ch.taburett.tichu.game.Points;
+import ch.taburett.tichu.game.Rejected;
+import ch.taburett.tichu.game.ServerMessage;
+import kotlin.reflect.KClass;
 import lombok.Getter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProxyPlayer {
 
@@ -10,8 +16,7 @@ public class ProxyPlayer {
     @Getter
     Player playerReference = null;
 
-    private MessageWrapper lastServerMessage = null;
-    private MessageWrapper lastPointMessage = null;
+    Map<Class<? extends ServerMessage>, MessageWrapper> buffer = new HashMap<>();
 
     public ProxyPlayer(String a1) {
         this.name = a1;
@@ -37,20 +42,22 @@ public class ProxyPlayer {
 
     public void reconnected() {
         if (playerReference != null) {
-            if (lastServerMessage != null) {
-                playerReference.receiveServerMessage(lastServerMessage);
-            }
-            if( lastPointMessage != null )  {
-                playerReference.receiveServerMessage(lastPointMessage);
+            for (var message : buffer.values()) {
+                playerReference.receiveServerMessage(message);
             }
         }
     }
 
     public void receiveServerMessage(MessageWrapper message) {
-        if( message.message instanceof Points ) {
-            lastPointMessage = message;
+        if (message.message instanceof Points) {
+            buffer.put(Points.class, message);
+        } else if (message.message instanceof Rejected) {
+            buffer.put(Rejected.class, message);
         } else {
-            lastServerMessage = message;
+            buffer.put(ServerMessage.class, message);
+            // todo: document this logic
+            // however assume a new correct message cleans out a rejection
+            buffer.remove( Rejected.class);
         }
         playerReference.receiveServerMessage(message);
     }
