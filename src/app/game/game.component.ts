@@ -7,6 +7,8 @@ import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
 import { FormBuilder, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent } from './gamelog/gamelog.component';
+import { SnackService } from '../services/snack.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-game',
@@ -41,10 +43,17 @@ import { GamelogComponent } from './gamelog/gamelog.component';
 
 
 export class GameComponent {
-  points: any;
-  pass() {
-    throw new Error('Method not implemented.');
+
+  snackService = inject(SnackService)
+  http = inject(HttpClient)
+
+  resend() {
+    this.http.get(`/api/games/${this.gameId}/resend`)
+    .subscribe( v => console.log(v))
   }
+
+
+  points: any;
   playCards() {
     console.log(this.fg.value)
     const cards = Object.entries(this.fg.value)
@@ -158,6 +167,8 @@ export class GameComponent {
           const obj: { type: string, message: any } = JSON.parse(bin)
           if (obj.type === "Points") {
             this.points = obj.message
+          } else if (obj.type === "Rejected") {
+            this.snackService.push(JSON.stringify(obj.message))
           } else {
 
 

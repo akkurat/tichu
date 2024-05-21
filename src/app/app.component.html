@@ -17,7 +17,7 @@
     @if(snack.out$|async; as snacks) {
     <ul class="flex flex-wrap">
       @for(snack of snacks; track $index) {
-      <li class="rounded px-2 m-4 bg-red-400" [title]="snack|json">{{snack.date}} Error </li>
+      <li class="rounded px-2 m-4 bg-red-400" [title]="snack|json">{{snack.date}} Error: {{snack.message}} </li>
       }
     </ul>
     }

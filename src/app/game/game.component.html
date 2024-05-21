@@ -56,9 +56,8 @@
             } @else if (state==="POST_SCHUPF") {
             <button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
             } @else if (state ==="YOURTURN") {
-            <button (click)="playCards()" class="btn">Play Cards</button>
-
             }
+            <button (click)="playCards()" class="btn">Play Cards</button>
 
         </div>
         <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards"
@@ -87,7 +86,7 @@
     }
 
     <div>
-        <!-- {{points|json}} -->
+        {{points|json}}
         <app-gamelog [points]="points"></app-gamelog>
     </div>
 </div>
