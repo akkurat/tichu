@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TjchuApplication" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="ch.vifian.tjchu.TjchuApplication" />
+    <module name="tjchu.main" />
+    <option name="VM_PARAMETERS" value="-XX:+AllowEnhancedClassRedefinition -XX:HotswapAgent=fatjar " />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ch.vifian.tjchu.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

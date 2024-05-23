@@ -15,7 +15,7 @@ public class GamesControllerRest {
     GameService gs;
 
     @GetMapping("/games/{id}/resend")
-    public TichuGame resend(@PathParam("id") String id) {
+    public TichuGame resend(@PathVariable("id") String id) {
         return gs.games.get(UUID.fromString(id));
     }
 
@@ -26,16 +26,15 @@ public class GamesControllerRest {
 
     @PostMapping("/games/create")
     @ResponseBody
-    public TichuGame createGame( @RequestParam(name = "caption") String caption) {
+    public TichuGame createGame(@RequestParam(name = "caption") String caption) {
         return gs.createGame(caption);
     }
 
     @PutMapping("/games/join")
     @ResponseBody
     public JoinResponse joinGame(@RequestParam(name = "gameid") String gameid, Principal user) {
-        return gs.join( gameid, user.getName() );
+        return gs.join(gameid, user.getName());
     }
-
 
 
 }

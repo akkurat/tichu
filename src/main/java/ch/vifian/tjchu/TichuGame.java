@@ -91,7 +91,7 @@ public class TichuGame {
     private void startGame() {
         // todo: ref
         game = new Game(this::receiveServerMessage);
-        game.start();
+        game.start(true);
 
     }
 
