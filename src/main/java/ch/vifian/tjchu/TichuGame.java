@@ -50,7 +50,7 @@ public class TichuGame {
         // todo: interactive
         players.values().stream()
                 .limit(3)
-                .forEach(p -> p.connect(new StupidPlayer(p.name, msg -> receiveUserMsg(p.name, msg))));
+                .forEach(p -> p.connect(new StupidUserPlayer(Player.valueOf(p.name), p.name, msg -> receiveUserMsg(p.name, msg))));
     }
 
 
@@ -58,7 +58,7 @@ public class TichuGame {
     // this should be made thread safe
     public JoinResponse join(String name) {
         var existingPlayer = players.values().stream()
-                .filter(pp -> pp.playerReference != null && pp.playerReference.getName().equals(name))
+                .filter(pp -> pp.userPlayerReference != null && pp.userPlayerReference.getName().equals(name))
                 .findFirst();
         if (existingPlayer.isPresent()) {
             var proxyPlayer = existingPlayer.get();
@@ -72,14 +72,14 @@ public class TichuGame {
 
         if (freeSeat.isPresent()) {
             var proxyPlayer = freeSeat.get();
-            var mp = new MessagePlayer(name, simpMessagingTemplate, id);
+            var mp = new MessageUserPlayer(name, simpMessagingTemplate, id);
             proxyPlayer.connect(mp);
 
             if (players.values().stream().allMatch(ProxyPlayer::connected)) {
                 // todo: started and start round and so on
                 // here the reverse map can be built
                 userNameToPlayer = players.entrySet().stream()
-                        .collect(Collectors.toMap(v -> v.getValue().playerReference.getName(), Map.Entry::getKey));
+                        .collect(Collectors.toMap(v -> v.getValue().userPlayerReference.getName(), Map.Entry::getKey));
                 startGame();
             }
             return new JoinResponse(id, proxyPlayer.name, "Welcome to the game", false);

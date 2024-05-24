@@ -1,6 +1,5 @@
 package ch.vifian.tjchu;
 
-import com.google.common.collect.ImmutableMap;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
@@ -9,7 +8,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import java.util.UUID;
 
 @Data
-public class MessagePlayer implements Player {
+public class MessageUserPlayer implements UserPlayer {
 
     public final String name;
     @Getter(AccessLevel.NONE)

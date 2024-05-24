@@ -1,6 +1,6 @@
 package ch.vifian.tjchu;
 
-public interface Player {
+public interface UserPlayer {
 
     void receiveServerMessage(MessageWrapper payload);
 

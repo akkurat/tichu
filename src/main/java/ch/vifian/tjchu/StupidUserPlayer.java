@@ -15,7 +15,8 @@ import java.util.function.Consumer;
 import static ch.taburett.tichu.cards.CardUtilsKt.pattern;
 
 @Data
-public class StupidPlayer implements Player {
+public class StupidUserPlayer implements UserPlayer {
+    public final Player player;
     public final String name;
     public final Consumer<PlayerMessage> listener;
 
@@ -45,9 +46,19 @@ public class StupidPlayer implements Player {
                     if (all.isEmpty()) {
                         listener.accept(new Move(List.of()));
                     } else {
-                        var mypat = all.iterator().next();
-                        if (mypat.beats(pat).getType() == LegalType.OK) {
-                            listener.accept(new Move(mypat.getCards()));
+                        var mypat = all.stream()
+                                .filter(p -> p.beats(pat).getType() == LegalType.OK)
+                                .findFirst();
+                        if (mypat.isPresent()) {
+                            var prPat = mypat.get();
+                            if (
+                                    last.getPlayer().getGroup() != player.getGroup() ||
+                                            pat.rank() < 10
+                            ) {
+                                listener.accept(new Move(mypat.get().getCards()));
+                            } else {
+                                listener.accept(new Move(List.of()));
+                            }
                         } else {
                             listener.accept(new Move(List.of()));
                         }

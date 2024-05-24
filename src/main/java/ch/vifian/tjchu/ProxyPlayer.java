@@ -3,7 +3,6 @@ package ch.vifian.tjchu;
 import ch.taburett.tichu.game.Points;
 import ch.taburett.tichu.game.Rejected;
 import ch.taburett.tichu.game.ServerMessage;
-import kotlin.reflect.KClass;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -14,7 +13,7 @@ public class ProxyPlayer {
     public final String name;
     // just a string?
     @Getter
-    Player playerReference = null;
+    UserPlayer userPlayerReference = null;
 
     Map<Class<? extends ServerMessage>, MessageWrapper> buffer = new HashMap<>();
 
@@ -23,15 +22,15 @@ public class ProxyPlayer {
     }
 
     public boolean unconnected() {
-        return playerReference == null;
+        return userPlayerReference == null;
     }
 
     public boolean connected() {
         return !unconnected();
     }
 
-    public void connect(Player ref) {
-        playerReference = ref;
+    public void connect(UserPlayer ref) {
+        userPlayerReference = ref;
     }
 
 //    @SneakyThrows
@@ -41,9 +40,9 @@ public class ProxyPlayer {
 //    }
 
     public void reconnected() {
-        if (playerReference != null) {
+        if (userPlayerReference != null) {
             for (var message : buffer.values()) {
-                playerReference.receiveServerMessage(message);
+                userPlayerReference.receiveServerMessage(message);
             }
         }
     }
@@ -59,6 +58,6 @@ public class ProxyPlayer {
             // however assume a new correct message cleans out a rejection
             buffer.remove( Rejected.class);
         }
-        playerReference.receiveServerMessage(message);
+        userPlayerReference.receiveServerMessage(message);
     }
 }
