@@ -1,8 +1,8 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.game.Points;
-import ch.taburett.tichu.game.Rejected;
-import ch.taburett.tichu.game.ServerMessage;
+import ch.taburett.tichu.game.protocol.Points;
+import ch.taburett.tichu.game.protocol.Rejected;
+import ch.taburett.tichu.game.protocol.ServerMessage;
 import lombok.Getter;
 
 import java.util.HashMap;

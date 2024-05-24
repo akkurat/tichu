@@ -5,6 +5,7 @@ import ch.taburett.tichu.cards.PlayCard;
 import ch.taburett.tichu.game.*;
 import ch.taburett.tichu.game.Game;
 import ch.taburett.tichu.game.Player;
+import ch.taburett.tichu.game.protocol.*;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;

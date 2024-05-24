@@ -4,6 +4,7 @@ import ch.taburett.tichu.cards.HandCard;
 import ch.taburett.tichu.cards.Phoenix;
 import ch.taburett.tichu.cards.PlayCard;
 import ch.taburett.tichu.game.*;
+import ch.taburett.tichu.game.protocol.*;
 import ch.taburett.tichu.patterns.LegalType;
 import lombok.Data;
 import lombok.SneakyThrows;
@@ -38,9 +39,12 @@ public class StupidUserPlayer implements UserPlayer {
             }
             case Schupf schupf -> listener.accept(new Ack.SchupfcardReceived());
             case MakeYourMove mm -> {
-                List<Played> table = mm.getTable();
+                List<IPlayed> table = mm.getTable();
                 if (!table.isEmpty()) {
-                    var last = table.getLast();
+                    var last = table.stream()
+                            .filter(v -> v instanceof Played)
+                            .map(v -> (Played) v)
+                            .toList().getLast();
                     var pat = pattern(last.getCards());
                     var all = pat.getType().patterns(mm.getHandcards());
                     if (all.isEmpty()) {
