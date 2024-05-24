@@ -60,8 +60,11 @@ export class GameComponent {
       .filter(([_, v]) => v)
       .map(([k]) => k)
 
-    if (cards.includes("phx") && cards.length == 1) {
-      this.gameService.send(this.gameId, { type: 'Move', cards: ["phx1"] })
+    if (cards.length == 1 && cards[0] == "phx" ) {
+      const cardsPlayed = this.table.filter(c => c.cards.length > 0);
+      const lastHeight = cardsPlayed [cardsPlayed.length-1]?.cards[0]?.value 
+      const val = lastHeight+1 || 1
+      this.gameService.send(this.gameId, { type: 'Move', cards: ["phx"+val] })
     } else {
       this.gameService.send(this.gameId, { type: 'Move', cards })
     }
@@ -146,7 +149,9 @@ export class GameComponent {
   gameService = inject(GameService)
   route = inject(ActivatedRoute)
 
-  table = new Array<{ player: string, cards: { code: string }[] }>()
+  table = new Array<{ player: string, cards: {
+    value: number; code: string 
+}[] }>()
 
   constructor() {
 
@@ -186,7 +191,7 @@ export class GameComponent {
             }
             if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
               const newTable = obj.message?.table
-              const timeout = newTable && (newTable.length < this.table.length) ? 5000 : 0
+              const timeout = newTable && (newTable.length < this.table.length) ? 1000 : 0
 
               setTimeout(() => {
                 this.table = obj.message?.table || this.table
