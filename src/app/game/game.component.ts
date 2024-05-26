@@ -7,6 +7,7 @@ import { map, switchMap, tap } from 'rxjs';
 import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
+import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
@@ -17,7 +18,9 @@ import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.compon
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [JsonPipe, KeyValuePipe, CardComponent, CdkDrag, CdkDropList, CdkDropListGroup, ReactiveFormsModule, GamelogComponent, TabledisplayComponent],
+  imports: [JsonPipe, KeyValuePipe, CardComponent,
+    CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
+    ReactiveFormsModule, GamelogComponent, TabledisplayComponent],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -51,6 +54,7 @@ export class GameComponent {
   http = inject(HttpClient);
   // todo
   lastTrick = signal<any>(null);
+  dialog = inject(Dialog)
 
   resend() {
     this.http.get(`/api/games/${this.gameId}/resend`)
@@ -155,7 +159,7 @@ export class GameComponent {
   route = inject(ActivatedRoute);
 
   /// puh.. .table object in gui as well?
-  table: Table = {moves: new Array<Move>(), currentPlayer: ""};
+  table: Table = { moves: new Array<Move>(), currentPlayer: "" };
   constructor() {
 
     this.fg.valueChanges.subscribe(console.log);
@@ -198,6 +202,9 @@ export class GameComponent {
               this.table = obj.message?.table || this.table;
               this.cards = obj.message?.handcards || this.cards;
             }
+            if (this.state === GameState.GIFT_DRAGON) {
+
+            }
 
 
 
@@ -215,6 +222,16 @@ export class GameComponent {
 
       });
   }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open<string>(DragonDialog, {
+      width: '250px',
+    });
+
+    dialogRef.closed.subscribe(result => {
+      this.gameService.send(this.gameId, {type: "DragonGifted", })
+    });
+  }
 }
 
 
@@ -228,4 +245,19 @@ export enum GameState {
   GAME = "GAME",
   YOURTURN = "YOURTURN"
 
+}
+
+@Component({
+  template: `
+  <button class="btn" (click)="close('LI')">Left</button>
+  <button class="btn" (click)="close('RE')">Right</button>
+  `,
+  standalone: true
+})
+export class DragonDialog {
+  constructor(public dialogRef: DialogRef<string>) { }
+
+  close(value: "RE"|"LI") {
+    this.dialogRef.close(value)
+  }
 }
