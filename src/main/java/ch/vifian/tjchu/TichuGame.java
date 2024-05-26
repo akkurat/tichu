@@ -162,4 +162,8 @@ public class TichuGame {
 
     }
 
+    public TichuGame resend() {
+        game.resendStatus();
+        return this;
+    }
 }

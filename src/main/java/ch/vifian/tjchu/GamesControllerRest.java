@@ -16,7 +16,7 @@ public class GamesControllerRest {
 
     @GetMapping("/games/{id}/resend")
     public TichuGame resend(@PathVariable("id") String id) {
-        return gs.games.get(UUID.fromString(id));
+        return gs.games.get(UUID.fromString(id)).resend();
     }
 
     @GetMapping("/games")
