@@ -120,11 +120,12 @@ public class TichuGame {
                     lUp.get(cards.get("partner"))
             ));
         } else if ("Move".equals(payload.get("type"))) {
-
             List<PlayCard> cards = ((List<String>) payload.get("cards"))
                     .stream().map(CardsKt::parsePlayCard)
                     .toList();
             receiveUserMsg(user, new Move(cards));
+        } else if ("DragonGifted".equals(payload.get("type"))) {
+            receiveUserMsg(user, new GiftDragon(GiftDragon.ReLi.valueOf((String) payload.get("to"))));
         }
 
     }

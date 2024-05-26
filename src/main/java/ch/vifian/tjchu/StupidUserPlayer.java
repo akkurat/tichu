@@ -3,17 +3,23 @@ package ch.vifian.tjchu;
 import ch.taburett.tichu.cards.HandCard;
 import ch.taburett.tichu.cards.Phoenix;
 import ch.taburett.tichu.cards.PlayCard;
-import ch.taburett.tichu.game.*;
+import ch.taburett.tichu.game.Played;
+import ch.taburett.tichu.game.Player;
 import ch.taburett.tichu.game.protocol.*;
 import ch.taburett.tichu.patterns.LegalType;
+import ch.taburett.tichu.patterns.Single;
+import ch.taburett.tichu.patterns.TichuPattern;
 import lombok.Data;
 import lombok.SneakyThrows;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
 
 import static ch.taburett.tichu.cards.CardUtilsKt.pattern;
+import static ch.taburett.tichu.cards.CardsKt.DRG;
+import static ch.taburett.tichu.cards.CardsKt.PHX;
 
 @Data
 public class StupidUserPlayer implements UserPlayer {
@@ -39,45 +45,58 @@ public class StupidUserPlayer implements UserPlayer {
             }
             case Schupf schupf -> listener.accept(new Ack.SchupfcardReceived());
             case MakeYourMove mm -> {
-                var table = mm.getTable();
-                if (!table.isEmpty()) {
-                    Played toBeat = table.toBeat();
-                    var pat = pattern(toBeat.getCards());
-                    var all = pat.getType().patterns(mm.getHandcards());
-                    if (all.isEmpty()) {
-                        listener.accept(new Move(List.of()));
-                    } else {
-                        var mypat = all.stream()
-                                .filter(p -> p.beats(pat).getType() == LegalType.OK)
-                                .findFirst();
-                        if (mypat.isPresent()) {
-                            var prPat = mypat.get();
-                            if (
-                                    toBeat.getPlayer().getPlayerGroup() != player.getPlayerGroup() ||
-                                            pat.rank() < 10
-                            ) {
-                                listener.accept(new Move(mypat.get().getCards()));
+                if (mm.getStage() == Stage.GIFT_DRAGON) {
+                    listener.accept(new GiftDragon(GiftDragon.ReLi.LI));
+                } else {
+                    var table = mm.getTable();
+                    List<HandCard> handcards = mm.getHandcards();
+                    if (!table.isEmpty()) {
+                        Played toBeat = table.toBeat();
+                        var pat = pattern(toBeat.getCards());
+                        var all = new HashSet<>(pat.getType().patterns(handcards));
+                        if (pat instanceof Single si) {
+                            if (handcards.contains(DRG)) {
+                                all.add(new Single(DRG));
+                            }
+                            if (handcards.contains(PHX)) {
+                                all.add(new Single(PHX.asPlayCard(si.getCard().getValue() + 1)));
+                            }
+                        }
+                        if (all.isEmpty()) {
+                            listener.accept(new Move(List.of()));
+                        } else {
+                            var mypat = all.stream()
+                                    .filter(p -> p.beats(pat).getType() == LegalType.OK)
+                                    .min(Comparator.comparingInt(TichuPattern::rank));
+                            if (mypat.isPresent()) {
+                                var prPat = mypat.get();
+                                if (
+                                        toBeat.getPlayer().getPlayerGroup() != player.getPlayerGroup() ||
+                                                pat.rank() < 10
+                                ) {
+                                    listener.accept(new Move(mypat.get().getCards()));
+                                } else {
+                                    listener.accept(new Move(List.of()));
+                                }
                             } else {
                                 listener.accept(new Move(List.of()));
                             }
-                        } else {
-                            listener.accept(new Move(List.of()));
                         }
+
+                        // pattern
+                    } else {
+                        // play smallest card
+                        var ocard = handcards.stream()
+                                .min(Comparator.comparingDouble(HandCard::getSort))
+                                .orElse(null);
+
+                        List<PlayCard> ret = switch (ocard) {
+                            case Phoenix sc -> List.of(sc.asPlayCard(1));
+                            case PlayCard pc -> List.of(pc);
+                            case null, default -> List.of();
+                        };
+                        listener.accept(new Move(ret));
                     }
-
-                    // pattern
-                } else {
-                    // play smallest card
-                    var ocard = mm.getHandcards().stream()
-                            .min(Comparator.comparingDouble(HandCard::getSort))
-                            .orElse(null);
-
-                    List<PlayCard> ret = switch (ocard) {
-                        case Phoenix sc -> List.of(sc.asPlayCard(1));
-                        case PlayCard pc -> List.of(pc);
-                        case null, default -> List.of();
-                    };
-                    listener.accept(new Move(ret));
                 }
             }
             case null, default -> {
