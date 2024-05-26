@@ -39,13 +39,10 @@ public class StupidUserPlayer implements UserPlayer {
             }
             case Schupf schupf -> listener.accept(new Ack.SchupfcardReceived());
             case MakeYourMove mm -> {
-                List<IPlayed> table = mm.getTable();
+                var table = mm.getTable();
                 if (!table.isEmpty()) {
-                    var last = table.stream()
-                            .filter(v -> v instanceof Played)
-                            .map(v -> (Played) v)
-                            .toList().getLast();
-                    var pat = pattern(last.getCards());
+                    Played toBeat = table.toBeat();
+                    var pat = pattern(toBeat.getCards());
                     var all = pat.getType().patterns(mm.getHandcards());
                     if (all.isEmpty()) {
                         listener.accept(new Move(List.of()));
@@ -56,7 +53,7 @@ public class StupidUserPlayer implements UserPlayer {
                         if (mypat.isPresent()) {
                             var prPat = mypat.get();
                             if (
-                                    last.getPlayer().getGroup() != player.getGroup() ||
+                                    toBeat.getPlayer().getPlayerGroup() != player.getPlayerGroup() ||
                                             pat.rank() < 10
                             ) {
                                 listener.accept(new Move(mypat.get().getCards()));
