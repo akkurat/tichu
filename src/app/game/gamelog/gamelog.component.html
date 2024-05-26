@@ -2,7 +2,6 @@
 <div class="flex flex-row flex-wrap">
     <div class="flex flex-row flex-wrap">
         @for( player of initialCards(); track player.key ) {
-
         <div class="flex flex-col">
             <div><b>{{player.key}}</b></div>
             <div class="flex flex-row">
@@ -17,46 +16,12 @@
     </div>
     @for( trick of tricks(); track $index) {
     <div class="flex flex-row m-4 bg-lime-300">
-        @for( move of trick.moves; track $index) {
-        <div class="flex flex-col bg-lime-200 m-1">
-            <h3><b>{{move.player}}</b></h3>
-            <div class="flex flex-row">
-                @if(move.cards && move.cards.length > 0 ) {
-                @for( card of move.cards; track card.code) {
-                <div class="w-20 -ml-12 first:ml-0">
-                    <app-card [cardcode]="card.code" [selectable]="false"></app-card>
-                </div>
-                }
-                } @else {
-                @if(move.type === "Finished") {
-                Fini
-                } @else {
-                <div>x</div>
-                }
-                <!-- <div>{{move|json}}</div> -->
-                }
-            </div>
-        </div>
-        }
+        <app-trickdisplay [moves]="trick.moves"></app-trickdisplay>
     </div>
     }
     <div class="flex flex-row flex-wrap">
         @for( player of leftOverCards(); track player.key ) {
-
-        <div class="flex flex-col">
-            <div><b>{{player.key}}</b></div>
-            <div class="flex flex-row">
-                @for( card of player.value; track card.code ) {
-                <div class="w-20 -ml-12 first:ml-0">
-                    <app-card [cardcode]="card.code"></app-card>
-                </div>
-                }
-            </div>
-        </div>
+        <app-deckdisplay [player]="player"></app-deckdisplay>
         }
     </div>
-
-
-
-
 </div>

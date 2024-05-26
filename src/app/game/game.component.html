@@ -72,18 +72,11 @@
         </div>
     </div>
     @if( state === "GAME" ||state === "YOURTURN" ) {
-    <div class="flex flex-wrap">
-        @for( e of table; track $index ) {
-        <div>
-            <h1>{{e.player}}</h1>
-            <div class="flex flex-nowrap">
-                @for (card of e.cards; track card.code) {
-                <app-card [selectable]="false" [cardcode]="card.code" class="w-20 -ml-16 first:ml-0"></app-card>
-                }
-            </div>
-        </div>
-        }
-    </div>
+    @if(lastTrick()){
+    <h2>last trick</h2>
+    <app-tabledisplay [table]="lastTrick()"></app-tabledisplay>
+    }
+    <app-tabledisplay [table]="table"></app-tabledisplay>
     }
 
     <div>

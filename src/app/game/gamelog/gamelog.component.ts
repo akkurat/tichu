@@ -1,34 +1,66 @@
 import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { CardComponent } from '../card/card.component';
+import { TrickdisplayComponent } from '../trickdisplay/trickdisplay.component';
 
-type Card = {
+export type Card = {
   value: number;
   code: string;
 };
 
-type Move = {
+export type Move = {
   type: string;
   player: string;
   cards: Card[];
+  pass: boolean
 }
 
-type Trick = { moves: Move[] };
+export type Trick = { moves: Move[] };
 
-type GameLog = {
+type Player = "A1" | "A2" | "B1" | "B2";
+
+export type GameLog = {
   points: {
     tricks: Trick[],
-    initialCardmap: Record<"A1" | "A2" | "B1" | "B2", Array<Card>>
-    leftoverHandcards: Record<"A1" | "A2" | "B1" | "B2", Array<Card>>
+    initialCardmap: Record<Player, Card[]>
+    leftoverHandcards: Record<Player, Card[]>
   }
 }
 
 @Component({
+  standalone: true,
+  imports: [CardComponent],
+  template: `
+        @if(player(); as player) {
+        <div class="flex flex-col">
+            <div><b>{{player.key}}</b></div>
+            <div class="flex flex-row">
+                @for( card of player.value; track card.code ) {
+                <div class="w-20 -ml-12 first:ml-0">
+                    <app-card [cardcode]="card.code"></app-card>
+                </div>
+                }
+            </div>
+        </div>
+        }
+  `,
+  selector: 'app-deckdisplay',
+
+})
+export class DeckDisplay {
+  player = input<PlayerDeck>()
+}
+
+export type PlayerDeck = {
+  key: string;
+  value: Card[];
+};
+
+@Component({
   selector: 'app-gamelog',
   standalone: true,
-  imports: [JsonPipe, KeyValuePipe, CardComponent],
+  imports: [JsonPipe, KeyValuePipe, CardComponent, TrickdisplayComponent, DeckDisplay],
   templateUrl: './gamelog.component.html',
-  styleUrl: './gamelog.component.css'
 })
 export class GamelogComponent {
 
@@ -39,8 +71,7 @@ export class GamelogComponent {
   initialCards = computed(() => {
     const cm = this.points()?.points.initialCardmap
     if (cm) {
-      return Object.entries(cm)
-        .map(([key, v]) => ({ key, value: v.sort((a, b) => a.value - b.value) }))
+      return this.mapCards(cm)
     }
     return
   })
@@ -48,8 +79,7 @@ export class GamelogComponent {
   leftOverCards = computed(() => {
     const cm = this.points()?.points.leftoverHandcards
     if (cm) {
-      return Object.entries(cm)
-        .map(([key, v]) => ({ key, value: v.sort((a, b) => a.value - b.value) }))
+      return this.mapCards(cm)
     }
     return
   })
@@ -58,5 +88,8 @@ export class GamelogComponent {
 
   }
 
-
+  private mapCards(cm: Record<Player, Card[]>): PlayerDeck[] {
+    return Object.entries(cm)
+      .map(([key, v]) => ({ key, value: v.sort((a, b) => a.value - b.value) }));
+  }
 }

@@ -1,0 +1,22 @@
+<div class="flex flex-row bg-lime-200 m-1">
+    @for( move of moves(); track $index) {
+    <div class="flex flex-col bg-lime-200 m-1">
+        <h3><b>{{move.player}}</b></h3>
+        <div class="flex flex-row">
+            @if(move.cards && move.cards.length > 0 ) {
+            @for( card of move.cards; track card.code) {
+            <div class="w-20 -ml-12 first:ml-0">
+                <app-card [cardcode]="card.code" [selectable]="false"></app-card>
+            </div>
+            }
+            } @else {
+            @if(move.type === "Finished") {
+            Fini
+            } @else {
+            <div>x</div>
+            }
+            }
+        </div>
+    </div>
+    }
+</div>

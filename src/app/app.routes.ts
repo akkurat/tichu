@@ -4,7 +4,6 @@ import { LoginComponent } from './login/login.component';
 import { inject } from '@angular/core';
 import { LoginService } from './services/login.service';
 import { map, tap } from 'rxjs';
-import { GamesComponent } from './games/games.component';
 import { GameComponent } from './game/game.component';
 
 const isLoggedIn = (route, state) => {
