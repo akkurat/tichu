@@ -3,12 +3,26 @@
 
 }
 <div class="flex flex-wrap">
-    @for( e of table()?.moves; track $index ) {
-    <div>
-        <h1>{{e.player}}</h1>
-        <div class="flex flex-nowrap">
-            @for (card of e.cards; track card.code) {
-            <app-card [selectable]="false" [cardcode]="card.code" class="w-20 -ml-16 first:ml-0"></app-card>
+    @for( move of table()?.moves; track $index ) {
+    <div class="flex flex-col bg-lime-200 m-1">
+        <h3><b>{{move.player}}</b></h3>
+        <div class="flex flex-row">
+            @if(move.cards && move.cards.length > 0 ) {
+            @for( card of move.cards; track card.code) {
+            <div class="w-20 -ml-12 first:ml-0">
+                <app-card [cardcode]="card.code" [selectable]="false"></app-card>
+            </div>
+            }
+            } @else {
+            @if(move.type === "Finished") {
+            Fini
+            } @else if(move.type === "Wished") {
+                Wish: {{move.value}}
+            } @else if(move.type === "DrgGift") {
+                DRG&rarr;{{move.to}}
+            } @else {
+            <div>x</div>
+            }
             }
         </div>
     </div>

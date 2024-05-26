@@ -12,6 +12,10 @@
             } @else {
             @if(move.type === "Finished") {
             Fini
+            } @else if(move.type === "Wished") {
+                Wish: {{move.value}}
+            } @else if(move.type === "DrgGift") {
+                DRG&rarr;{{move.to}}
             } @else {
             <div>x</div>
             }

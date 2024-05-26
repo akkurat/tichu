@@ -4,15 +4,18 @@ import { CardComponent } from '../card/card.component';
 import { TrickdisplayComponent } from '../trickdisplay/trickdisplay.component';
 
 export type Card = {
+  sort: number;
   value: number;
   code: string;
-};
+}
 
 export type Move = {
+  value: number;
   type: string;
   player: string;
   cards: Card[];
   pass: boolean
+  to?: string
 }
 
 export type Trick = { moves: Move[] };
@@ -90,6 +93,6 @@ export class GamelogComponent {
 
   private mapCards(cm: Record<Player, Card[]>): PlayerDeck[] {
     return Object.entries(cm)
-      .map(([key, v]) => ({ key, value: v.sort((a, b) => a.value - b.value) }));
+      .map(([key, v]) => ({ key, value: v.sort((a, b) => a.sort - b.sort) }));
   }
 }
