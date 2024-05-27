@@ -30,6 +30,7 @@ export class GamesComponent {
 
   createGame(caption: string) {
     this.gs.createGame(caption)
+    .subscribe( res => this.snack.push(JSON.stringify(res), ) )
   }
 
   join(id: string) {

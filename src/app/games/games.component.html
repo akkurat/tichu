@@ -7,7 +7,7 @@
 @for(game of games$|async; track game.id) {
 
     <h1 [title]="game.id" (click)="join(game.id)">{{game.caption}}</h1>
-    <pre>{{game|json}}</pre>
+    <!-- <pre>{{game.caption}}</pre> -->
     <!-- @for(player of game.players; track $index) {
         {{player|json}}
     } -->

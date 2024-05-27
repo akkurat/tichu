@@ -27,6 +27,7 @@ export type GameLog = {
     tricks: Trick[],
     initialCardmap: Record<Player, Card[]>
     leftoverHandcards: Record<Player, Card[]>
+    points: {A:number,B:number}
   }
 }
 
@@ -86,6 +87,8 @@ export class GamelogComponent {
     }
     return
   })
+
+  daPoints = computed(() => this.points()?.points?.points)
 
   constructor() {
 

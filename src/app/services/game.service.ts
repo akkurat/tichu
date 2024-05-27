@@ -25,6 +25,11 @@ export class GameService {
     this.joinedGames = new Map()
   }
 
+  /**
+   * 
+   * @param name 
+   * @returns cold observable
+   */
   createGame(name: string) {
     return this.http.post(`/api/games/create?caption=${name}`, '', { withCredentials: true })
   }

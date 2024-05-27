@@ -11,7 +11,9 @@ function bufferRing<T>(size: number): OperatorFunction<T, N<T>[]> {
 
 type Msg = {
   date: string;
-  message: any;
+  message: string;
+  type: SnackType
+
 };
 
 @Injectable({
@@ -30,9 +32,12 @@ export class SnackService {
   constructor() {
   }
 
-  push(message: string) {
-    const msg = { date: new Date().toLocaleTimeString(), message }
+
+  push(message: string, type = SnackType.ERROR) {
+    const msg = { date: new Date().toLocaleTimeString(), message, type }
     this.messages.push(msg)
     this._out$.next(msg)
   }
 }
+
+export enum SnackType { ERROR="E", NEUTRAL="N", GOOD="G" }

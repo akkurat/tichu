@@ -8,7 +8,7 @@ import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
-import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
@@ -71,10 +71,13 @@ export class GameComponent {
 
     if (cards.includes("mah")) {
       const mahDialog = this.dialog.open<number>(SelectWishComponent, {
-        width: '250px'
+        width: '250px',
+
       })
       mahDialog.closed.subscribe(result => {
-        this.gameService.send(this.gameId, { type: 'Move', cards, wish: result });
+        if (result) {
+          this.gameService.send(this.gameId, { type: 'Move', cards, wish: result });
+        }
       })
 
     } else if (cards.length == 1 && cards[0] == "phx") {
@@ -206,16 +209,15 @@ export class GameComponent {
                 { caption: "Right", card: obj.message['re'].code },
               ];
             }
+
             if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
               this.table = obj.message?.table || this.table;
               this.cards = obj.message?.handcards || this.cards;
             }
+
             if (this.state === GameState.GIFT_DRAGON) {
-
+              this.openDrgDialog()
             }
-
-
-
 
             this.displaycards = this.cards
               .sort((a, b) => a.sort - b.sort)
@@ -231,13 +233,13 @@ export class GameComponent {
       });
   }
 
-  openDialog(): void {
+  openDrgDialog(): void {
     const dialogRef = this.dialog.open<string>(DragonDialog, {
       width: '250px',
     });
 
     dialogRef.closed.subscribe(result => {
-      this.gameService.send(this.gameId, { type: "DragonGifted", })
+      this.gameService.send(this.gameId, { type: "DragonGifted", to: result})
     });
   }
 }
@@ -271,18 +273,20 @@ export class DragonDialog {
 }
 
 @Component({
-  template: `
-    <input [value]="wish" type="range" min="2" max="14" />
+  template: `<div class="bg-slate-200 p-10">
+    <input [(ngModel)]="wish" type="range" min="2" max="14" />
     {{wish}}
-    <button>OK</button>
+    <button (click)="close()">OK</button>
+    </div>
   `,
+  imports: [FormsModule],
   standalone: true
 })
 export class SelectWishComponent {
-  constructor(public dialogRef: DialogRef<string>) { }
+  constructor(public dialogRef: DialogRef<number>) { }
   wish = 2
 
   close() {
-    this.dialogRef.close("" + this.wish)
+    this.dialogRef.close(this.wish)
   }
 }

@@ -1,5 +1,21 @@
 <!-- {{points()|json}} -->
 <div class="flex flex-row flex-wrap">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{daPoints()?.A}}</td>
+                    <td>{{daPoints()?.B}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="flex flex-row flex-wrap">
         @for( player of initialCards(); track player.key ) {
         <div class="flex flex-col">
