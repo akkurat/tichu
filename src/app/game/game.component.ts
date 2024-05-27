@@ -69,7 +69,15 @@ export class GameComponent {
       .filter(([_, v]) => v)
       .map(([k]) => k);
 
-    if (cards.length == 1 && cards[0] == "phx") {
+    if (cards.includes("mah")) {
+      const mahDialog = this.dialog.open<number>(SelectWishComponent, {
+        width: '250px'
+      })
+      mahDialog.closed.subscribe(result => {
+        this.gameService.send(this.gameId, { type: 'Move', cards, wish: result });
+      })
+
+    } else if (cards.length == 1 && cards[0] == "phx") {
       const cardsPlayed = this.table.moves.filter(c => c.cards.length > 0);
       const lastHeight = cardsPlayed[cardsPlayed.length - 1]?.cards[0]?.value;
       const val = lastHeight + 1 || 1;
@@ -229,7 +237,7 @@ export class GameComponent {
     });
 
     dialogRef.closed.subscribe(result => {
-      this.gameService.send(this.gameId, {type: "DragonGifted", })
+      this.gameService.send(this.gameId, { type: "DragonGifted", })
     });
   }
 }
@@ -257,7 +265,24 @@ export enum GameState {
 export class DragonDialog {
   constructor(public dialogRef: DialogRef<string>) { }
 
-  close(value: "RE"|"LI") {
+  close(value: "RE" | "LI") {
     this.dialogRef.close(value)
+  }
+}
+
+@Component({
+  template: `
+    <input [value]="wish" type="range" min="2" max="14" />
+    {{wish}}
+    <button>OK</button>
+  `,
+  standalone: true
+})
+export class SelectWishComponent {
+  constructor(public dialogRef: DialogRef<string>) { }
+  wish = 2
+
+  close() {
+    this.dialogRef.close("" + this.wish)
   }
 }
