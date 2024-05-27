@@ -123,7 +123,8 @@ public class TichuGame {
             List<PlayCard> cards = ((List<String>) payload.get("cards"))
                     .stream().map(CardsKt::parsePlayCard)
                     .toList();
-            receiveUserMsg(user, new Move(cards));
+            Integer wish = (Integer) payload.get("wish");
+            receiveUserMsg(user, new Move(cards, wish));
         } else if ("DragonGifted".equals(payload.get("type"))) {
             receiveUserMsg(user, new GiftDragon(GiftDragon.ReLi.valueOf((String) payload.get("to"))));
         }

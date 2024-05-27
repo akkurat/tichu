@@ -1,25 +1,27 @@
 package ch.vifian.tjchu;
 
 import ch.taburett.tichu.cards.HandCard;
+import ch.taburett.tichu.cards.NumberCard;
 import ch.taburett.tichu.cards.Phoenix;
 import ch.taburett.tichu.cards.PlayCard;
-import ch.taburett.tichu.game.Played;
+import ch.taburett.tichu.game.PlayLogEntry;
 import ch.taburett.tichu.game.Player;
 import ch.taburett.tichu.game.protocol.*;
 import ch.taburett.tichu.patterns.LegalType;
 import ch.taburett.tichu.patterns.Single;
 import ch.taburett.tichu.patterns.TichuPattern;
+import com.google.common.collect.Range;
 import lombok.Data;
 import lombok.SneakyThrows;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static ch.taburett.tichu.cards.CardUtilsKt.pattern;
-import static ch.taburett.tichu.cards.CardsKt.DRG;
-import static ch.taburett.tichu.cards.CardsKt.PHX;
+import static ch.taburett.tichu.cards.CardsKt.*;
 
 @Data
 public class StupidUserPlayer implements UserPlayer {
@@ -47,11 +49,46 @@ public class StupidUserPlayer implements UserPlayer {
             case MakeYourMove mm -> {
                 if (mm.getStage() == Stage.GIFT_DRAGON) {
                     listener.accept(new GiftDragon(GiftDragon.ReLi.LI));
+                } else if (mm.mustFullFillWish()) {
+                    var numberCards = mm.getHandcards().stream()
+                            .filter(hc -> hc instanceof NumberCard)
+                            .map(hc -> (NumberCard) hc)
+                            .filter(nc -> Objects.equals(mm.getWish(), ((NumberCard) nc).getValue()))
+                            .findAny().map(List::of)
+                            .orElse(List.of());
+                    listener.accept(new Move(numberCards));
                 } else {
                     var table = mm.getTable();
                     List<HandCard> handcards = mm.getHandcards();
-                    if (!table.isEmpty()) {
-                        Played toBeat = table.toBeat();
+                    if (table.isEmpty()) {
+                        // play smallest card
+                        var ocard = handcards.stream()
+                                .min(Comparator.comparingDouble(HandCard::getSort))
+                                .orElse(null);
+
+                        Set<Integer> values = handcards.stream()
+                                .filter(h -> h instanceof NumberCard)
+                                .map(h -> ((NumberCard) h).getValue())
+                                .collect(Collectors.toSet());
+
+                        var rw = IntStream.range(2, 15).filter(n -> !values.contains(n)).toArray();
+                        Integer randomWish = rw.length > 0 ? rw[ThreadLocalRandom.current().nextInt(rw.length)] : null;
+
+                        Move move;
+                        if (ocard instanceof Phoenix sc) {
+                            move = new Move(List.of(sc.asPlayCard(1)));
+                        } else if (ocard == MAH) {
+                            move = new Move(List.of(MAH), randomWish);
+                        } else if (ocard instanceof PlayCard pc) {
+                            move = new Move(List.of(pc));
+                        } else {
+                            move = new Move(List.of());
+                        }
+
+                        listener.accept(move);
+
+                    } else {
+                        PlayLogEntry toBeat = table.toBeat();
                         var pat = pattern(toBeat.getCards());
                         var all = new HashSet<>(pat.getType().patterns(handcards));
                         if (pat instanceof Single si) {
@@ -84,18 +121,6 @@ public class StupidUserPlayer implements UserPlayer {
                         }
 
                         // pattern
-                    } else {
-                        // play smallest card
-                        var ocard = handcards.stream()
-                                .min(Comparator.comparingDouble(HandCard::getSort))
-                                .orElse(null);
-
-                        List<PlayCard> ret = switch (ocard) {
-                            case Phoenix sc -> List.of(sc.asPlayCard(1));
-                            case PlayCard pc -> List.of(pc);
-                            case null, default -> List.of();
-                        };
-                        listener.accept(new Move(ret));
                     }
                 }
             }
