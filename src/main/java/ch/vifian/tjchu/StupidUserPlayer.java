@@ -68,7 +68,7 @@ public class StupidUserPlayer implements UserPlayer {
                                 .min(Comparator.comparingDouble(HandCard::getSort))
                                 .orElse(null);
 
-                        Set<Integer> values = handcards.stream()
+                        var values = handcards.stream()
                                 .filter(h -> h instanceof NumberCard)
                                 .map(h -> ((NumberCard) h).getValue())
                                 .collect(Collectors.toSet());
@@ -95,7 +95,7 @@ public class StupidUserPlayer implements UserPlayer {
                         Set<TichuPattern> all = new HashSet<>(pat.getType().patterns(handcards));
                         if (mm.getWish() != null) {
                             all = all.stream()
-                                    .filter(p -> p.getCards().stream().anyMatch(c -> Objects.equals(c.getValue(), mm.getWish())))
+                                    .filter(p -> p.getCards().stream().anyMatch(c -> c.getValue() - mm.getWish() == 0))
                                     .collect(Collectors.toSet());
                         }
 
@@ -112,7 +112,7 @@ public class StupidUserPlayer implements UserPlayer {
                         } else {
                             var mypat = all.stream()
                                     .filter(p -> p.beats(pat).getType() == LegalType.OK)
-                                    .min(Comparator.comparingInt(TichuPattern::rank));
+                                    .min(Comparator.comparingDouble(TichuPattern::rank));
                             if (mypat.isPresent()) {
                                 var prPat = mypat.get();
                                 if (
