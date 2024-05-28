@@ -1,15 +1,16 @@
-<div class="flex flex-col" cdkDropListGroup>
+<div class="flex flex-col">
     @if(state==="SCHUPF") {
     <div class="flex flex-col items-stretch">
-        <div class="h-96 flex flex-row justify-around">
+        <div class="h-96 flex flex-row justify-stretch gap-20">
             @for( s of schupf; track s.caption ) {
-            <div>
-                {{s.caption}}
-                <div (cdkDropListDropped)="handleDrop($event)" cdkDropList [cdkDropListData]="s"
-                    cdkDropListOrientation="horizontal" class="bg-slate-300 h-[200px] w-[200px] flex">
+            <div class="flex-1 flex flex-col items-stretch">
+                <div class="text-center">{{s.caption}}</div>
+                <div  (cdkDropListDropped)="handleDrop($event)" cdkDropList [cdkDropListData]="s" [id]="s.key"
+                    [cdkDropListConnectedTo]="['deckDropTarget']"
+                    cdkDropListOrientation="horizontal" class="bg-slate-300 flex-1 flex justify-center ">
                     @if(s.card(); as card) {
                     <div cdkDrag [cdkDragData]="card">
-                        <app-card [cardcode]="card"></app-card>
+                        <app-card [cardcode]="card" [selectable]="false"></app-card>
                     </div>
 
                     }
@@ -43,7 +44,6 @@
             <button (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
         </div>
     </div>
-
     }
 
     <div class="flex flex-row">
@@ -61,7 +61,8 @@
             <button (click)="resend()" class="btn">Resend</button>
 
         </div>
-        <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards"
+        <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards" id="deckDropTarget" 
+        [cdkDropListConnectedTo]="schupf|pluck:'key'"
             (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal" [formGroup]="fg">
             @for(card of displaycards; track card) {
             <div class="-ml-[150px] first:ml-0" cdkDrag>

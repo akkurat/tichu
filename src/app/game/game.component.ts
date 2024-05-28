@@ -1,6 +1,6 @@
 
 
-import { Component, Inject, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, Inject, Pipe, PipeTransform, WritableSignal, computed, inject, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
@@ -14,13 +14,25 @@ import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
 import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.component';
 
+@Pipe({
+  name: 'pluck',
+  standalone: true,
+})
+export class PluckPipe implements PipeTransform{
+
+  transform(value: any[], property="key") {
+    return value.map( v => v[property])
+  }
+
+}
 
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [JsonPipe, KeyValuePipe, CardComponent,
     CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
-    ReactiveFormsModule, GamelogComponent, TabledisplayComponent],
+    ReactiveFormsModule, GamelogComponent, TabledisplayComponent,
+   PluckPipe],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -328,3 +340,4 @@ export class SelectPhxComponent {
     this.dialogRef.close(this.wish)
   }
 }
+
