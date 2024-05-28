@@ -1,6 +1,6 @@
 
 
-import { Component, Inject, Pipe, PipeTransform, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, Inject, WritableSignal, computed, inject, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
@@ -13,18 +13,8 @@ import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
 import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.component';
-
-@Pipe({
-  name: 'pluck',
-  standalone: true,
-})
-export class PluckPipe implements PipeTransform{
-
-  transform(value: any[], property="key") {
-    return value.map( v => v[property])
-  }
-
-}
+import { SchupfDisplayComponent, schupfKeys } from './schupf-display/schupf-display.component';
+import { PluckPipe } from './PluckPipe';
 
 @Component({
   selector: 'app-game',
@@ -32,7 +22,7 @@ export class PluckPipe implements PipeTransform{
   imports: [JsonPipe, KeyValuePipe, CardComponent,
     CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
     ReactiveFormsModule, GamelogComponent, TabledisplayComponent,
-   PluckPipe],
+    SchupfDisplayComponent, PluckPipe],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -68,6 +58,9 @@ export class GameComponent {
   lastTrick = signal<any>(null);
   dialog = inject(Dialog)
 
+  schupfmessage
+  schupfKeys = schupfKeys
+
   resend() {
     this.http.get(`/api/games/${this.gameId}/resend`)
       .subscribe(v => console.log(v));
@@ -100,7 +93,7 @@ export class GameComponent {
             this.dialog.open<number>(SelectWishComponent).closed
               .subscribe(wish => this.gameService.send(this.gameId, { type: 'Move', cards: mappedCards, wish }))
           } else {
-            this.gameService.send(this.gameId, { type: 'Move', mappedCards });
+            this.gameService.send(this.gameId, { type: 'Move', cards: mappedCards });
           }
         }
       })
@@ -113,57 +106,22 @@ export class GameComponent {
 
   fg = this.fb.nonNullable.group({});
 
-  sendSchupfedCards() {
-    const msg = this.schupf.reduce((a, c) => { a[c.key] = c.card(); return a; }, {});
-    this.gameService.send(this.gameId, { type: "Schupf", what: msg });
-  }
 
   state: GameState | undefined;
 
   displaycards: string[] = [];
-  schupfFini = computed(() => this.schupf.every(s => s.card()));
-
-  schupf: { key: string; caption: string; card: WritableSignal<string | null>; }[] = [
-    { key: "li", caption: "Left", card: signal(null) },
-    { key: "partner", caption: "Partner", card: signal(null) },
-    { key: "re", caption: "Right", card: signal(null) },
-  ];
-  schupfed: { caption: string; card: string; }[] = [];
 
   handleDrop(e: CdkDragDrop<any, any, any>) {
     if (Array.isArray(e.previousContainer.data)) {
-      if (Array.isArray(e.container.data)) {
-        if (e.previousContainer === e.container) { // sort hand cards
-          moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
-        }
-      } else { // handcards to slot -> schupf
-        this._handleSchupf(e.previousContainer.data, e.container.data, e.previousIndex);
+      if (e.previousContainer === e.container) { // sort hand cards
+        moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
       }
     } else { // from is slot
-      if (Array.isArray(e.container.data)) { // to is handcard
-        this._handleDrop(e.previousContainer.data, e.container.data, e.currentIndex);
-      } else { // to is also slot => switch them out
-        this._handleSwitch(e.previousContainer.data, e.container.data);
-      }
+      this._handleDrop(e.previousContainer.data, e.container.data, e.currentIndex);
     }
   }
 
-  _handleSwitch(from: { card: WritableSignal<string | null>; }, to: { card: WritableSignal<string | null>; }) {
-    const tmpTo = to.card();
-    to.card.set(from.card());
-    from.card.set(tmpTo);
-  }
-
-  _handleSchupf(from: string[], to: { card: WritableSignal<string | null>; }, fromIdx: number) {
-    const removed = from.splice(fromIdx, 1)[0];
-    const beforecard = to.card();
-    if (beforecard) {
-      from.push(beforecard);
-    }
-    to.card.set(removed);
-  }
-
-  _handleDrop(from: { card: WritableSignal<string | null>; }, to: string[], newIdx: number) {
+  private _handleDrop(from: { card: WritableSignal<string | null>; }, to: string[], newIdx: number) {
     const fromCard = from.card();
     if (fromCard) {
       to.splice(newIdx, 0, fromCard);
@@ -181,9 +139,6 @@ export class GameComponent {
   }
   sendAckTichuAfterSchupf() {
     this.gameService.send(this.gameId, { type: "Ack", what: "TichuAfterSchupf" });
-  }
-  sendSchupfedAck() {
-    this.gameService.send(this.gameId, { type: "Ack", what: "SchupfcardReceived" });
   }
 
   gameService = inject(GameService);
@@ -211,6 +166,7 @@ export class GameComponent {
         }
         // todo: methods per message type
         const obj: { type: string; message: any; } = JSON.parse(body);
+        console.log(obj)
 
         // todo: methdo here down
         // distribute to different components
@@ -228,13 +184,8 @@ export class GameComponent {
           this.cards = obj?.message?.cards || this.cards;
           this.state = obj?.message?.stage || this.state;
 
-          // switchMap(obj.)
           if (this.state === GameState.SCHUPFED) {
-            this.schupfed = [
-              { caption: "Left", card: obj.message['li'].code },
-              { caption: "Partner", card: obj.message['partner'].code },
-              { caption: "Right", card: obj.message['re'].code },
-            ];
+            this.schupfmessage = obj
           }
 
           if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {

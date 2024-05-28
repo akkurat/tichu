@@ -1,0 +1,46 @@
+@if(state()==="SCHUPF") {
+<div class="flex flex-col items-stretch">
+    <div class="h-96 flex flex-row justify-stretch gap-20">
+        @for( s of schupf; track s.caption ) {
+        <div class="flex-1 flex flex-col items-stretch">
+            <div class="text-center">{{s.caption}}</div>
+            <div (cdkDropListDropped)="handleDrop($event)" cdkDropList [cdkDropListData]="s" [id]="s.key"
+                [cdkDropListConnectedTo]="['deckDropTarget']" cdkDropListOrientation="horizontal"
+                class="bg-slate-300 flex-1 flex justify-center ">
+                @if(s.card(); as card) {
+                <div cdkDrag [cdkDragData]="card">
+                    <app-card [cardcode]="card" [selectable]="false"></app-card>
+                </div>
+
+                }
+
+            </div>
+        </div>
+        }
+    </div>
+    <div class="flex justify-center">
+        <button [disabled]="!schupfFini()" (click)="sendSchupfedCards()" class="btn">Schupf</button>
+    </div>
+</div>
+} @else if (state() === "SCHUPFED") {
+<div class="flex flex-col items-stretch">
+    <div class="h-96 flex flex-row justify-around">
+        @for( s of schupfed(); track s.caption ) {
+        <div>
+            {{s.caption}}
+            <div class="bg-slate-300 h-[200px] w-[200px] flex">
+                @if(s.card; as card) {
+                <div>
+                    <app-card [cardcode]="card"></app-card>
+                </div>
+                }
+
+            </div>
+        </div>
+        }
+    </div>
+    <div class="flex justify-center">
+        <button (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
+    </div>
+</div>
+}
