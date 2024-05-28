@@ -78,7 +78,7 @@ export class GameComponent {
     } else if (cards.length == 1 && cards[0] == "phx") {
       const cardsPlayed = this.table.moves.filter(c => c.cards.length > 0);
       const lastHeight = cardsPlayed[cardsPlayed.length - 1]?.cards[0]?.value;
-      const val = lastHeight + 1 || 1;
+      const val = lastHeight + .5 || 1.5;
       this.gameService.send(this.gameId, { type: 'Move', cards: ["phx" + val] });
     } else if (cards.includes("phx")) {
       this.dialog.open<number>(SelectPhxComponent).closed.subscribe(result => {
