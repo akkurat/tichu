@@ -49,18 +49,20 @@ public class StupidUserPlayer implements UserPlayer {
             case MakeYourMove mm -> {
                 if (mm.getStage() == Stage.GIFT_DRAGON) {
                     listener.accept(new GiftDragon(GiftDragon.ReLi.LI));
-                } else if (mm.mustFullFillWish()) {
-                    var numberCards = mm.getHandcards().stream()
-                            .filter(hc -> hc instanceof NumberCard)
-                            .map(hc -> (NumberCard) hc)
-                            .filter(nc -> Objects.equals(mm.getWish(), ((NumberCard) nc).getValue()))
-                            .findAny().map(List::of)
-                            .orElse(List.of());
-                    listener.accept(new Move(numberCards));
                 } else {
                     var table = mm.getTable();
                     List<HandCard> handcards = mm.getHandcards();
                     if (table.isEmpty()) {
+                        if (mm.mightFullFillWish()) {
+                            var numberCards = mm.getHandcards().stream()
+                                    .filter(hc -> hc instanceof NumberCard)
+                                    .map(hc -> (NumberCard) hc)
+                                    .filter(nc -> Objects.equals(mm.getWish(), ((NumberCard) nc).getValue()))
+                                    .findAny().map(List::of)
+                                    .orElse(List.of());
+                            listener.accept(new Move(numberCards));
+                            return;
+                        }
                         // play smallest card
                         var ocard = handcards.stream()
                                 .min(Comparator.comparingDouble(HandCard::getSort))
@@ -90,7 +92,13 @@ public class StupidUserPlayer implements UserPlayer {
                     } else {
                         PlayLogEntry toBeat = table.toBeat();
                         var pat = pattern(toBeat.getCards());
-                        var all = new HashSet<>(pat.getType().patterns(handcards));
+                        Set<TichuPattern> all = new HashSet<>(pat.getType().patterns(handcards));
+                        if (mm.getWish() != null) {
+                            all = all.stream()
+                                    .filter(p -> p.getCards().stream().anyMatch(c -> Objects.equals(c.getValue(), mm.getWish())))
+                                    .collect(Collectors.toSet());
+                        }
+
                         if (pat instanceof Single si) {
                             if (handcards.contains(DRG)) {
                                 all.add(new Single(DRG));
