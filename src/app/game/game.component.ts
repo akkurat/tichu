@@ -1,13 +1,13 @@
 
 
-import { Component, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, Inject, WritableSignal, computed, inject, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
 import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Dialog, DialogRef, DIALOG_DATA, DialogModule } from '@angular/cdk/dialog';
+import { Dialog, DialogRef, DialogModule } from '@angular/cdk/dialog';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
@@ -69,22 +69,30 @@ export class GameComponent {
       .filter(([_, v]) => v)
       .map(([k]) => k);
 
-    if (cards.includes("mah")) {
-      const mahDialog = this.dialog.open<number>(SelectWishComponent, {
-        width: '250px',
+    let whish: number | null = null
 
-      })
-      mahDialog.closed.subscribe(result => {
-        if (result) {
-          this.gameService.send(this.gameId, { type: 'Move', cards, wish: result });
-        }
-      })
+    if (cards.includes("mah") && !cards.includes("phx")) {
+      this.dialog.open<number>(SelectWishComponent).closed
+        .subscribe(wish => this.gameService.send(this.gameId, { type: 'Move', cards, wish }))
 
     } else if (cards.length == 1 && cards[0] == "phx") {
       const cardsPlayed = this.table.moves.filter(c => c.cards.length > 0);
       const lastHeight = cardsPlayed[cardsPlayed.length - 1]?.cards[0]?.value;
       const val = lastHeight + 1 || 1;
       this.gameService.send(this.gameId, { type: 'Move', cards: ["phx" + val] });
+    } else if (cards.includes("phx")) {
+      this.dialog.open<number>(SelectPhxComponent).closed.subscribe(result => {
+        if (result) {
+          const mappedCards = cards.map(a => a === "phx" ? "phx" + result : a)
+          if (mappedCards.includes("mah")) {
+            this.dialog.open<number>(SelectWishComponent).closed
+              .subscribe(wish => this.gameService.send(this.gameId, { type: 'Move', cards: mappedCards, wish }))
+          } else {
+            this.gameService.send(this.gameId, { type: 'Move', mappedCards });
+          }
+        }
+      })
+
     } else {
       this.gameService.send(this.gameId, { type: 'Move', cards });
     }
@@ -182,53 +190,59 @@ export class GameComponent {
       switchMap((id) => this.gameService.joinGame(id))
     )
       .subscribe(msg => {
+        let body
         if (msg.isBinaryBody) {
           // const bin = Buffer.from(msg.binaryBody).toString('utf8')
-          const bin = new TextDecoder().decode(msg.binaryBody);
+          body = new TextDecoder().decode(msg.binaryBody);
+        } else {
+          body = msg.body
+        }
+        // todo: methods per message type
+        const obj: { type: string; message: any; } = JSON.parse(body);
 
-          // todo: methods per message type
-          const obj: { type: string; message: any; } = JSON.parse(bin);
-          if (obj.type === "Points") {
-            this.points = obj.message;
-          } else if (obj.type === "Rejected") {
-            this.snackService.push(JSON.stringify(obj.message));
-          } else {
+        // todo: methdo here down
+        // distribute to different components
 
-
-            const last = obj?.message?.last;
-            last && this.lastTrick.set(last);
-
-            this.cards = obj?.message?.cards || this.cards;
-            this.state = obj?.message?.stage || this.state;
-
-            // switchMap(obj.)
-            if (this.state === GameState.SCHUPFED) {
-              this.schupfed = [
-                { caption: "Left", card: obj.message['li'].code },
-                { caption: "Partner", card: obj.message['partner'].code },
-                { caption: "Right", card: obj.message['re'].code },
-              ];
-            }
-
-            if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
-              this.table = obj.message?.table || this.table;
-              this.cards = obj.message?.handcards || this.cards;
-            }
-
-            if (this.state === GameState.GIFT_DRAGON) {
-              this.openDrgDialog()
-            }
-
-            this.displaycards = this.cards
-              .sort((a, b) => a.sort - b.sort)
-              .map(c => c.code);
+        if (obj.type === "Points") {
+          this.points = obj.message;
+        } else if (obj.type === "Rejected") {
+          this.snackService.push(JSON.stringify(obj.message));
+        } else {
 
 
-            this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a; }, {}));
+          const last = obj?.message?.last;
+          last && this.lastTrick.set(last);
+
+          this.cards = obj?.message?.cards || this.cards;
+          this.state = obj?.message?.stage || this.state;
+
+          // switchMap(obj.)
+          if (this.state === GameState.SCHUPFED) {
+            this.schupfed = [
+              { caption: "Left", card: obj.message['li'].code },
+              { caption: "Partner", card: obj.message['partner'].code },
+              { caption: "Right", card: obj.message['re'].code },
+            ];
           }
 
+          if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
+            this.table = obj.message?.table || this.table;
+            this.cards = obj.message?.handcards || this.cards;
+          }
 
+          if (this.state === GameState.GIFT_DRAGON) {
+            this.openDrgDialog()
+          }
+
+          this.displaycards = this.cards
+            .sort((a, b) => a.sort - b.sort)
+            .map(c => c.code);
+
+
+          this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a; }, {}));
         }
+
+
 
       });
   }
@@ -239,7 +253,7 @@ export class GameComponent {
     });
 
     dialogRef.closed.subscribe(result => {
-      this.gameService.send(this.gameId, { type: "DragonGifted", to: result})
+      this.gameService.send(this.gameId, { type: "DragonGifted", to: result })
     });
   }
 }
@@ -274,6 +288,30 @@ export class DragonDialog {
 
 @Component({
   template: `<div class="bg-slate-200 p-10">
+    wish
+    <input [(ngModel)]="wish" type="range" min="2" max="14" />
+    {{wish}}
+    <button (click)="ok()">OK</button>
+    <button (click)="close()">No Wish</button>
+    </div>
+  `,
+  imports: [FormsModule],
+  standalone: true
+})
+export class SelectWishComponent {
+  constructor(public dialogRef: DialogRef<number | null>,
+  ) { }
+  wish = 2
+  ok() {
+    this.dialogRef.close(this.wish)
+  }
+  close() {
+    this.dialogRef.close(null)
+  }
+}
+@Component({
+  template: `<div class="bg-slate-200 p-10">
+    phx
     <input [(ngModel)]="wish" type="range" min="2" max="14" />
     {{wish}}
     <button (click)="close()">OK</button>
@@ -282,10 +320,10 @@ export class DragonDialog {
   imports: [FormsModule],
   standalone: true
 })
-export class SelectWishComponent {
-  constructor(public dialogRef: DialogRef<number>) { }
+export class SelectPhxComponent {
+  constructor(public dialogRef: DialogRef<number>,
+  ) { }
   wish = 2
-
   close() {
     this.dialogRef.close(this.wish)
   }
