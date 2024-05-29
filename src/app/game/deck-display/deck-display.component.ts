@@ -1,52 +1,40 @@
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, WritableSignal, computed, effect, inject, input, model, signal } from '@angular/core';
+import { Component, EventEmitter, Output, WritableSignal, computed, effect, inject, input, model, signal } from '@angular/core';
 import { schupfKeys } from '../schupf-display/schupf-display.component';
 import { ControlValueAccessor, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
 import { Subscription } from 'rxjs';
+import { KeyValuePipe } from '@angular/common';
+import { SelectionModel } from '@angular/cdk/collections';
+import { toSignal } from '@angular/core/rxjs-interop'
 
 @Component({
   selector: 'app-deck-display',
   standalone: true,
-  imports: [DragDropModule, ReactiveFormsModule, CardComponent],
+  imports: [DragDropModule, CardComponent, KeyValuePipe],
   templateUrl: './deck-display.component.html'
 })
 export class DeckDisplayComponent {
 
+  @Output()
+  selectedCards = new EventEmitter<string[]>
   // todo: sort backing map
   cards = input<string[]>([])
   schupfKeys = schupfKeys
-  fb = inject(FormBuilder)
 
-  selectedCards = model<string[]>([])
-
-  fg = this.fb.nonNullable.group({});
-  lastSub?: Subscription;
-
-
-
+  selection = new SelectionModel<string>(true)
 
   constructor() {
+    this.selection.changed.subscribe(sel => this.selectedCards.emit(this.selection.selected))
     effect(() => {
-      this.lastSub?.unsubscribe()
-      this.fg = this.fb.group(this.cards().reduce((a, c) => { a[c] = new FormControl(); return a; }, {}))
-      this.lastSub = this.fg.valueChanges.subscribe(
-        val => {
-          const cards = Object.entries(val)
-            .filter(([_, v]) => v)
-            .map(([k]) => k);
-          this.selectedCards.set(cards)
-        })
+      const cards = this.cards()
+      const stillAvailable = this.selection.selected.filter(c => cards.includes(c))
+      this.selection.setSelection(...stillAvailable)
     })
-    this.selectedCards.subscribe(s => console.log(s))
+
   }
 
 
-  // this.fg.valueChanges.subscribe(console.log);
-
-  // const cards = Object.entries(this.fg.value)
-  //   .filter(([_, v]) => v)
-  //   .map(([k]) => k);
 
 
 

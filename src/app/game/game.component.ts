@@ -1,21 +1,21 @@
-import { Component, WritableSignal, inject, model, signal } from '@angular/core';
+import { Component, effect, inject, model, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
 import { JsonPipe, KeyValuePipe } from '@angular/common';
 import { CardComponent } from './card/card.component';
-import { CdkDrag, CdkDragDrop, CdkDropList, CdkDropListGroup, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDropList, CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { Dialog, DialogRef, DialogModule } from '@angular/cdk/dialog';
-import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
 import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.component';
-import { SchupfDisplayComponent, schupfKeys } from './schupf-display/schupf-display.component';
+import { SchupfDisplayComponent } from './schupf-display/schupf-display.component';
 import { IterPipe, PluckPipe } from './pipes';
 import { DeckDisplayComponent } from './deck-display/deck-display.component';
 
-type rlp = "re" | "li" | "partner"
+type rlp = "re" | "li" | "partner"|"you"
 @Component({
   selector: 'app-game',
   standalone: true,
@@ -50,9 +50,8 @@ type rlp = "re" | "li" | "partner"
 
 // split into prepare and game but with reusable card / log component
 export class GameComponent {
-  test($event: string[]) {
-    console.log($event)
-  }
+  selectedCards = signal<string[]>([])
+
 
   snackService = inject(SnackService);
   http = inject(HttpClient);
@@ -70,7 +69,7 @@ export class GameComponent {
       .subscribe(v => console.log(v));
   }
 
-  selectedCards = signal<string[]>([])
+
   r() {
     return  2
   }
@@ -125,7 +124,9 @@ export class GameComponent {
   table: Table = { moves: new Array<Move>(), currentPlayer: "" };
   constructor() {
 
-
+    effect( () => {
+      console.log(this.selectedCards())
+    })
 
     this.route.params.pipe(
       map(params => params['id']),
@@ -161,11 +162,13 @@ export class GameComponent {
             const idxOfYOu = _players.indexOf(youAre)
 
             this.players = {
+              you: _players[idxOfYOu],
               re: _players[(idxOfYOu + 1) % 4],
               li: _players[(idxOfYOu + 3) % 4],
               partner: _players[(idxOfYOu + 2) % 4]
             }
             this.cardCounts = {
+              you: this._cardCounts[this.players.you],
               re: this._cardCounts[this.players.re],
               li: this._cardCounts[this.players.li],
               partner: this._cardCounts[this.players.partner],
@@ -183,7 +186,7 @@ export class GameComponent {
             this.schupfmessage = obj
           }
 
-          if (this.state === GameState.YOURTURN || this.state === GameState.GAME) {
+          if (this.state === GameState.YOURTURN || this.state === GameState.OTHERS_TURN) {
             this.table = obj.message?.table || this.table;
             this.cards = obj.message?.handcards || this.cards;
           }
@@ -224,7 +227,7 @@ export enum GameState {
   GIFT_DRAGON = "GIFT_DRAGON",
   SCHUPF = "SCHUPF",
   SCHUPFED = "SCHUPFED",
-  GAME = "GAME",
+  OTHERS_TURN = "OTHERS_TURN",
   YOURTURN = "YOURTURN"
 
 }

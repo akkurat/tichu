@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-    @if( state === "GAME" ||state === "YOURTURN" ) {
+    @if( state === "OTHERS_TURN" ||state === "YOURTURN" || state === "GIFT_DRAGON") {
     <div class="flex-col">
         <div class="text-center flex flex-col items-stretch">
             <div>Partner {{players?.partner}} {{cardCounts?.partner}}</div>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div>YOU</div>
+        <div>YOU {{players?.you}} {{cardCounts?.you}}</div>
     </div>
     }
 
@@ -50,10 +50,11 @@
             @if (state ==="YOURTURN") {
             <button (click)="playCards()" class="btn">Play Cards</button>
             }
+            {{selectedCards()|json}}
             <button (click)="resend()" class="btn">Resend</button>
 
         </div>
-        <app-deck-display [cards]="displaycards" (selectedCardsChange)="selectedCards"></app-deck-display>
+        <app-deck-display [cards]="displaycards" (selectedCards)="selectedCards.set($event)"></app-deck-display>
     </div>
     <div>
         <!-- {{points|json}} -->
