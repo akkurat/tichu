@@ -23,7 +23,7 @@ export class LoginComponent {
   login() {
     this.app.authenticate(this.credentials).subscribe({
       complete: () => {this.error = '', this.router.navigateByUrl('/')},
-      error: e => this.snack.push(e)
+      error: e => this.snack.push(JSON.stringify(e))
     })
   }
 }

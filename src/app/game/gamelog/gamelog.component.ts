@@ -51,7 +51,7 @@ export type GameLog = {
   selector: 'app-deckdisplay',
 
 })
-export class DeckDisplay {
+export class LogDeckDisplay {
   player = input<PlayerDeck>()
 }
 
@@ -63,7 +63,7 @@ export type PlayerDeck = {
 @Component({
   selector: 'app-gamelog',
   standalone: true,
-  imports: [JsonPipe, KeyValuePipe, CardComponent, TrickdisplayComponent, DeckDisplay],
+  imports: [JsonPipe, KeyValuePipe, CardComponent, TrickdisplayComponent, LogDeckDisplay],
   templateUrl: './gamelog.component.html',
 })
 export class GamelogComponent {

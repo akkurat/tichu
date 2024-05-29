@@ -3,7 +3,7 @@ import { CardComponent } from '../card/card.component';
 import { CdkDragDrop, DragDropModule } from '@angular/cdk/drag-drop';
 import { GameService } from '../../services/game.service';
 
-export const schupfKeys = ["li","partner","re"]
+export const schupfKeys = ["li", "partner", "re"]
 
 @Component({
   selector: 'app-schupf-display',
@@ -29,11 +29,11 @@ export class SchupfDisplayComponent {
     { key: schupfKeys[2], caption: "Right", card: signal(null) },
   ];
   // schupfed: { caption: string; card: string; }[] = [];
-          schupfed = computed( ()=> [
-              { caption: "Left", card: this.message().message['li'].code },
-              { caption: "Partner", card: this.message().message['partner'].code },
-              { caption: "Right", card: this.message().message['re'].code },
-            ])
+  schupfed = computed(() => [
+    { caption: "Left", card: this.message().message['li'].code },
+    { caption: "Partner", card: this.message().message['partner'].code },
+    { caption: "Right", card: this.message().message['re'].code },
+  ])
 
   private _handleSchupf(from: string[], to: { card: WritableSignal<string | null>; }, fromIdx: number) {
     const removed = from.splice(fromIdx, 1)[0];
@@ -63,6 +63,15 @@ export class SchupfDisplayComponent {
   }
   sendSchupfedAck() {
     this.gameService.send(this.gameId(), { type: "Ack", what: "SchupfcardReceived" });
+  }
+  sendAckBigTichu() {
+    this.gameService.send(this.gameId(), { type: "Ack", what: "BigTichu" });
+  }
+  sendAckTichuBeforeSchupf() {
+    this.gameService.send(this.gameId(), { type: "Ack", what: "TichuBeforeSchupf" });
+  }
+  sendAckTichuAfterSchupf() {
+    this.gameService.send(this.gameId(), { type: "Ack", what: "TichuAfterSchupf" });
   }
 
 }

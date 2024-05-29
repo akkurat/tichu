@@ -5,6 +5,7 @@ import { SnackService } from "../services/snack.service";
 
 @Injectable()
 export class XhrInterceptor implements HttpInterceptor {
+    snack = inject(SnackService)
     intercept(req: HttpRequest<any>, next: HttpHandler) {
         const xhr = req.clone({
             headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
@@ -12,7 +13,7 @@ export class XhrInterceptor implements HttpInterceptor {
         return next.handle(xhr).pipe(
             catchError((error: HttpErrorResponse) => {
                 // Handle the error here
-                inject(SnackService).push(JSON.stringify(error))
+                this.snack.push(JSON.stringify(error))
                 console.error('error occurred:', error);
                 //throw error as per requirement
                 return throwError(() => error);

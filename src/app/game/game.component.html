@@ -1,39 +1,60 @@
 <div class="flex flex-col">
+    @if( state === "GAME" ||state === "YOURTURN" ) {
+    <div class="flex-col">
+        <div class="text-center flex flex-col items-stretch">
+            <div>Partner {{players?.partner}} {{cardCounts?.partner}}</div>
+            <div class="flex flex-row justify-center">
+                @for(i of cardCounts?.partner|iter; track i) {
+                <div class="rounded-md border-slate-800 border-2 w-10 h-14 -ml-7 first:ml-0 bg-slate-400"
+                
+                    [style.marginTop]="r()+'px'"
+                >{{i}}</div>
+                }
+            </div>
+        </div>
+        <div class="flex flex-row flex-nowrap justify-stretch">
+            <div>
+                <div> Left {{players?.li}} {{cardCounts?.li}}</div>
+                <div class="flex flex-col">
+                    @for(i of cardCounts?.li|iter; track i) {
+                    <div class="rounded border-slate-800 border-2 w-10 h-14 -mt-10 first:mt-0  bg-slate-400"
+                    [style.marginLeft]="i+'px'"
+                    >{{i}}</div>
+                    }
+                </div>
+            </div>
+            <div class="flex-1">
+                @if(lastTrick()){
+                <h2>last trick</h2>
+                <app-tabledisplay [table]="lastTrick()"></app-tabledisplay>
+                }
+                <app-tabledisplay [table]="table"></app-tabledisplay>
+                Table
+            </div>
+            <div>Right{{players?.re}}{{cardCounts?.re}}
+                <div class="flex flex-col">
+                    @for(i of cardCounts?.re|iter; track i) {
+                    <div class="rounded border-slate-800 border-2 w-10 h-14 -mt-10 first:mt-0 bg-slate-400">{{i}}</div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div>YOU</div>
+    </div>
+    }
+
     <app-schupf-display [state]="state" [message]="schupfmessage" [gameId]="gameId"></app-schupf-display>
     <div class="flex flex-row">
         <div class="flex flex-col gap-10">
             <!-- todo: enable / disable buttons -->
-            @if(state==="EIGHT_CARDS") {
-            <button (click)="sendAckBigTichu()" class="btn">No Big Tichu</button>
-            } @else if (state==="PRE_SCHUPF") {
-            <button (click)="sendAckTichuBeforeSchupf()" class="btn">No Before Schupf</button>
-            } @else if (state==="POST_SCHUPF") {
-            <button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
-            } @else if (state ==="YOURTURN") {
+            @if (state ==="YOURTURN") {
             <button (click)="playCards()" class="btn">Play Cards</button>
             }
             <button (click)="resend()" class="btn">Resend</button>
 
         </div>
-        <div class="flex flex-row gap-10 max-w-[100vw]" cdkDropList [cdkDropListData]="displaycards" id="deckDropTarget" 
-        [cdkDropListConnectedTo]="schupfKeys"
-            (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal" [formGroup]="fg">
-            @for(card of displaycards; track card) {
-            <div class="-ml-[150px] first:ml-0" cdkDrag>
-                <app-card [formControlName]="card" [cardcode]="card"></app-card>
-            </div>
-            <!-- {{card|json}} -->
-            }
-        </div>
+        <app-deck-display [cards]="displaycards" (selectedCardsChange)="selectedCards"></app-deck-display>
     </div>
-    @if( state === "GAME" ||state === "YOURTURN" ) {
-    @if(lastTrick()){
-    <h2>last trick</h2>
-    <app-tabledisplay [table]="lastTrick()"></app-tabledisplay>
-    }
-    <app-tabledisplay [table]="table"></app-tabledisplay>
-    }
-
     <div>
         <!-- {{points|json}} -->
         <app-gamelog [points]="points"></app-gamelog>

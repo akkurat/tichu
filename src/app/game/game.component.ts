@@ -1,6 +1,4 @@
-
-
-import { Component, Inject, WritableSignal, computed, inject, signal } from '@angular/core';
+import { Component, WritableSignal, inject, model, signal } from '@angular/core';
 import { GameService } from '../services/game.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, switchMap, tap } from 'rxjs';
@@ -14,15 +12,17 @@ import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
 import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.component';
 import { SchupfDisplayComponent, schupfKeys } from './schupf-display/schupf-display.component';
-import { PluckPipe } from './PluckPipe';
+import { IterPipe, PluckPipe } from './pipes';
+import { DeckDisplayComponent } from './deck-display/deck-display.component';
 
+type rlp = "re" | "li" | "partner"
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [JsonPipe, KeyValuePipe, CardComponent,
     CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
     ReactiveFormsModule, GamelogComponent, TabledisplayComponent,
-    SchupfDisplayComponent, PluckPipe],
+    SchupfDisplayComponent, PluckPipe, IterPipe, DeckDisplayComponent],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -45,12 +45,14 @@ import { PluckPipe } from './PluckPipe';
 .cdk-drag-animating {
   transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
 }
-
   `
 })
 
 // split into prepare and game but with reusable card / log component
 export class GameComponent {
+  test($event: string[]) {
+    console.log($event)
+  }
 
   snackService = inject(SnackService);
   http = inject(HttpClient);
@@ -59,20 +61,23 @@ export class GameComponent {
   dialog = inject(Dialog)
 
   schupfmessage
-  schupfKeys = schupfKeys
+  cardCounts?: Record<rlp, number>
+  players?: Record<rlp, string>
+  private _cardCounts: any;
 
   resend() {
     this.http.get(`/api/games/${this.gameId}/resend`)
       .subscribe(v => console.log(v));
   }
 
-
+  selectedCards = signal<string[]>([])
+  r() {
+    return  2
+  }
   points: any;
   playCards() {
-    console.log(this.fg.value);
-    const cards = Object.entries(this.fg.value)
-      .filter(([_, v]) => v)
-      .map(([k]) => k);
+
+    const cards = this.selectedCards()
 
     let whish: number | null = null
 
@@ -104,42 +109,14 @@ export class GameComponent {
   }
   private readonly fb = inject(FormBuilder);
 
-  fg = this.fb.nonNullable.group({});
 
 
   state: GameState | undefined;
 
   displaycards: string[] = [];
 
-  handleDrop(e: CdkDragDrop<any, any, any>) {
-    if (Array.isArray(e.previousContainer.data)) {
-      if (e.previousContainer === e.container) { // sort hand cards
-        moveItemInArray(e.container.data, e.previousIndex, e.currentIndex);
-      }
-    } else { // from is slot
-      this._handleDrop(e.previousContainer.data, e.container.data, e.currentIndex);
-    }
-  }
-
-  private _handleDrop(from: { card: WritableSignal<string | null>; }, to: string[], newIdx: number) {
-    const fromCard = from.card();
-    if (fromCard) {
-      to.splice(newIdx, 0, fromCard);
-      from.card.set(null);
-    }
-  }
-
   gameId = '';
   cards: any[] = [];
-  sendAckBigTichu() {
-    this.gameService.send(this.gameId, { type: "Ack", what: "BigTichu" });
-  }
-  sendAckTichuBeforeSchupf() {
-    this.gameService.send(this.gameId, { type: "Ack", what: "TichuBeforeSchupf" });
-  }
-  sendAckTichuAfterSchupf() {
-    this.gameService.send(this.gameId, { type: "Ack", what: "TichuAfterSchupf" });
-  }
 
   gameService = inject(GameService);
   route = inject(ActivatedRoute);
@@ -148,7 +125,6 @@ export class GameComponent {
   table: Table = { moves: new Array<Move>(), currentPlayer: "" };
   constructor() {
 
-    this.fg.valueChanges.subscribe(console.log);
 
 
     this.route.params.pipe(
@@ -177,11 +153,30 @@ export class GameComponent {
           this.snackService.push(JSON.stringify(obj.message));
         } else {
 
+          if (obj.type === "WhosMove") {
+            this._cardCounts = obj?.message?.cardCounts || this._cardCounts
+
+            const youAre = obj.message.youAre
+            const _players = ["A1", "B1", "A2", "B2"]
+            const idxOfYOu = _players.indexOf(youAre)
+
+            this.players = {
+              re: _players[(idxOfYOu + 1) % 4],
+              li: _players[(idxOfYOu + 3) % 4],
+              partner: _players[(idxOfYOu + 2) % 4]
+            }
+            this.cardCounts = {
+              re: this._cardCounts[this.players.re],
+              li: this._cardCounts[this.players.li],
+              partner: this._cardCounts[this.players.partner],
+            }
+          }
+
 
           const last = obj?.message?.last;
           last && this.lastTrick.set(last);
 
-          this.cards = obj?.message?.cards || this.cards;
+          this.cards = obj?.message?.handcards || this.cards;
           this.state = obj?.message?.stage || this.state;
 
           if (this.state === GameState.SCHUPFED) {
@@ -197,12 +192,11 @@ export class GameComponent {
             this.openDrgDialog()
           }
 
+          // todo probably keep original cards
           this.displaycards = this.cards
             .sort((a, b) => a.sort - b.sort)
             .map(c => c.code);
 
-
-          this.fg = this.fb.group(this.displaycards.reduce((a, c) => { a[c] = new FormControl(); return a; }, {}));
         }
 
 
@@ -222,6 +216,7 @@ export class GameComponent {
 }
 
 
+// todo -> gameservice
 export enum GameState {
   EIGHT_CARDS = "EIGHT_CARDS",
   PRE_SCHUPF = "PRE_SCHUPF",

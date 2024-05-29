@@ -39,8 +39,17 @@
         </div>
         }
     </div>
+
     <div class="flex justify-center">
         <button (click)="sendSchupfedAck()" class="btn">Ack Schupf</button>
     </div>
 </div>
+}
+
+@if(state()==="EIGHT_CARDS") {
+<button (click)="sendAckBigTichu()" class="btn">No Big Tichu</button>
+} @else if (state()==="PRE_SCHUPF") {
+<button (click)="sendAckTichuBeforeSchupf()" class="btn">No Before Schupf</button>
+} @else if (state()==="POST_SCHUPF") {
+<button (click)="sendAckTichuAfterSchupf()" class="btn">No After Schupf</button>
 }
