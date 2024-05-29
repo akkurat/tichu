@@ -10,7 +10,6 @@ import ch.taburett.tichu.game.protocol.*;
 import ch.taburett.tichu.patterns.LegalType;
 import ch.taburett.tichu.patterns.Single;
 import ch.taburett.tichu.patterns.TichuPattern;
-import com.google.common.collect.Range;
 import lombok.Data;
 import lombok.SneakyThrows;
 
@@ -46,10 +45,10 @@ public class StupidUserPlayer implements UserPlayer {
                 }
             }
             case Schupf schupf -> listener.accept(new Ack.SchupfcardReceived());
-            case MakeYourMove mm -> {
+            case WhosMove mm -> {
                 if (mm.getStage() == Stage.GIFT_DRAGON) {
                     listener.accept(new GiftDragon(GiftDragon.ReLi.LI));
-                } else {
+                } else if (mm.getStage() == Stage.YOURTURN) {
                     var table = mm.getTable();
                     List<HandCard> handcards = mm.getHandcards();
                     if (table.isEmpty()) {

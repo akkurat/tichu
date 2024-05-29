@@ -93,7 +93,6 @@ public class TichuGame {
         // todo: ref
         game = new Game(this::receiveServerMessage);
         game.start(true);
-
     }
 
     public void receiveUserMsg(String user, Map<String, Object> payload) {
