@@ -30,6 +30,7 @@ public class StupidUserPlayer implements UserPlayer {
 
     @SneakyThrows
     @Override
+    // todo: move to libtichu and convert to kotlin
     public void receiveServerMessage(MessageWrapper payload) {
         Thread.sleep(50);
         switch (payload.message) {
@@ -91,11 +92,11 @@ public class StupidUserPlayer implements UserPlayer {
                     } else {
                         PlayLogEntry toBeat = table.toBeat();
                         var pat = pattern(toBeat.getCards());
-                        Set<TichuPattern> all = new HashSet<>(pat.getType().patterns(handcards));
+                        var all = pat.findBeatingPatterns(handcards);
                         if (mm.getWish() != null) {
                             all = all.stream()
                                     .filter(p -> p.getCards().stream().anyMatch(c -> c.getValue() - mm.getWish() == 0))
-                                    .collect(Collectors.toSet());
+                                    .toList();
                         }
 
                         if (pat instanceof Single si) {
