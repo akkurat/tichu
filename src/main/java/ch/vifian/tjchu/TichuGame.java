@@ -97,6 +97,7 @@ public class TichuGame {
 
     public void receiveUserMsg(String user, Map<String, Object> payload) {
 
+        // hm... maybe this can be in libtichu as well?
         if ("Ack".equals(payload.get("type"))) {
             if (payload.get("what") instanceof String what) {
 
@@ -119,15 +120,27 @@ public class TichuGame {
                     lUp.get(cards.get("partner"))
             ));
         } else if ("Move".equals(payload.get("type"))) {
-            List<PlayCard> cards = ((List<String>) payload.get("cards"))
-                    .stream().map(CardsKt::parsePlayCard)
-                    .toList();
+            List<PlayCard> cards = getCards(payload);
             Integer wish = (Integer) payload.get("wish");
             receiveUserMsg(user, new Move(cards, wish));
         } else if ("DragonGifted".equals(payload.get("type"))) {
             receiveUserMsg(user, new GiftDragon(GiftDragon.ReLi.valueOf((String) payload.get("to"))));
+        } else if ("Bomb".equals(payload.get("type"))) {
+            try {
+                receiveUserMsg(user, new Bomb(getCards(payload)));
+            } catch (Exception e) {
+                var playerString = userNameToPlayer.get(user);
+                var player = Player.valueOf(playerString);
+                receiveServerMessage(new WrappedServerMessage(player, new Rejected("no bomb", getCards(payload))));
+            }
         }
 
+    }
+
+    private static @NotNull List<PlayCard> getCards(Map<String, Object> payload) {
+        return ((List<String>) payload.get("cards"))
+                .stream().map(CardsKt::parsePlayCard)
+                .toList();
     }
 
     public void receiveUserMsg(String user, PlayerMessage msg) {

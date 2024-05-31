@@ -32,7 +32,7 @@ public class StupidUserPlayer implements UserPlayer {
     @Override
     // todo: move to libtichu and convert to kotlin
     public void receiveServerMessage(MessageWrapper payload) {
-        Thread.sleep(50);
+        Thread.sleep(1500);
         switch (payload.message) {
             case AckGameStage ack -> {
                 switch (ack.getStage()) {
@@ -93,13 +93,17 @@ public class StupidUserPlayer implements UserPlayer {
                         PlayLogEntry toBeat = table.toBeat();
                         var pat = pattern(toBeat.getCards());
                         var all = pat.findBeatingPatterns(handcards);
+
                         if (mm.getWish() != null) {
-                            all = all.stream()
+                            var allWithWish = all.stream()
                                     .filter(p -> p.getCards().stream().anyMatch(c -> c.getValue() - mm.getWish() == 0))
                                     .toList();
+                            if( !allWithWish.isEmpty() ) {
+                                all = allWithWish;
+                            }
                         }
 
-                        if (pat instanceof Single si) {
+                        if (pat instanceof Single si ) {
                             if (handcards.contains(DRG)) {
                                 all.add(new Single(DRG));
                             }
