@@ -10,5 +10,6 @@ import { JsonPipe } from '@angular/common';
   templateUrl: './trickdisplay.component.html',
 })
 export class TrickdisplayComponent {
+  w = input("w-20")
   moves = input<Move[]>()
 }

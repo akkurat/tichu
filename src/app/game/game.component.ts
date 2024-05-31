@@ -10,19 +10,20 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GamelogComponent, Move } from './gamelog/gamelog.component';
 import { SnackService } from '../services/snack.service';
 import { HttpClient } from '@angular/common/http';
-import { Table, TabledisplayComponent } from './tabledisplay/tabledisplay.component';
 import { SchupfDisplayComponent } from './schupf-display/schupf-display.component';
 import { IterPipe, PluckPipe } from './pipes';
 import { DeckDisplayComponent } from './deck-display/deck-display.component';
+import { TrickdisplayComponent } from './trickdisplay/trickdisplay.component';
 
-type rlp = "re" | "li" | "partner"|"you"
+type Table = { moves: Move[], currentPlayer: string}
+type rlp = "re" | "li" | "partner" | "you"
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [JsonPipe, KeyValuePipe, CardComponent,
     CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
-    ReactiveFormsModule, GamelogComponent, TabledisplayComponent,
-    SchupfDisplayComponent, PluckPipe, IterPipe, DeckDisplayComponent],
+    ReactiveFormsModule, GamelogComponent, 
+    SchupfDisplayComponent, PluckPipe, IterPipe, DeckDisplayComponent, TrickdisplayComponent],
   templateUrl: './game.component.html',
   styles: `
   .cdk-drag-preview: {
@@ -71,12 +72,23 @@ export class GameComponent {
 
 
   r() {
-    return  2
+    return 2
   }
   points: any;
-  playCards() {
 
+  pass() {
+    this.gameService.send(this.gameId, { type: 'Move', cards: [] });
+  }
+
+  // todo: move to gameservice
+  // cards should be a parameter
+  playCards() {
     const cards = this.selectedCards()
+    if(cards.length == 0) {
+      // guard againt frotend state bugs
+      console.error("Cards cannot be empty for play. Call pass() instead")
+      return
+    }
 
     let whish: number | null = null
 
@@ -124,7 +136,7 @@ export class GameComponent {
   table: Table = { moves: new Array<Move>(), currentPlayer: "" };
   constructor() {
 
-    effect( () => {
+    effect(() => {
       console.log(this.selectedCards())
     })
 

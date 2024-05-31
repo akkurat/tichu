@@ -25,6 +25,7 @@ export class CardComponent {
     })
   }
 
+  classes = input('')
 
   cardcode = input('')
   selected = model(false)

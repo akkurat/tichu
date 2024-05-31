@@ -10,7 +10,7 @@
             <div>x</div>
             } @else {
             @for( card of move.cards; track card.code) {
-            <div class="w-20 -ml-12 first:ml-0">
+            <div [class]="w() + ' -ml-12 first:ml-0'">
                 <app-card [cardcode]="card.code" [selectable]="false"></app-card>
             </div>
             }
