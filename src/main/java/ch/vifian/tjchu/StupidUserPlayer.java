@@ -7,7 +7,8 @@ import lombok.SneakyThrows;
 
 import java.util.function.Consumer;
 
-import static ch.taburett.tichu.game.StupidPlayer.extracted;
+import static ch.taburett.tichu.game.StupidPlayerKt.stupidMove;
+
 
 @Data
 public class StupidUserPlayer implements UserPlayer {
@@ -21,7 +22,7 @@ public class StupidUserPlayer implements UserPlayer {
     public void receiveServerMessage(MessageWrapper payload) {
         Thread.sleep(1500);
         ServerMessage message = payload.message;
-        extracted(message,listener, player);
+        stupidMove(message, listener, player);
     }
 
 }
