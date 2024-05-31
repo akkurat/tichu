@@ -15,6 +15,15 @@
             </div>
             }
             } }
+            @case( "Bomb") {
+            BOMMB 
+            @for(card of move.cards; track card.code) {
+            <div [class]="w() + ' -ml-4 first:ml-0'">
+                <app-card [cardcode]="card.code" [selectable]="false"></app-card>
+            </div>
+            }
+
+            }
             @case( "Finished") {
             Fini
             } @case("Wished") {

@@ -82,6 +82,15 @@ export class GameComponent {
 
   // todo: move to gameservice
   // cards should be a parameter
+  bomb() {
+    const cards = this.selectedCards()
+    if(cards.length == 0) {
+      // guard againt frotend state bugs
+      console.error("Cards cannot be empty for play. Call pass() instead")
+      return
+    }
+    this.gameService.send(this.gameId, { type: 'Bomb', cards });
+  }
   playCards() {
     const cards = this.selectedCards()
     if(cards.length == 0) {

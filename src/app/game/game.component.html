@@ -53,15 +53,14 @@
     <div class="flex flex-row gap-20">
         <div class="basis-32 flex flex-col gap-10 justify-between">
             <!-- todo: enable / disable buttons -->
-            @if (state ==="YOURTURN") {
-            <button (click)="playCards()" class="btn" [disabled]="selectedCards().length == 0"> Play Cards </button>
-            }
+            <button (click)="playCards()" class="btn" [disabled]="state!=='YOURTURN' && selectedCards().length == 0">
+                Play Cards </button>
+            <button (click)="bomb()" class="btn" [disabled]="selectedCards().length == 0"> Bomb</button>
             <button (click)="resend()" class="btn">Resend</button>
-            @if (state ==="YOURTURN") {
-            <button (click)="pass()" class="btn"> Pass </button>
-            }
+            <button [disabled]="state !=='YOURTURN'" (click)="pass()" class="btn"> Pass </button>
         </div>
-        <app-deck-display class="flex-1" [cards]="displaycards" (selectedCards)="selectedCards.set($event)"></app-deck-display>
+        <app-deck-display class="flex-1" [cards]="displaycards"
+            (selectedCards)="selectedCards.set($event)"></app-deck-display>
     </div>
     <div>
         <!-- {{points|json}} -->
