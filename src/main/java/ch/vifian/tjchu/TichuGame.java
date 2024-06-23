@@ -2,10 +2,10 @@ package ch.vifian.tjchu;
 
 import ch.taburett.tichu.cards.CardsKt;
 import ch.taburett.tichu.cards.PlayCard;
-import ch.taburett.tichu.game.*;
 import ch.taburett.tichu.game.Game;
 import ch.taburett.tichu.game.Player;
-import ch.taburett.tichu.game.protocol.*;
+import ch.taburett.tichu.game.WrappedPlayerMessage;
+import ch.taburett.tichu.game.WrappedServerMessage;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -21,6 +21,7 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import static ch.taburett.tichu.cards.CardsKt.getLookupByCode;
+import static ch.taburett.tichu.game.protocol.Message.*;
 
 // todo: interface game
 public class TichuGame {
@@ -43,6 +44,7 @@ public class TichuGame {
         this.caption = caption;
         this.simpMessagingTemplate = simpMessagingTemplate;
         this.id = UUID.randomUUID();
+        // todo: use player enum
         this.players = ImmutableMap.of(
                 "A1", new ProxyPlayer("A1"),
                 "B1", new ProxyPlayer("B1"),
@@ -51,7 +53,7 @@ public class TichuGame {
         // todo: interactive
         players.values().stream()
                 .limit(3)
-                .forEach(p -> p.connect(new StupidUserPlayer(Player.valueOf(p.name), p.name, msg -> receiveUserMsg(p.name, msg))));
+                .forEach(p -> p.connect(new AutoPlayer(Player.valueOf(p.name), p.name, msg -> receiveUserMsg(p.name, msg))));
     }
 
 
@@ -92,47 +94,54 @@ public class TichuGame {
     private void startGame() {
         // todo: ref
         game = new Game(this::receiveServerMessage);
-        game.start(true);
+        game.start();
     }
 
     public void receiveUserMsg(String user, Map<String, Object> payload) {
 
         // hm... maybe this can be in libtichu as well?
-        if ("Ack".equals(payload.get("type"))) {
-            if (payload.get("what") instanceof String what) {
+        switch ((String) payload.get("type")) {
+            case "Ack" -> {
+                if (payload.get("what") instanceof String what) {
 
-                var msg = switch (what) {
-                    case "BigTichu" -> new Ack.BigTichu();
-                    case "TichuBeforeSchupf" -> new Ack.TichuBeforeSchupf();
-                    case "TichuAfterSchupf" -> new Ack.TichuBeforePlay();
-                    case "SchupfcardReceived" -> new Ack.SchupfcardReceived();
-                    default -> throw new IllegalStateException("Unexpected value: " + what);
-                };
-                receiveUserMsg(user, msg);
+                    var msg = switch (what) {
+                        case "BigTichu" -> new Ack.BigTichu();
+                        case "TichuBeforeSchupf" -> new Ack.TichuBeforeSchupf();
+                        case "TichuAfterSchupf" -> new Ack.TichuBeforePlay();
+                        case "SchupfcardReceived" -> new Ack.SchupfcardReceived();
+                        default -> throw new IllegalStateException("Unexpected value: " + what);
+                    };
+                    receiveUserMsg(user, msg);
+                }
             }
-        } else if ("Schupf".equals(payload.get("type"))) {
-            // todo: get cards
-            Map<String, String> cards = (Map<String, String>) payload.get("what");
-            var lUp = getLookupByCode();
-            receiveUserMsg(user, new Schupf(
-                    lUp.get(cards.get("re")),
-                    lUp.get(cards.get("li")),
-                    lUp.get(cards.get("partner"))
-            ));
-        } else if ("Move".equals(payload.get("type"))) {
-            List<PlayCard> cards = getCards(payload);
-            Integer wish = (Integer) payload.get("wish");
-            receiveUserMsg(user, new Move(cards, wish));
-        } else if ("DragonGifted".equals(payload.get("type"))) {
-            receiveUserMsg(user, new GiftDragon(GiftDragon.ReLi.valueOf((String) payload.get("to"))));
-        } else if ("Bomb".equals(payload.get("type"))) {
-            try {
-                receiveUserMsg(user, new Bomb(getCards(payload)));
-            } catch (Exception e) {
-                var playerString = userNameToPlayer.get(user);
-                var player = Player.valueOf(playerString);
-                receiveServerMessage(new WrappedServerMessage(player, new Rejected("no bomb", getCards(payload))));
+            case "Schupf" -> {
+                // todo: get cards
+                Map<String, String> cards = (Map<String, String>) payload.get("what");
+                var lUp = getLookupByCode();
+                receiveUserMsg(user, new Schupf(
+                        lUp.get(cards.get("re")),
+                        lUp.get(cards.get("li")),
+                        lUp.get(cards.get("partner"))
+                ));
             }
+            case "Move" -> {
+                List<PlayCard> cards = getCards(payload);
+                Integer wish = (Integer) payload.get("wish");
+                receiveUserMsg(user, new Move(cards, wish));
+            }
+            case "DragonGifted" ->
+                    receiveUserMsg(user, new GiftDragon(GiftDragon.ReLi.valueOf((String) payload.get("to"))));
+            case "Bomb" -> {
+                try {
+                    receiveUserMsg(user, new Bomb(getCards(payload)));
+                } catch (Exception e) {
+                    var playerString = userNameToPlayer.get(user);
+                    var player = Player.valueOf(playerString);
+                    receiveServerMessage(new WrappedServerMessage(player, new Rejected("no bomb", getCards(payload))));
+                }
+            }
+            case "SmallTichu" -> receiveUserMsg(user, new SmallTichu());
+            case "BigTichu" -> receiveUserMsg(user, new BigTichu());
         }
 
     }
