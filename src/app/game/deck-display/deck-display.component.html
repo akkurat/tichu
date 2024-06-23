@@ -1,4 +1,4 @@
-<div class="flex flex-row gap-10 items-stretch" cdkDropList [cdkDropListData]="cards()" id="deckDropTarget"
+<div class="flex flex-row flex-nowrap gap-10 items-stretch justify-start max-h-48 h-full" cdkDropList [cdkDropListData]="cards()" id="deckDropTarget"
     [cdkDropListConnectedTo]="schupfKeys" (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal"
     >
     @for(card of cards(); track card) {

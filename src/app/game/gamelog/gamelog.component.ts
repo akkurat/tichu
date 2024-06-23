@@ -23,12 +23,10 @@ export type Trick = { moves: Move[] };
 type Player = "A1" | "A2" | "B1" | "B2";
 
 export type GameLog = {
-  points: {
-    tricks: Trick[],
+    tricks: {tricks: Trick[], orderWinning: string[]},
     initialCardmap: Record<Player, Card[]>
     leftoverHandcards: Record<Player, Card[]>
-    points: {A:number,B:number}
-  }
+    totalPoints: {A:number,B:number}
 }
 
 @Component({
@@ -70,10 +68,10 @@ export class GamelogComponent {
 
   points = input<GameLog>()
   tricks = computed(() =>
-    this.points()?.points?.tricks
+    this.points()?.tricks?.tricks
   )
   initialCards = computed(() => {
-    const cm = this.points()?.points.initialCardmap
+    const cm = this.points()?.initialCardmap
     if (cm) {
       return this.mapCards(cm)
     }
@@ -81,14 +79,14 @@ export class GamelogComponent {
   })
 
   leftOverCards = computed(() => {
-    const cm = this.points()?.points.leftoverHandcards
+    const cm = this.points()?.leftoverHandcards
     if (cm) {
       return this.mapCards(cm)
     }
     return
   })
 
-  daPoints = computed(() => this.points()?.points?.points)
+  daPoints = computed(() => this.points()?.totalPoints)
 
   constructor() {
 

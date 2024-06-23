@@ -15,14 +15,14 @@ import { IterPipe, PluckPipe } from './pipes';
 import { DeckDisplayComponent } from './deck-display/deck-display.component';
 import { TrickdisplayComponent } from './trickdisplay/trickdisplay.component';
 
-type Table = { moves: Move[], currentPlayer: string}
+type Table = { moves: Move[], currentPlayer: string }
 type rlp = "re" | "li" | "partner" | "you"
 @Component({
   selector: 'app-game',
   standalone: true,
   imports: [JsonPipe, KeyValuePipe, CardComponent,
     CdkDrag, CdkDropList, CdkDropListGroup, DialogModule,
-    ReactiveFormsModule, GamelogComponent, 
+    ReactiveFormsModule, GamelogComponent,
     SchupfDisplayComponent, PluckPipe, IterPipe, DeckDisplayComponent, TrickdisplayComponent],
   templateUrl: './game.component.html',
   styles: `
@@ -62,8 +62,10 @@ export class GameComponent {
 
   schupfmessage
   cardCounts?: Record<rlp, number>
+  tichus?: Record<rlp, string>
   players?: Record<rlp, string>
   private _cardCounts: any;
+  private _tichus: any;
 
   resend() {
     this.http.get(`/api/games/${this.gameId}/resend`)
@@ -80,11 +82,18 @@ export class GameComponent {
     this.gameService.send(this.gameId, { type: 'Move', cards: [] });
   }
 
+  tichu() {
+
+    this.gameService.send(this.gameId, { type: 'SmallTichu' });
+  }
+  bigTichu() {
+    this.gameService.send(this.gameId, { type: 'BigTichu' });
+  }
   // todo: move to gameservice
   // cards should be a parameter
   bomb() {
     const cards = this.selectedCards()
-    if(cards.length == 0) {
+    if (cards.length == 0) {
       // guard againt frotend state bugs
       console.error("Cards cannot be empty for play. Call pass() instead")
       return
@@ -93,7 +102,7 @@ export class GameComponent {
   }
   playCards() {
     const cards = this.selectedCards()
-    if(cards.length == 0) {
+    if (cards.length == 0) {
       // guard againt frotend state bugs
       console.error("Cards cannot be empty for play. Call pass() instead")
       return
@@ -169,14 +178,14 @@ export class GameComponent {
         // todo: methdo here down
         // distribute to different components
 
-        if (obj.type === "Points") {
+        if (obj?.type?.endsWith("Points")) {
           this.points = obj.message;
-        } else if (obj.type === "Rejected") {
+        } else if (obj?.type?.endsWith("Rejected")) {
           this.snackService.push(JSON.stringify(obj.message));
         } else {
-
-          if (obj.type === "WhosMove") {
+          if (obj?.type?.endsWith("WhosMove")) {
             this._cardCounts = obj?.message?.cardCounts || this._cardCounts
+            this._tichus = obj?.message?.tichuMap || this._tichus
 
             const youAre = obj.message.youAre
             const _players = ["A1", "B1", "A2", "B2"]
@@ -193,6 +202,12 @@ export class GameComponent {
               re: this._cardCounts[this.players.re],
               li: this._cardCounts[this.players.li],
               partner: this._cardCounts[this.players.partner],
+            }
+            this.tichus = {
+              you: this._tichus[this.players.you],
+              re: this._tichus[this.players.re],
+              li: this._tichus[this.players.li],
+              partner: this._tichus[this.players.partner],
             }
           }
 
