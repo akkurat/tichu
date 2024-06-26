@@ -140,8 +140,8 @@ public class TichuGame {
                     receiveServerMessage(new WrappedServerMessage(player, new Rejected("no bomb", getCards(payload))));
                 }
             }
-            case "SmallTichu" -> receiveUserMsg(user, new SmallTichu());
-            case "BigTichu" -> receiveUserMsg(user, new BigTichu());
+            case "SmallTichu" -> receiveUserMsg(user, new Announce.SmallTichu());
+            case "BigTichu" -> receiveUserMsg(user, new Announce.BigTichu());
         }
 
     }
