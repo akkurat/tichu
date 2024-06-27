@@ -2,7 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.4'
-	id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+	id 'org.jetbrains.kotlin.jvm' version '2.0.20-Beta1'
 }
 
 group = 'ch.vifian'
@@ -22,7 +22,9 @@ repositories {
 }
 
 dependencies {
-	implementation project(':libTichu')
+	// does not exist yet and is always via composite build
+	// however composite build helps to leverage certain issues such as sub projects of subprojects and different kotlin plugin versions
+	implementation "ch.taburett.tichu:libTichu"
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
