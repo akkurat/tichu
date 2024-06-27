@@ -1,0 +1,14 @@
+img {
+    height: 100%;
+    width: auto;
+    max-height: 100%;
+    max-width: auto;
+}
+
+.high {
+    filter: brightness(1.05)
+}
+
+.selected {
+    margin-top: -20px;
+}

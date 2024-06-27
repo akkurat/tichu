@@ -1,0 +1,33 @@
+<div class="flex flex-col items-stretch">
+  <header class="flex justify-end p-5">
+    <div class="flex justify-around gap-20">
+      <div><a routerLink href="/games">Games</a> </div>
+      <div>connected: {{sel.rxStomp.connectionState$|async}}</div>
+      <div>
+        <label>Broker URL
+          <input [formControl]="brokerUrl" />
+        </label>
+        <button (click)="save()">
+          save
+        </button>
+      </div>
+    </div>
+    <button (click)="logout()">Logout</button>
+  </header>
+  <div>
+    @if(snack.out$|async; as snacks) {
+    <ul class="flex flex-wrap">
+      @for(snack of snacks; track $index) {
+      <li class="rounded px-2 m-4 " 
+       [class.bg-red-300]="snack.type==='E'"
+       [class.bg-green-300]="snack.type==='G'"
+       [class.bg-blue-300]="snack.type==='N'"
+       [title]="snack|json">{{snack.date}} Error: {{snack.message}} 
+      </li>
+      }
+    </ul>
+    }
+  </div>
+
+  <router-outlet />
+</div>

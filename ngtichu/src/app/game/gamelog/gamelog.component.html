@@ -1,0 +1,43 @@
+<!-- {{points()|json}} -->
+<div class="flex flex-row flex-wrap">
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>A</th>
+                    <th>B</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{daPoints()?.A}}</td>
+                    <td>{{daPoints()?.B}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="flex flex-row flex-wrap">
+        @for( player of initialCards(); track player.key ) {
+        <div class="flex flex-col">
+            <div><b>{{player.key}}</b></div>
+            <div class="flex flex-row">
+                @for( card of player.value; track card.code ) {
+                <div class="w-20 -ml-12 first:ml-0">
+                    <app-card [cardcode]="card.code"></app-card>
+                </div>
+                }
+            </div>
+        </div>
+        }
+    </div>
+    @for( trick of tricks(); track $index) {
+    <div class="flex flex-row m-4 bg-lime-300">
+        <app-trickdisplay [moves]="trick.moves"></app-trickdisplay>
+    </div>
+    }
+    <div class="flex flex-row flex-wrap">
+        @for( player of leftOverCards(); track player.key ) {
+        <app-deckdisplay [player]="player"></app-deckdisplay>
+        }
+    </div>
+</div>

@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "@angular/cdk/overlay-prebuilt.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+
+    .btn {
+        @apply bg-slate-200 font-bold py-2 px-3 rounded h-8 flex flex-row items-center text-center;
+    }
+    .btn:disabled {
+        @apply bg-slate-100 text-slate-300
+    }
+
+    /* Use for buttons determined by inner size (e.g. an icon, image */
+    .btn-big {
+        @apply bg-slate-200 font-bold py-2 px-3 rounded flex flex-col items-center;
+    }
+
+    .btn-big:hover,
+    .btn:hover:enabled {
+        @apply bg-slate-100;
+    }
+
+}

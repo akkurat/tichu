@@ -1,0 +1,4305 @@
+'{
+    "points": {
+        "tricks": [
+            {
+                "moves": [
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 2,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 2",
+                                "sort": 2.2,
+                                "code": "d2"
+                            },
+                            {
+                                "value": 2,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 2",
+                                "sort": 2.3,
+                                "code": "p2"
+                            },
+                            {
+                                "value": 2,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 2",
+                                "sort": 2.4,
+                                "code": "s2"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 11,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS J",
+                                "sort": 11.3,
+                                "code": "pJ"
+                            },
+                            {
+                                "value": 11,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE J",
+                                "sort": 11.1,
+                                "code": "jJ"
+                            },
+                            {
+                                "value": 11,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS J",
+                                "sort": 11.2,
+                                "code": "dJ"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 2,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 2",
+                        "sort": 2.2,
+                        "code": "d2"
+                    },
+                    {
+                        "value": 2,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 2",
+                        "sort": 2.3,
+                        "code": "p2"
+                    },
+                    {
+                        "value": 2,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 2",
+                        "sort": 2.4,
+                        "code": "s2"
+                    },
+                    {
+                        "value": 11,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS J",
+                        "sort": 11.3,
+                        "code": "pJ"
+                    },
+                    {
+                        "value": 11,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE J",
+                        "sort": 11.1,
+                        "code": "jJ"
+                    },
+                    {
+                        "value": 11,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS J",
+                        "sort": 11.2,
+                        "code": "dJ"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 5,
+                                "color": "JADE",
+                                "points": 5,
+                                "name": "JADE 5",
+                                "sort": 5.1,
+                                "code": "j5"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 9,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 9",
+                                "sort": 9.4,
+                                "code": "s9"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 13,
+                                "color": "STARS",
+                                "points": 10,
+                                "name": "STARS K",
+                                "sort": 13.4,
+                                "code": "sK"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 5,
+                        "color": "JADE",
+                        "points": 5,
+                        "name": "JADE 5",
+                        "sort": 5.1,
+                        "code": "j5"
+                    },
+                    {
+                        "value": 9,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 9",
+                        "sort": 9.4,
+                        "code": "s9"
+                    },
+                    {
+                        "value": 13,
+                        "color": "STARS",
+                        "points": 10,
+                        "name": "STARS K",
+                        "sort": 13.4,
+                        "code": "sK"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 2,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 2",
+                                "sort": 2.1,
+                                "code": "j2"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 3,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 3",
+                                "sort": 3.4,
+                                "code": "s3"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 14,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS A",
+                                "sort": 14.4,
+                                "code": "sA"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 2,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 2",
+                        "sort": 2.1,
+                        "code": "j2"
+                    },
+                    {
+                        "value": 3,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 3",
+                        "sort": 3.4,
+                        "code": "s3"
+                    },
+                    {
+                        "value": 14,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS A",
+                        "sort": 14.4,
+                        "code": "sA"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 5,
+                                "color": "SWORDS",
+                                "points": 5,
+                                "name": "SWORDS 5",
+                                "sort": 5.2,
+                                "code": "d5"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 14,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE A",
+                                "sort": 14.1,
+                                "code": "jA"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 5,
+                        "color": "SWORDS",
+                        "points": 5,
+                        "name": "SWORDS 5",
+                        "sort": 5.2,
+                        "code": "d5"
+                    },
+                    {
+                        "value": 14,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE A",
+                        "sort": 14.1,
+                        "code": "jA"
+                    }
+                ],
+                "pointOwner": "B1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "name": "MahJong",
+                                "value": 1,
+                                "points": 0,
+                                "sort": 1,
+                                "color": "SPECIAL",
+                                "code": "mah"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 3,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 3",
+                                "sort": 3.1,
+                                "code": "j3"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 4,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 4",
+                                "sort": 4.1,
+                                "code": "j4"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 8,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 8",
+                                "sort": 8.4,
+                                "code": "s8"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 10,
+                                "color": "JADE",
+                                "points": 10,
+                                "name": "JADE 10",
+                                "sort": 10.1,
+                                "code": "j10"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 11,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS J",
+                                "sort": 11.4,
+                                "code": "sJ"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "name": "MahJong",
+                        "value": 1,
+                        "points": 0,
+                        "sort": 1,
+                        "color": "SPECIAL",
+                        "code": "mah"
+                    },
+                    {
+                        "value": 3,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 3",
+                        "sort": 3.1,
+                        "code": "j3"
+                    },
+                    {
+                        "value": 4,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 4",
+                        "sort": 4.1,
+                        "code": "j4"
+                    },
+                    {
+                        "value": 8,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 8",
+                        "sort": 8.4,
+                        "code": "s8"
+                    },
+                    {
+                        "value": 10,
+                        "color": "JADE",
+                        "points": 10,
+                        "name": "JADE 10",
+                        "sort": 10.1,
+                        "code": "j10"
+                    },
+                    {
+                        "value": 11,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS J",
+                        "sort": 11.4,
+                        "code": "sJ"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 3,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 3",
+                                "sort": 3.3,
+                                "code": "p3"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 7,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 7",
+                                "sort": 7.3,
+                                "code": "p7"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 10,
+                                "color": "PAGODAS",
+                                "points": 10,
+                                "name": "PAGODAS 10",
+                                "sort": 10.3,
+                                "code": "p10"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 14,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS A",
+                                "sort": 14.3,
+                                "code": "pA"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 3,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 3",
+                        "sort": 3.3,
+                        "code": "p3"
+                    },
+                    {
+                        "value": 7,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 7",
+                        "sort": 7.3,
+                        "code": "p7"
+                    },
+                    {
+                        "value": 10,
+                        "color": "PAGODAS",
+                        "points": 10,
+                        "name": "PAGODAS 10",
+                        "sort": 10.3,
+                        "code": "p10"
+                    },
+                    {
+                        "value": 14,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS A",
+                        "sort": 14.3,
+                        "code": "pA"
+                    }
+                ],
+                "pointOwner": "B1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 3,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 3",
+                                "sort": 3.2,
+                                "code": "d3"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 4,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 4",
+                                "sort": 4.3,
+                                "code": "p4"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 13,
+                                "color": "JADE",
+                                "points": 10,
+                                "name": "JADE K",
+                                "sort": 13.1,
+                                "code": "jK"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 14,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS A",
+                                "sort": 14.2,
+                                "code": "dA"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 3,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 3",
+                        "sort": 3.2,
+                        "code": "d3"
+                    },
+                    {
+                        "value": 4,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 4",
+                        "sort": 4.3,
+                        "code": "p4"
+                    },
+                    {
+                        "value": 13,
+                        "color": "JADE",
+                        "points": 10,
+                        "name": "JADE K",
+                        "sort": 13.1,
+                        "code": "jK"
+                    },
+                    {
+                        "value": 14,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS A",
+                        "sort": 14.2,
+                        "code": "dA"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 6,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 6",
+                                "sort": 6.2,
+                                "code": "d6"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 7,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 7",
+                                "sort": 7.4,
+                                "code": "s7"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 9,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 9",
+                                "sort": 9.1,
+                                "code": "j9"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 6,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 6",
+                        "sort": 6.2,
+                        "code": "d6"
+                    },
+                    {
+                        "value": 7,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 7",
+                        "sort": 7.4,
+                        "code": "s7"
+                    },
+                    {
+                        "value": 9,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 9",
+                        "sort": 9.1,
+                        "code": "j9"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 6,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 6",
+                                "sort": 6.1,
+                                "code": "j6"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 13,
+                                "color": "PAGODAS",
+                                "points": 10,
+                                "name": "PAGODAS K",
+                                "sort": 13.3,
+                                "code": "pK"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 6,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 6",
+                        "sort": 6.1,
+                        "code": "j6"
+                    },
+                    {
+                        "value": 13,
+                        "color": "PAGODAS",
+                        "points": 10,
+                        "name": "PAGODAS K",
+                        "sort": 13.3,
+                        "code": "pK"
+                    }
+                ],
+                "pointOwner": "B2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 5,
+                                "color": "PAGODAS",
+                                "points": 5,
+                                "name": "PAGODAS 5",
+                                "sort": 5.3,
+                                "code": "p5"
+                            },
+                            {
+                                "value": 5,
+                                "color": "STARS",
+                                "points": 5,
+                                "name": "STARS 5",
+                                "sort": 5.4,
+                                "code": "s5"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 5,
+                        "color": "PAGODAS",
+                        "points": 5,
+                        "name": "PAGODAS 5",
+                        "sort": 5.3,
+                        "code": "p5"
+                    },
+                    {
+                        "value": 5,
+                        "color": "STARS",
+                        "points": 5,
+                        "name": "STARS 5",
+                        "sort": 5.4,
+                        "code": "s5"
+                    }
+                ],
+                "pointOwner": "B2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 9,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 9",
+                                "sort": 9.2,
+                                "code": "d9"
+                            },
+                            {
+                                "value": 9,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 9",
+                                "sort": 9.3,
+                                "code": "p9"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 9,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 9",
+                        "sort": 9.2,
+                        "code": "d9"
+                    },
+                    {
+                        "value": 9,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 9",
+                        "sort": 9.3,
+                        "code": "p9"
+                    }
+                ],
+                "pointOwner": "B2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B2",
+                        "cards": [
+                            {
+                                "value": 12,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS Q",
+                                "sort": 12.2,
+                                "code": "dQ"
+                            },
+                            {
+                                "value": 12,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS Q",
+                                "sort": 12.3,
+                                "code": "pQ"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B2",
+                        "type": "Finished"
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [
+                    "B2"
+                ],
+                "allCards": [
+                    {
+                        "value": 12,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS Q",
+                        "sort": 12.2,
+                        "code": "dQ"
+                    },
+                    {
+                        "value": 12,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS Q",
+                        "sort": 12.3,
+                        "code": "pQ"
+                    }
+                ],
+                "pointOwner": "B2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 7,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 7",
+                                "sort": 7.2,
+                                "code": "d7"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 10,
+                                "color": "STARS",
+                                "points": 10,
+                                "name": "STARS 10",
+                                "sort": 10.4,
+                                "code": "s10"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 13,
+                                "color": "SWORDS",
+                                "points": 10,
+                                "name": "SWORDS K",
+                                "sort": 13.2,
+                                "code": "dK"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 7,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 7",
+                        "sort": 7.2,
+                        "code": "d7"
+                    },
+                    {
+                        "value": 10,
+                        "color": "STARS",
+                        "points": 10,
+                        "name": "STARS 10",
+                        "sort": 10.4,
+                        "code": "s10"
+                    },
+                    {
+                        "value": 13,
+                        "color": "SWORDS",
+                        "points": 10,
+                        "name": "SWORDS K",
+                        "sort": 13.2,
+                        "code": "dK"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 8,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 8",
+                                "sort": 8.1,
+                                "code": "j8"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 12,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS Q",
+                                "sort": 12.4,
+                                "code": "sQ"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 8,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 8",
+                        "sort": 8.1,
+                        "code": "j8"
+                    },
+                    {
+                        "value": 12,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS Q",
+                        "sort": 12.4,
+                        "code": "sQ"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 8,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 8",
+                                "sort": 8.2,
+                                "code": "d8"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 8,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 8",
+                        "sort": 8.2,
+                        "code": "d8"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A1",
+                        "cards": [
+                            {
+                                "value": 10,
+                                "color": "SWORDS",
+                                "points": 10,
+                                "name": "SWORDS 10",
+                                "sort": 10.2,
+                                "code": "d10"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A1",
+                        "type": "Finished"
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [
+                    "A1"
+                ],
+                "allCards": [
+                    {
+                        "value": 10,
+                        "color": "SWORDS",
+                        "points": 10,
+                        "name": "SWORDS 10",
+                        "sort": 10.2,
+                        "code": "d10"
+                    }
+                ],
+                "pointOwner": "A1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 4,
+                                "color": "SWORDS",
+                                "points": 0,
+                                "name": "SWORDS 4",
+                                "sort": 4.2,
+                                "code": "d4"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 8,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 8",
+                                "sort": 8.3,
+                                "code": "p8"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 4,
+                        "color": "SWORDS",
+                        "points": 0,
+                        "name": "SWORDS 4",
+                        "sort": 4.2,
+                        "code": "d4"
+                    },
+                    {
+                        "value": 8,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 8",
+                        "sort": 8.3,
+                        "code": "p8"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 12,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE Q",
+                                "sort": 12.1,
+                                "code": "jQ"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 12,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE Q",
+                        "sort": 12.1,
+                        "code": "jQ"
+                    }
+                ],
+                "pointOwner": "A2"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "A2",
+                        "cards": [
+                            {
+                                "value": 1,
+                                "name": "Phoenix",
+                                "sort": 15,
+                                "points": -25,
+                                "color": "SPECIAL",
+                                "code": "phx"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 6,
+                                "color": "PAGODAS",
+                                "points": 0,
+                                "name": "PAGODAS 6",
+                                "sort": 6.3,
+                                "code": "p6"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 1,
+                        "name": "Phoenix",
+                        "sort": 15,
+                        "points": -25,
+                        "color": "SPECIAL",
+                        "code": "phx"
+                    },
+                    {
+                        "value": 6,
+                        "color": "PAGODAS",
+                        "points": 0,
+                        "name": "PAGODAS 6",
+                        "sort": 6.3,
+                        "code": "p6"
+                    }
+                ],
+                "pointOwner": "B1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 4,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 4",
+                                "sort": 4.4,
+                                "code": "s4"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 4,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 4",
+                        "sort": 4.4,
+                        "code": "s4"
+                    }
+                ],
+                "pointOwner": "B1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 6,
+                                "color": "STARS",
+                                "points": 0,
+                                "name": "STARS 6",
+                                "sort": 6.4,
+                                "code": "s6"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "A2",
+                        "cards": [],
+                        "type": "RegularMove",
+                        "pass": true
+                    }
+                ],
+                "playerFinished": [],
+                "allCards": [
+                    {
+                        "value": 6,
+                        "color": "STARS",
+                        "points": 0,
+                        "name": "STARS 6",
+                        "sort": 6.4,
+                        "code": "s6"
+                    }
+                ],
+                "pointOwner": "B1"
+            },
+            {
+                "moves": [
+                    {
+                        "player": "B1",
+                        "cards": [
+                            {
+                                "value": 7,
+                                "color": "JADE",
+                                "points": 0,
+                                "name": "JADE 7",
+                                "sort": 7.1,
+                                "code": "j7"
+                            }
+                        ],
+                        "type": "RegularMove",
+                        "pass": false
+                    },
+                    {
+                        "player": "B1",
+                        "type": "Finished"
+                    }
+                ],
+                "playerFinished": [
+                    "B1"
+                ],
+                "allCards": [
+                    {
+                        "value": 7,
+                        "color": "JADE",
+                        "points": 0,
+                        "name": "JADE 7",
+                        "sort": 7.1,
+                        "code": "j7"
+                    }
+                ],
+                "pointOwner": "B1"
+            }
+        ],
+        "initialCardmap": {
+            "A1": [
+                {
+                    "value": 14,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS A",
+                    "sort": 14.4,
+                    "code": "sA"
+                },
+                {
+                    "value": 8,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 8",
+                    "sort": 8.4,
+                    "code": "s8"
+                },
+                {
+                    "value": 5,
+                    "color": "JADE",
+                    "points": 5,
+                    "name": "JADE 5",
+                    "sort": 5.1,
+                    "code": "j5"
+                },
+                {
+                    "value": 10,
+                    "color": "PAGODAS",
+                    "points": 10,
+                    "name": "PAGODAS 10",
+                    "sort": 10.3,
+                    "code": "p10"
+                },
+                {
+                    "value": 8,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 8",
+                    "sort": 8.2,
+                    "code": "d8"
+                },
+                {
+                    "value": 7,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 7",
+                    "sort": 7.2,
+                    "code": "d7"
+                },
+                {
+                    "value": 12,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS Q",
+                    "sort": 12.4,
+                    "code": "sQ"
+                },
+                {
+                    "value": 14,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS A",
+                    "sort": 14.2,
+                    "code": "dA"
+                },
+                {
+                    "value": 5,
+                    "color": "SWORDS",
+                    "points": 5,
+                    "name": "SWORDS 5",
+                    "sort": 5.2,
+                    "code": "d5"
+                },
+                {
+                    "value": 11,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS J",
+                    "sort": 11.3,
+                    "code": "pJ"
+                },
+                {
+                    "value": 6,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 6",
+                    "sort": 6.2,
+                    "code": "d6"
+                },
+                {
+                    "value": 10,
+                    "color": "SWORDS",
+                    "points": 10,
+                    "name": "SWORDS 10",
+                    "sort": 10.2,
+                    "code": "d10"
+                },
+                {
+                    "value": 11,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE J",
+                    "sort": 11.1,
+                    "code": "jJ"
+                },
+                {
+                    "value": 11,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS J",
+                    "sort": 11.2,
+                    "code": "dJ"
+                }
+            ],
+            "B1": [
+                {
+                    "name": "Dog",
+                    "value": 0,
+                    "points": 0,
+                    "sort": 0,
+                    "color": "SPECIAL",
+                    "code": "dog"
+                },
+                {
+                    "value": 9,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 9",
+                    "sort": 9.4,
+                    "code": "s9"
+                },
+                {
+                    "value": 14,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE A",
+                    "sort": 14.1,
+                    "code": "jA"
+                },
+                {
+                    "value": 4,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 4",
+                    "sort": 4.2,
+                    "code": "d4"
+                },
+                {
+                    "value": 6,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 6",
+                    "sort": 6.3,
+                    "code": "p6"
+                },
+                {
+                    "value": 6,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 6",
+                    "sort": 6.4,
+                    "code": "s6"
+                },
+                {
+                    "name": "MahJong",
+                    "value": 1,
+                    "points": 0,
+                    "sort": 1,
+                    "color": "SPECIAL",
+                    "code": "mah"
+                },
+                {
+                    "value": 3,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 3",
+                    "sort": 3.2,
+                    "code": "d3"
+                },
+                {
+                    "value": 7,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 7",
+                    "sort": 7.4,
+                    "code": "s7"
+                },
+                {
+                    "value": 10,
+                    "color": "JADE",
+                    "points": 10,
+                    "name": "JADE 10",
+                    "sort": 10.1,
+                    "code": "j10"
+                },
+                {
+                    "value": 14,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS A",
+                    "sort": 14.3,
+                    "code": "pA"
+                },
+                {
+                    "value": 4,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 4",
+                    "sort": 4.4,
+                    "code": "s4"
+                },
+                {
+                    "value": 7,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 7",
+                    "sort": 7.1,
+                    "code": "j7"
+                },
+                {
+                    "value": 10,
+                    "color": "STARS",
+                    "points": 10,
+                    "name": "STARS 10",
+                    "sort": 10.4,
+                    "code": "s10"
+                }
+            ],
+            "A2": [
+                {
+                    "value": 2,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 2",
+                    "sort": 2.1,
+                    "code": "j2"
+                },
+                {
+                    "value": 3,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 3",
+                    "sort": 3.1,
+                    "code": "j3"
+                },
+                {
+                    "value": 4,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 4",
+                    "sort": 4.3,
+                    "code": "p4"
+                },
+                {
+                    "value": 13,
+                    "color": "STARS",
+                    "points": 10,
+                    "name": "STARS K",
+                    "sort": 13.4,
+                    "code": "sK"
+                },
+                {
+                    "value": 9,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 9",
+                    "sort": 9.1,
+                    "code": "j9"
+                },
+                {
+                    "value": 11,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS J",
+                    "sort": 11.4,
+                    "code": "sJ"
+                },
+                {
+                    "name": "Phoenix",
+                    "sort": 15,
+                    "points": -25,
+                    "color": "SPECIAL",
+                    "code": "phx"
+                },
+                {
+                    "value": 8,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 8",
+                    "sort": 8.3,
+                    "code": "p8"
+                },
+                {
+                    "name": "Dragon",
+                    "value": 16,
+                    "points": 25,
+                    "sort": 16,
+                    "color": "SPECIAL",
+                    "code": "drg"
+                },
+                {
+                    "value": 8,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 8",
+                    "sort": 8.1,
+                    "code": "j8"
+                },
+                {
+                    "value": 13,
+                    "color": "SWORDS",
+                    "points": 10,
+                    "name": "SWORDS K",
+                    "sort": 13.2,
+                    "code": "dK"
+                },
+                {
+                    "value": 12,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE Q",
+                    "sort": 12.1,
+                    "code": "jQ"
+                },
+                {
+                    "value": 6,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 6",
+                    "sort": 6.1,
+                    "code": "j6"
+                },
+                {
+                    "value": 3,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 3",
+                    "sort": 3.3,
+                    "code": "p3"
+                }
+            ],
+            "B2": [
+                {
+                    "value": 5,
+                    "color": "PAGODAS",
+                    "points": 5,
+                    "name": "PAGODAS 5",
+                    "sort": 5.3,
+                    "code": "p5"
+                },
+                {
+                    "value": 3,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 3",
+                    "sort": 3.4,
+                    "code": "s3"
+                },
+                {
+                    "value": 9,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 9",
+                    "sort": 9.3,
+                    "code": "p9"
+                },
+                {
+                    "value": 2,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 2",
+                    "sort": 2.3,
+                    "code": "p2"
+                },
+                {
+                    "value": 12,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS Q",
+                    "sort": 12.2,
+                    "code": "dQ"
+                },
+                {
+                    "value": 5,
+                    "color": "STARS",
+                    "points": 5,
+                    "name": "STARS 5",
+                    "sort": 5.4,
+                    "code": "s5"
+                },
+                {
+                    "value": 9,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 9",
+                    "sort": 9.2,
+                    "code": "d9"
+                },
+                {
+                    "value": 7,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 7",
+                    "sort": 7.3,
+                    "code": "p7"
+                },
+                {
+                    "value": 2,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 2",
+                    "sort": 2.4,
+                    "code": "s2"
+                },
+                {
+                    "value": 2,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 2",
+                    "sort": 2.2,
+                    "code": "d2"
+                },
+                {
+                    "value": 4,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 4",
+                    "sort": 4.1,
+                    "code": "j4"
+                },
+                {
+                    "value": 12,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS Q",
+                    "sort": 12.3,
+                    "code": "pQ"
+                },
+                {
+                    "value": 13,
+                    "color": "PAGODAS",
+                    "points": 10,
+                    "name": "PAGODAS K",
+                    "sort": 13.3,
+                    "code": "pK"
+                },
+                {
+                    "value": 13,
+                    "color": "JADE",
+                    "points": 10,
+                    "name": "JADE K",
+                    "sort": 13.1,
+                    "code": "jK"
+                }
+            ]
+        },
+        "leftoverHandcards": {
+            "A1": [],
+            "B1": [],
+            "A2": [
+                {
+                    "name": "Dragon",
+                    "value": 16,
+                    "points": 25,
+                    "sort": 16,
+                    "color": "SPECIAL",
+                    "code": "drg"
+                }
+            ],
+            "B2": []
+        },
+        "orderOfWinning": [
+            "B2",
+            "A1",
+            "B1"
+        ],
+        "tricksByPlayer": {
+            "A1": [
+                {
+                    "moves": [
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 2,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 2",
+                                    "sort": 2.2,
+                                    "code": "d2"
+                                },
+                                {
+                                    "value": 2,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 2",
+                                    "sort": 2.3,
+                                    "code": "p2"
+                                },
+                                {
+                                    "value": 2,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 2",
+                                    "sort": 2.4,
+                                    "code": "s2"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 11,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS J",
+                                    "sort": 11.3,
+                                    "code": "pJ"
+                                },
+                                {
+                                    "value": 11,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE J",
+                                    "sort": 11.1,
+                                    "code": "jJ"
+                                },
+                                {
+                                    "value": 11,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS J",
+                                    "sort": 11.2,
+                                    "code": "dJ"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 2,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 2",
+                            "sort": 2.2,
+                            "code": "d2"
+                        },
+                        {
+                            "value": 2,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 2",
+                            "sort": 2.3,
+                            "code": "p2"
+                        },
+                        {
+                            "value": 2,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 2",
+                            "sort": 2.4,
+                            "code": "s2"
+                        },
+                        {
+                            "value": 11,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS J",
+                            "sort": 11.3,
+                            "code": "pJ"
+                        },
+                        {
+                            "value": 11,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE J",
+                            "sort": 11.1,
+                            "code": "jJ"
+                        },
+                        {
+                            "value": 11,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS J",
+                            "sort": 11.2,
+                            "code": "dJ"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 2,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 2",
+                                    "sort": 2.1,
+                                    "code": "j2"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 3,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 3",
+                                    "sort": 3.4,
+                                    "code": "s3"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 14,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS A",
+                                    "sort": 14.4,
+                                    "code": "sA"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 2,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 2",
+                            "sort": 2.1,
+                            "code": "j2"
+                        },
+                        {
+                            "value": 3,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 3",
+                            "sort": 3.4,
+                            "code": "s3"
+                        },
+                        {
+                            "value": 14,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS A",
+                            "sort": 14.4,
+                            "code": "sA"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 3,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 3",
+                                    "sort": 3.2,
+                                    "code": "d3"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 4,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 4",
+                                    "sort": 4.3,
+                                    "code": "p4"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 13,
+                                    "color": "JADE",
+                                    "points": 10,
+                                    "name": "JADE K",
+                                    "sort": 13.1,
+                                    "code": "jK"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 14,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS A",
+                                    "sort": 14.2,
+                                    "code": "dA"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 3,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 3",
+                            "sort": 3.2,
+                            "code": "d3"
+                        },
+                        {
+                            "value": 4,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 4",
+                            "sort": 4.3,
+                            "code": "p4"
+                        },
+                        {
+                            "value": 13,
+                            "color": "JADE",
+                            "points": 10,
+                            "name": "JADE K",
+                            "sort": 13.1,
+                            "code": "jK"
+                        },
+                        {
+                            "value": 14,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS A",
+                            "sort": 14.2,
+                            "code": "dA"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 8,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 8",
+                                    "sort": 8.1,
+                                    "code": "j8"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 12,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS Q",
+                                    "sort": 12.4,
+                                    "code": "sQ"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 8,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 8",
+                            "sort": 8.1,
+                            "code": "j8"
+                        },
+                        {
+                            "value": 12,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS Q",
+                            "sort": 12.4,
+                            "code": "sQ"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 8,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 8",
+                                    "sort": 8.2,
+                                    "code": "d8"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 8,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 8",
+                            "sort": 8.2,
+                            "code": "d8"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 10,
+                                    "color": "SWORDS",
+                                    "points": 10,
+                                    "name": "SWORDS 10",
+                                    "sort": 10.2,
+                                    "code": "d10"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "type": "Finished"
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [
+                        "A1"
+                    ],
+                    "allCards": [
+                        {
+                            "value": 10,
+                            "color": "SWORDS",
+                            "points": 10,
+                            "name": "SWORDS 10",
+                            "sort": 10.2,
+                            "code": "d10"
+                        }
+                    ],
+                    "pointOwner": "A1"
+                }
+            ],
+            "A2": [
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 5,
+                                    "color": "JADE",
+                                    "points": 5,
+                                    "name": "JADE 5",
+                                    "sort": 5.1,
+                                    "code": "j5"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 9,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 9",
+                                    "sort": 9.4,
+                                    "code": "s9"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 13,
+                                    "color": "STARS",
+                                    "points": 10,
+                                    "name": "STARS K",
+                                    "sort": 13.4,
+                                    "code": "sK"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 5,
+                            "color": "JADE",
+                            "points": 5,
+                            "name": "JADE 5",
+                            "sort": 5.1,
+                            "code": "j5"
+                        },
+                        {
+                            "value": 9,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 9",
+                            "sort": 9.4,
+                            "code": "s9"
+                        },
+                        {
+                            "value": 13,
+                            "color": "STARS",
+                            "points": 10,
+                            "name": "STARS K",
+                            "sort": 13.4,
+                            "code": "sK"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "name": "MahJong",
+                                    "value": 1,
+                                    "points": 0,
+                                    "sort": 1,
+                                    "color": "SPECIAL",
+                                    "code": "mah"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 3,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 3",
+                                    "sort": 3.1,
+                                    "code": "j3"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 4,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 4",
+                                    "sort": 4.1,
+                                    "code": "j4"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 8,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 8",
+                                    "sort": 8.4,
+                                    "code": "s8"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 10,
+                                    "color": "JADE",
+                                    "points": 10,
+                                    "name": "JADE 10",
+                                    "sort": 10.1,
+                                    "code": "j10"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 11,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS J",
+                                    "sort": 11.4,
+                                    "code": "sJ"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "name": "MahJong",
+                            "value": 1,
+                            "points": 0,
+                            "sort": 1,
+                            "color": "SPECIAL",
+                            "code": "mah"
+                        },
+                        {
+                            "value": 3,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 3",
+                            "sort": 3.1,
+                            "code": "j3"
+                        },
+                        {
+                            "value": 4,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 4",
+                            "sort": 4.1,
+                            "code": "j4"
+                        },
+                        {
+                            "value": 8,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 8",
+                            "sort": 8.4,
+                            "code": "s8"
+                        },
+                        {
+                            "value": 10,
+                            "color": "JADE",
+                            "points": 10,
+                            "name": "JADE 10",
+                            "sort": 10.1,
+                            "code": "j10"
+                        },
+                        {
+                            "value": 11,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS J",
+                            "sort": 11.4,
+                            "code": "sJ"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 6,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 6",
+                                    "sort": 6.2,
+                                    "code": "d6"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 7,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 7",
+                                    "sort": 7.4,
+                                    "code": "s7"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 9,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 9",
+                                    "sort": 9.1,
+                                    "code": "j9"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 6,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 6",
+                            "sort": 6.2,
+                            "code": "d6"
+                        },
+                        {
+                            "value": 7,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 7",
+                            "sort": 7.4,
+                            "code": "s7"
+                        },
+                        {
+                            "value": 9,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 9",
+                            "sort": 9.1,
+                            "code": "j9"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 7,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 7",
+                                    "sort": 7.2,
+                                    "code": "d7"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 10,
+                                    "color": "STARS",
+                                    "points": 10,
+                                    "name": "STARS 10",
+                                    "sort": 10.4,
+                                    "code": "s10"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 13,
+                                    "color": "SWORDS",
+                                    "points": 10,
+                                    "name": "SWORDS K",
+                                    "sort": 13.2,
+                                    "code": "dK"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 7,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 7",
+                            "sort": 7.2,
+                            "code": "d7"
+                        },
+                        {
+                            "value": 10,
+                            "color": "STARS",
+                            "points": 10,
+                            "name": "STARS 10",
+                            "sort": 10.4,
+                            "code": "s10"
+                        },
+                        {
+                            "value": 13,
+                            "color": "SWORDS",
+                            "points": 10,
+                            "name": "SWORDS K",
+                            "sort": 13.2,
+                            "code": "dK"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 4,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 4",
+                                    "sort": 4.2,
+                                    "code": "d4"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 8,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 8",
+                                    "sort": 8.3,
+                                    "code": "p8"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 4,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 4",
+                            "sort": 4.2,
+                            "code": "d4"
+                        },
+                        {
+                            "value": 8,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 8",
+                            "sort": 8.3,
+                            "code": "p8"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 12,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE Q",
+                                    "sort": 12.1,
+                                    "code": "jQ"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 12,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE Q",
+                            "sort": 12.1,
+                            "code": "jQ"
+                        }
+                    ],
+                    "pointOwner": "A2"
+                }
+            ],
+            "B1": [
+                {
+                    "moves": [
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 5,
+                                    "color": "SWORDS",
+                                    "points": 5,
+                                    "name": "SWORDS 5",
+                                    "sort": 5.2,
+                                    "code": "d5"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 14,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE A",
+                                    "sort": 14.1,
+                                    "code": "jA"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 5,
+                            "color": "SWORDS",
+                            "points": 5,
+                            "name": "SWORDS 5",
+                            "sort": 5.2,
+                            "code": "d5"
+                        },
+                        {
+                            "value": 14,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE A",
+                            "sort": 14.1,
+                            "code": "jA"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 3,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 3",
+                                    "sort": 3.3,
+                                    "code": "p3"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 7,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 7",
+                                    "sort": 7.3,
+                                    "code": "p7"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [
+                                {
+                                    "value": 10,
+                                    "color": "PAGODAS",
+                                    "points": 10,
+                                    "name": "PAGODAS 10",
+                                    "sort": 10.3,
+                                    "code": "p10"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 14,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS A",
+                                    "sort": 14.3,
+                                    "code": "pA"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 3,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 3",
+                            "sort": 3.3,
+                            "code": "p3"
+                        },
+                        {
+                            "value": 7,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 7",
+                            "sort": 7.3,
+                            "code": "p7"
+                        },
+                        {
+                            "value": 10,
+                            "color": "PAGODAS",
+                            "points": 10,
+                            "name": "PAGODAS 10",
+                            "sort": 10.3,
+                            "code": "p10"
+                        },
+                        {
+                            "value": 14,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS A",
+                            "sort": 14.3,
+                            "code": "pA"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 1,
+                                    "name": "Phoenix",
+                                    "sort": 15,
+                                    "points": -25,
+                                    "color": "SPECIAL",
+                                    "code": "phx"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 6,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 6",
+                                    "sort": 6.3,
+                                    "code": "p6"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 1,
+                            "name": "Phoenix",
+                            "sort": 15,
+                            "points": -25,
+                            "color": "SPECIAL",
+                            "code": "phx"
+                        },
+                        {
+                            "value": 6,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 6",
+                            "sort": 6.3,
+                            "code": "p6"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 4,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 4",
+                                    "sort": 4.4,
+                                    "code": "s4"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 4,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 4",
+                            "sort": 4.4,
+                            "code": "s4"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 6,
+                                    "color": "STARS",
+                                    "points": 0,
+                                    "name": "STARS 6",
+                                    "sort": 6.4,
+                                    "code": "s6"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 6,
+                            "color": "STARS",
+                            "points": 0,
+                            "name": "STARS 6",
+                            "sort": 6.4,
+                            "code": "s6"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B1",
+                            "cards": [
+                                {
+                                    "value": 7,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 7",
+                                    "sort": 7.1,
+                                    "code": "j7"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B1",
+                            "type": "Finished"
+                        }
+                    ],
+                    "playerFinished": [
+                        "B1"
+                    ],
+                    "allCards": [
+                        {
+                            "value": 7,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 7",
+                            "sort": 7.1,
+                            "code": "j7"
+                        }
+                    ],
+                    "pointOwner": "B1"
+                }
+            ],
+            "B2": [
+                {
+                    "moves": [
+                        {
+                            "player": "A2",
+                            "cards": [
+                                {
+                                    "value": 6,
+                                    "color": "JADE",
+                                    "points": 0,
+                                    "name": "JADE 6",
+                                    "sort": 6.1,
+                                    "code": "j6"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 13,
+                                    "color": "PAGODAS",
+                                    "points": 10,
+                                    "name": "PAGODAS K",
+                                    "sort": 13.3,
+                                    "code": "pK"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 6,
+                            "color": "JADE",
+                            "points": 0,
+                            "name": "JADE 6",
+                            "sort": 6.1,
+                            "code": "j6"
+                        },
+                        {
+                            "value": 13,
+                            "color": "PAGODAS",
+                            "points": 10,
+                            "name": "PAGODAS K",
+                            "sort": 13.3,
+                            "code": "pK"
+                        }
+                    ],
+                    "pointOwner": "B2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 5,
+                                    "color": "PAGODAS",
+                                    "points": 5,
+                                    "name": "PAGODAS 5",
+                                    "sort": 5.3,
+                                    "code": "p5"
+                                },
+                                {
+                                    "value": 5,
+                                    "color": "STARS",
+                                    "points": 5,
+                                    "name": "STARS 5",
+                                    "sort": 5.4,
+                                    "code": "s5"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 5,
+                            "color": "PAGODAS",
+                            "points": 5,
+                            "name": "PAGODAS 5",
+                            "sort": 5.3,
+                            "code": "p5"
+                        },
+                        {
+                            "value": 5,
+                            "color": "STARS",
+                            "points": 5,
+                            "name": "STARS 5",
+                            "sort": 5.4,
+                            "code": "s5"
+                        }
+                    ],
+                    "pointOwner": "B2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 9,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS 9",
+                                    "sort": 9.2,
+                                    "code": "d9"
+                                },
+                                {
+                                    "value": 9,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS 9",
+                                    "sort": 9.3,
+                                    "code": "p9"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [],
+                    "allCards": [
+                        {
+                            "value": 9,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS 9",
+                            "sort": 9.2,
+                            "code": "d9"
+                        },
+                        {
+                            "value": 9,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS 9",
+                            "sort": 9.3,
+                            "code": "p9"
+                        }
+                    ],
+                    "pointOwner": "B2"
+                },
+                {
+                    "moves": [
+                        {
+                            "player": "B2",
+                            "cards": [
+                                {
+                                    "value": 12,
+                                    "color": "SWORDS",
+                                    "points": 0,
+                                    "name": "SWORDS Q",
+                                    "sort": 12.2,
+                                    "code": "dQ"
+                                },
+                                {
+                                    "value": 12,
+                                    "color": "PAGODAS",
+                                    "points": 0,
+                                    "name": "PAGODAS Q",
+                                    "sort": 12.3,
+                                    "code": "pQ"
+                                }
+                            ],
+                            "type": "RegularMove",
+                            "pass": false
+                        },
+                        {
+                            "player": "B2",
+                            "type": "Finished"
+                        },
+                        {
+                            "player": "A1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "B1",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        },
+                        {
+                            "player": "A2",
+                            "cards": [],
+                            "type": "RegularMove",
+                            "pass": true
+                        }
+                    ],
+                    "playerFinished": [
+                        "B2"
+                    ],
+                    "allCards": [
+                        {
+                            "value": 12,
+                            "color": "SWORDS",
+                            "points": 0,
+                            "name": "SWORDS Q",
+                            "sort": 12.2,
+                            "code": "dQ"
+                        },
+                        {
+                            "value": 12,
+                            "color": "PAGODAS",
+                            "points": 0,
+                            "name": "PAGODAS Q",
+                            "sort": 12.3,
+                            "code": "pQ"
+                        }
+                    ],
+                    "pointOwner": "B2"
+                }
+            ]
+        },
+        "points": {
+            "A": 20,
+            "B": 80
+        },
+        "cards": {
+            "A": [
+                {
+                    "value": 2,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 2",
+                    "sort": 2.2,
+                    "code": "d2"
+                },
+                {
+                    "value": 2,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 2",
+                    "sort": 2.3,
+                    "code": "p2"
+                },
+                {
+                    "value": 2,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 2",
+                    "sort": 2.4,
+                    "code": "s2"
+                },
+                {
+                    "value": 11,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS J",
+                    "sort": 11.3,
+                    "code": "pJ"
+                },
+                {
+                    "value": 11,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE J",
+                    "sort": 11.1,
+                    "code": "jJ"
+                },
+                {
+                    "value": 11,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS J",
+                    "sort": 11.2,
+                    "code": "dJ"
+                },
+                {
+                    "value": 2,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 2",
+                    "sort": 2.1,
+                    "code": "j2"
+                },
+                {
+                    "value": 3,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 3",
+                    "sort": 3.4,
+                    "code": "s3"
+                },
+                {
+                    "value": 14,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS A",
+                    "sort": 14.4,
+                    "code": "sA"
+                },
+                {
+                    "value": 3,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 3",
+                    "sort": 3.2,
+                    "code": "d3"
+                },
+                {
+                    "value": 4,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 4",
+                    "sort": 4.3,
+                    "code": "p4"
+                },
+                {
+                    "value": 13,
+                    "color": "JADE",
+                    "points": 10,
+                    "name": "JADE K",
+                    "sort": 13.1,
+                    "code": "jK"
+                },
+                {
+                    "value": 14,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS A",
+                    "sort": 14.2,
+                    "code": "dA"
+                },
+                {
+                    "value": 8,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 8",
+                    "sort": 8.1,
+                    "code": "j8"
+                },
+                {
+                    "value": 12,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS Q",
+                    "sort": 12.4,
+                    "code": "sQ"
+                },
+                {
+                    "value": 8,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 8",
+                    "sort": 8.2,
+                    "code": "d8"
+                },
+                {
+                    "value": 10,
+                    "color": "SWORDS",
+                    "points": 10,
+                    "name": "SWORDS 10",
+                    "sort": 10.2,
+                    "code": "d10"
+                }
+            ],
+            "B": [
+                {
+                    "value": 6,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 6",
+                    "sort": 6.1,
+                    "code": "j6"
+                },
+                {
+                    "value": 13,
+                    "color": "PAGODAS",
+                    "points": 10,
+                    "name": "PAGODAS K",
+                    "sort": 13.3,
+                    "code": "pK"
+                },
+                {
+                    "value": 5,
+                    "color": "PAGODAS",
+                    "points": 5,
+                    "name": "PAGODAS 5",
+                    "sort": 5.3,
+                    "code": "p5"
+                },
+                {
+                    "value": 5,
+                    "color": "STARS",
+                    "points": 5,
+                    "name": "STARS 5",
+                    "sort": 5.4,
+                    "code": "s5"
+                },
+                {
+                    "value": 9,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 9",
+                    "sort": 9.2,
+                    "code": "d9"
+                },
+                {
+                    "value": 9,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 9",
+                    "sort": 9.3,
+                    "code": "p9"
+                },
+                {
+                    "value": 12,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS Q",
+                    "sort": 12.2,
+                    "code": "dQ"
+                },
+                {
+                    "value": 12,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS Q",
+                    "sort": 12.3,
+                    "code": "pQ"
+                },
+                {
+                    "value": 5,
+                    "color": "JADE",
+                    "points": 5,
+                    "name": "JADE 5",
+                    "sort": 5.1,
+                    "code": "j5"
+                },
+                {
+                    "value": 9,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 9",
+                    "sort": 9.4,
+                    "code": "s9"
+                },
+                {
+                    "value": 13,
+                    "color": "STARS",
+                    "points": 10,
+                    "name": "STARS K",
+                    "sort": 13.4,
+                    "code": "sK"
+                },
+                {
+                    "name": "MahJong",
+                    "value": 1,
+                    "points": 0,
+                    "sort": 1,
+                    "color": "SPECIAL",
+                    "code": "mah"
+                },
+                {
+                    "value": 3,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 3",
+                    "sort": 3.1,
+                    "code": "j3"
+                },
+                {
+                    "value": 4,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 4",
+                    "sort": 4.1,
+                    "code": "j4"
+                },
+                {
+                    "value": 8,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 8",
+                    "sort": 8.4,
+                    "code": "s8"
+                },
+                {
+                    "value": 10,
+                    "color": "JADE",
+                    "points": 10,
+                    "name": "JADE 10",
+                    "sort": 10.1,
+                    "code": "j10"
+                },
+                {
+                    "value": 11,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS J",
+                    "sort": 11.4,
+                    "code": "sJ"
+                },
+                {
+                    "value": 6,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 6",
+                    "sort": 6.2,
+                    "code": "d6"
+                },
+                {
+                    "value": 7,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 7",
+                    "sort": 7.4,
+                    "code": "s7"
+                },
+                {
+                    "value": 9,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 9",
+                    "sort": 9.1,
+                    "code": "j9"
+                },
+                {
+                    "value": 7,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 7",
+                    "sort": 7.2,
+                    "code": "d7"
+                },
+                {
+                    "value": 10,
+                    "color": "STARS",
+                    "points": 10,
+                    "name": "STARS 10",
+                    "sort": 10.4,
+                    "code": "s10"
+                },
+                {
+                    "value": 13,
+                    "color": "SWORDS",
+                    "points": 10,
+                    "name": "SWORDS K",
+                    "sort": 13.2,
+                    "code": "dK"
+                },
+                {
+                    "value": 4,
+                    "color": "SWORDS",
+                    "points": 0,
+                    "name": "SWORDS 4",
+                    "sort": 4.2,
+                    "code": "d4"
+                },
+                {
+                    "value": 8,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 8",
+                    "sort": 8.3,
+                    "code": "p8"
+                },
+                {
+                    "value": 12,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE Q",
+                    "sort": 12.1,
+                    "code": "jQ"
+                },
+                {
+                    "name": "Dragon",
+                    "value": 16,
+                    "points": 25,
+                    "sort": 16,
+                    "color": "SPECIAL",
+                    "code": "drg"
+                },
+                {
+                    "value": 5,
+                    "color": "SWORDS",
+                    "points": 5,
+                    "name": "SWORDS 5",
+                    "sort": 5.2,
+                    "code": "d5"
+                },
+                {
+                    "value": 14,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE A",
+                    "sort": 14.1,
+                    "code": "jA"
+                },
+                {
+                    "value": 3,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 3",
+                    "sort": 3.3,
+                    "code": "p3"
+                },
+                {
+                    "value": 7,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 7",
+                    "sort": 7.3,
+                    "code": "p7"
+                },
+                {
+                    "value": 10,
+                    "color": "PAGODAS",
+                    "points": 10,
+                    "name": "PAGODAS 10",
+                    "sort": 10.3,
+                    "code": "p10"
+                },
+                {
+                    "value": 14,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS A",
+                    "sort": 14.3,
+                    "code": "pA"
+                },
+                {
+                    "value": 1,
+                    "name": "Phoenix",
+                    "sort": 15,
+                    "points": -25,
+                    "color": "SPECIAL",
+                    "code": "phx"
+                },
+                {
+                    "value": 6,
+                    "color": "PAGODAS",
+                    "points": 0,
+                    "name": "PAGODAS 6",
+                    "sort": 6.3,
+                    "code": "p6"
+                },
+                {
+                    "value": 4,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 4",
+                    "sort": 4.4,
+                    "code": "s4"
+                },
+                {
+                    "value": 6,
+                    "color": "STARS",
+                    "points": 0,
+                    "name": "STARS 6",
+                    "sort": 6.4,
+                    "code": "s6"
+                },
+                {
+                    "value": 7,
+                    "color": "JADE",
+                    "points": 0,
+                    "name": "JADE 7",
+                    "sort": 7.1,
+                    "code": "j7"
+                }
+            ]
+        }
+    }
+}'

@@ -1,0 +1,71 @@
+<div class="flex flex-col">
+    @if( state === "OTHERS_TURN" ||state === "YOURTURN" || state === "GIFT_DRAGON") {
+    <div class="flex-col">
+        <div class="text-center flex flex-col items-stretch">
+            <div>Partner {{players?.partner}} {{cardCounts?.partner}}{{tichus?.partner}}</div>
+            <div class="flex flex-row justify-center">
+                @for(i of cardCounts?.partner|iter; track i) {
+                <div class="rounded-md border-slate-800 border-2 w-10 h-14 -ml-7 first:ml-0 bg-slate-400"
+                    [style.marginTop]="r()+'px'">{{i}}</div>
+                }
+            </div>
+        </div>
+        <div class="flex flex-row flex-nowrap justify-stretch">
+            <div>
+                <div> Left {{players?.li}} {{cardCounts?.li}} {{tichus?.li}}</div>
+                <div class="flex flex-col">
+                    @for(i of cardCounts?.li|iter; track i) {
+                    <div class="rounded border-slate-800 border-2 w-10 h-14 -mt-10 first:mt-0  bg-slate-400"
+                        [style.marginLeft]="i+'px'">{{i}}</div>
+                    }
+                </div>
+            </div>
+            <div class="flex-1 flex flex-col items-center">
+                <div class="flex flex-col items-center">
+                    @if(lastTrick()){
+                    <h2>last trick</h2>
+                    <app-trickdisplay w="w-5" [moves]="lastTrick().moves"></app-trickdisplay>
+                    }
+                </div>
+                <div class="flex flex-col items-center">
+                    @if(table.currentPlayer; as pl) {
+                    <h2 class="font-bold text-2xl">waiting for {{pl}}...</h2>
+                    }
+                    <div class="flex flex-wrap">
+                        <app-trickdisplay [moves]="table.moves"></app-trickdisplay>
+                    </div>
+                </div>
+            </div>
+            <div>Right{{players?.re}}{{cardCounts?.re}} {{tichus?.re}}
+                <div class="flex flex-col">
+                    @for(i of cardCounts?.re|iter; track i) {
+                    <div class="rounded border-slate-800 border-2 w-10 h-14 -mt-10 first:mt-0 bg-slate-400">{{i}}</div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div>YOU {{players?.you}} {{cardCounts?.you}} {{tichus?.you}}</div>
+    </div>
+    }
+
+    <!-- todo own routig maybe? -->
+    <app-schupf-display [state]="state" [message]="schupfmessage" [gameId]="gameId"></app-schupf-display>
+    <div class="flex flex-row gap-20">
+        <div class="basis-32 flex flex-col gap-10 justify-between">
+            <!-- todo: enable / disable buttons -->
+            <button (click)="playCards()" class="btn" [disabled]="state!=='YOURTURN' || selectedCards().length == 0">
+                Play Cards </button>
+            <button (click)="bomb()" class="btn" [disabled]="selectedCards().length == 0"> Bomb</button>
+            <button (click)="resend()" class="btn">Resend</button>
+            <button [disabled]="state !=='YOURTURN'" (click)="pass()" class="btn"> Pass </button>
+            <button (click)="tichu()" class="btn">Tichu</button>
+            <button (click)="bigTichu()" class="btn">Big Tichu</button>
+        </div>
+        <app-deck-display class="flex-1" [cards]="displaycards"
+            (selectedCards)="selectedCards.set($event)"></app-deck-display>
+    </div>
+    <div>
+        <!-- {{points|json}} -->
+        <app-gamelog [points]="points?.points"></app-gamelog>
+    </div>
+</div>

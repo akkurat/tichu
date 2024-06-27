@@ -1,0 +1,5 @@
+<div [class]="classes()" (mousedown)="mousedown.set(true)" (mouseup)="mousedown.set(false)" (click)="click($event)"
+>
+<!-- {{selected()}} -->
+    <img [class.selected]="selected()"  src="{{cardsrc()}}">
+</div>

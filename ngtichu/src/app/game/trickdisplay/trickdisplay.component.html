@@ -1,0 +1,42 @@
+<div class="flex flex-row bg-lime-200 m-1">
+    @for( move of moves(); track $index) {
+    <div class="flex flex-col bg-lime-200 m-1">
+        <h3><b>{{move.player}}</b></h3>
+        <div class="flex flex-row">
+            @switch(move.type) {
+            @case("RegularMove") {
+                
+            @if( move.pass ) {
+            <div>x</div>
+            } @else {
+            @for( card of move.cards; track card.code) {
+            <div [class]="w() + ' -ml-12 first:ml-0'">
+                <app-card [cardcode]="card.code" [selectable]="false"></app-card>
+            </div>
+            }
+            } }
+            @case( "Bomb") {
+            BOMMB 
+            @for(card of move.cards; track card.code) {
+            <div [class]="w() + ' -ml-4 first:ml-0'">
+                <app-card [cardcode]="card.code" [selectable]="false"></app-card>
+            </div>
+            }
+
+            }
+            @case( "Finished") {
+            Fini
+            } @case("Wished") {
+            Wish: {{move.value}}
+            } @case("WishFullfilled") {
+            Wishfull: {{move.value}}
+            } @case("DrgGift") {
+            DRG&rarr;{{move.to}}
+            } @default {
+            {{move|json}}
+            }
+            }
+        </div>
+    </div>
+    }
+</div>

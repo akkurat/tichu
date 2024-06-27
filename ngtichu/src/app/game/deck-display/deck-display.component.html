@@ -1,0 +1,10 @@
+<div class="flex flex-row flex-nowrap gap-10 items-stretch justify-start max-h-48 h-full" cdkDropList [cdkDropListData]="cards()" id="deckDropTarget"
+    [cdkDropListConnectedTo]="schupfKeys" (cdkDropListDropped)="handleDrop($event)" cdkDropListOrientation="horizontal"
+    >
+    @for(card of cards(); track card) {
+    <div class="-ml-[150px] first:ml-0" cdkDrag>
+        <app-card classes="h-full" (selectedChange)="selection.toggle(card)" [cardcode]="card"></app-card>
+    </div>
+    <!-- {{card|json}} -->
+    }
+</div>
