@@ -1,8 +1,8 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.game.Player;
-import ch.taburett.tichu.game.player.BattleRound;
-import ch.taburett.tichu.game.player.StupidPlayer;
+import ch.taburett.tichu.game.core.common.EPlayer;
+import ch.taburett.tichu.botplayer.BattleRound;
+import ch.taburett.tichu.botplayer.StupidPlayer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -10,20 +10,20 @@ import lombok.ToString;
 
 import java.util.function.Consumer;
 
-import static ch.taburett.tichu.game.protocol.Message.PlayerMessage;
-import static ch.taburett.tichu.game.protocol.Message.ServerMessage;
+import static ch.taburett.tichu.game.communication.Message.PlayerMessage;
+import static ch.taburett.tichu.game.communication.Message.ServerMessage;
 
 
 @Getter
 @EqualsAndHashCode
 @ToString
 public class AutoPlayer implements UserPlayer {
-    public final Player player;
+    public final EPlayer player;
     public final String name;
     public final Consumer<PlayerMessage> listener;
     private final BattleRound.AutoPlayer autoplayer;
 
-    public AutoPlayer(Player player, String name, Consumer<PlayerMessage> listener) {
+    public AutoPlayer(EPlayer player, String name, Consumer<PlayerMessage> listener) {
         this.player = player;
         this.name = name;
         this.listener = listener;

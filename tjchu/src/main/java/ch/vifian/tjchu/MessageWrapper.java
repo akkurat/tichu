@@ -1,9 +1,8 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.game.protocol.Message;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import static ch.taburett.tichu.game.protocol.Message.*;
+import static ch.taburett.tichu.game.communication.Message.*;
 
 public class MessageWrapper {
 

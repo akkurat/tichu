@@ -1,11 +1,11 @@
 package ch.vifian.tjchu;
 
-import ch.taburett.tichu.cards.CardsKt;
+import ch.taburett.tichu.cards.CardUtilsKt;
 import ch.taburett.tichu.cards.PlayCard;
-import ch.taburett.tichu.game.Game;
-import ch.taburett.tichu.game.Player;
-import ch.taburett.tichu.game.WrappedPlayerMessage;
-import ch.taburett.tichu.game.WrappedServerMessage;
+import ch.taburett.tichu.game.core.Game;
+import ch.taburett.tichu.game.core.common.EPlayer;
+import ch.taburett.tichu.game.communication.WrappedPlayerMessage;
+import ch.taburett.tichu.game.communication.WrappedServerMessage;
 import com.google.common.collect.ImmutableMap;
 import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +20,8 @@ import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import static ch.taburett.tichu.cards.CardsKt.getLookupByCode;
-import static ch.taburett.tichu.game.protocol.Message.*;
+import static ch.taburett.tichu.cards.AllCardsKt.getLookupByCode;
+import static ch.taburett.tichu.game.communication.Message.*;
 
 // todo: interface game
 public class TichuGame {
@@ -53,7 +53,7 @@ public class TichuGame {
         // todo: interactive
         players.values().stream()
                 .limit(3)
-                .forEach(p -> p.connect(new AutoPlayer(Player.valueOf(p.name), p.name, msg -> receiveUserMsg(p.name, msg))));
+                .forEach(p -> p.connect(new AutoPlayer(EPlayer.valueOf(p.name), p.name, msg -> receiveUserMsg(p.name, msg))));
     }
 
 
@@ -136,7 +136,7 @@ public class TichuGame {
                     receiveUserMsg(user, new Bomb(getCards(payload)));
                 } catch (Exception e) {
                     var playerString = userNameToPlayer.get(user);
-                    var player = Player.valueOf(playerString);
+                    var player = EPlayer.valueOf(playerString);
                     receiveServerMessage(new WrappedServerMessage(player, new Rejected("no bomb", getCards(payload))));
                 }
             }
@@ -148,7 +148,7 @@ public class TichuGame {
 
     private static @NotNull List<PlayCard> getCards(Map<String, Object> payload) {
         return ((List<String>) payload.get("cards"))
-                .stream().map(CardsKt::parsePlayCard)
+                .stream().map(CardUtilsKt::parsePlayCard)
                 .toList();
     }
 
@@ -158,7 +158,7 @@ public class TichuGame {
         var playerString = userNameToPlayer.get(user);
         // todo: intercept and log
 
-        var player = Player.valueOf(playerString);
+        var player = EPlayer.valueOf(playerString);
 
         game.receiveUserMessage(new WrappedPlayerMessage(player, msg));
     }
