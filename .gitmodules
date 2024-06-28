@@ -1,0 +1,5 @@
+[submodule "libTichu"]
+	path = tjchu/libTichu
+	url = git@github.com:akkurat/libtichu.git
+
+
