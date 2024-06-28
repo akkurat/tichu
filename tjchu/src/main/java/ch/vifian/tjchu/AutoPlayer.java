@@ -1,8 +1,8 @@
 package ch.vifian.tjchu;
 
 import ch.taburett.tichu.game.core.common.EPlayer;
-import ch.taburett.tichu.botplayer.BattleRound;
-import ch.taburett.tichu.botplayer.StupidPlayer;
+import ch.taburett.tichu.botplayer.helpers.BattleRound;
+import ch.taburett.tichu.botplayer.implementations.StupidPlayer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.SneakyThrows;

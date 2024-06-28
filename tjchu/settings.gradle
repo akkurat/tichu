@@ -1,2 +1,2 @@
 rootProject.name = 'tjchu'
-includeBuild '../../libTichu'
+includeBuild 'libTichu'

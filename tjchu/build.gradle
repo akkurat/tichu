@@ -5,7 +5,7 @@ plugins {
 	id 'org.jetbrains.kotlin.jvm' version '2.0.20-Beta1'
 }
 
-group = 'ch.vifian'
+group = "ch.taburett.tichu"
 version = '0.0.1-SNAPSHOT'
 
 java {
