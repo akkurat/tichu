@@ -6,7 +6,7 @@ services:
         build:
             context: ./tjchu
         ports:
-            - "9000:80"
+            - "8080:8080"
     frontend:
         image: ngtichu
         container_name: ngtichu
