@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+    backend:
+        image: taburett-tichu
+        container_name: tichu-boot
+        build:
+            context: ./tjchu
+        ports:
+            - "9000:80"
+    frontend:
+        image: ngtichu
+        container_name: ngtichu
+        build:
+            context: ./ngtichu
+        ports:
+            - "4200:80"
+        depends_on:
+            - backend
+
+

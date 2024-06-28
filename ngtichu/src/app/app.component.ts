@@ -7,7 +7,6 @@ import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ServerSelectionService } from './services/server-selection.service';
 import { SettingsStore } from './utils/settings-store';
 import { combineLatest, filter } from 'rxjs';
-import { FullHouse, PHX, Phoenix, fulldeck } from 'libTichu';
 
 @Component({
   selector: 'app-root',
