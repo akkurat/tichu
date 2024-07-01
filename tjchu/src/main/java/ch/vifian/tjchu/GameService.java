@@ -1,6 +1,5 @@
 package ch.vifian.tjchu;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +13,24 @@ public class GameService {
 
     private SimpMessagingTemplate simpMessagingTemplate;
 
-    ConcurrentHashMap<UUID, TichuGame> games;
+    ConcurrentHashMap<UUID, TichuGameWeb> games;
 
     public GameService(SimpMessagingTemplate simpMessagingTemplate) {
         this.simpMessagingTemplate = simpMessagingTemplate;
         games = new ConcurrentHashMap<>();
         // todo: factory
-        var game = new TichuGame("Default", simpMessagingTemplate);
+        var game = new TichuGameWeb("Default", simpMessagingTemplate);
         games.put(game.id, game);
     }
 
-    public TichuGame createGame(@Nullable String caption) {
-        var game = new TichuGame(caption, simpMessagingTemplate);
+    public TichuGameWeb createGame(@Nullable String caption) {
+        var game = new TichuGameWeb(caption, simpMessagingTemplate);
         games.put(game.id, game);
         publishGames();
         return game;
     }
 
-    public Collection<TichuGame> listGames() {
+    public Collection<TichuGameWeb> listGames() {
         return games.values();
     }
 
@@ -40,9 +39,9 @@ public class GameService {
         simpMessagingTemplate.convertAndSend("/topic/games", games.values());
     }
 
-    public JoinResponse join(String gameid, String username) {
+    public JoinResponse join(String gameid, String group, String username) {
         var game = games.get(UUID.fromString(gameid));
         publishGames();
-        return game.join( username );
+        return game.join( username, group );
     }
 }

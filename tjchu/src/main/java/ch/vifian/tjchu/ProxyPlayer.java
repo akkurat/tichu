@@ -3,6 +3,7 @@ package ch.vifian.tjchu;
 import ch.taburett.tichu.game.communication.Message.Points;
 import ch.taburett.tichu.game.communication.Message.Rejected;
 import ch.taburett.tichu.game.communication.Message.ServerMessage;
+import ch.taburett.tichu.game.core.common.EPlayer;
 import lombok.Getter;
 
 import java.util.HashMap;
@@ -10,15 +11,15 @@ import java.util.Map;
 
 public class ProxyPlayer {
 
-    public final String name;
+    public final EPlayer player;
     // just a string?
     @Getter
     UserPlayer userPlayerReference = null;
 
     Map<Class<? extends ServerMessage>, MessageWrapper> buffer = new HashMap<>();
 
-    public ProxyPlayer(String a1) {
-        this.name = a1;
+    public ProxyPlayer(EPlayer a1) {
+        this.player = a1;
     }
 
     public boolean unconnected() {

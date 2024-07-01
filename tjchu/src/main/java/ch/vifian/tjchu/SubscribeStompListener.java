@@ -2,25 +2,17 @@ package ch.vifian.tjchu;
 
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.core.AbstractMessageSendingTemplate;
-import org.springframework.messaging.core.MessageSendingOperations;
 import org.springframework.messaging.simp.SimpLogging;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessageType;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.messaging.simp.annotation.support.SubscriptionMethodReturnValueHandler;
-import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
 import java.util.UUID;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 import static java.util.concurrent.Executors.newCachedThreadPool;
 
@@ -37,7 +29,6 @@ public class SubscribeStompListener implements ApplicationListener<SessionSubscr
 
     @Override
     public void onApplicationEvent(SessionSubscribeEvent sessionSubscribeEvent) {
-
 
         var user = sessionSubscribeEvent.getUser();
 
@@ -80,7 +71,7 @@ public class SubscribeStompListener implements ApplicationListener<SessionSubscr
                     System.out.println(gameid);
                     var game = gs.games.get(UUID.fromString(gameid));
 
-                    var response = game.join(user.getName());
+                    var response = game.join(user.getName(), null);
 
                     this.messagingTemplate.convertAndSendToUser(user.getName(), destination.substring("/user".length()),
                             response, headersToSend);
